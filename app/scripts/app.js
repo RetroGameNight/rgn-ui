@@ -1,30 +1,30 @@
+const React = window.React = require('react'),
+    Timer = require("./ui/Timer.js"),
+    mountNode = document.getElementById("app")
 
-var React = window.React = require('react'),
-    Timer = require("./ui/Timer"),
-    mountNode = document.getElementById("app");
-
-var TodoList = React.createClass({
-  render: function() {
-    var createItem = function(itemText) {
-      return <li>{itemText}</li>;
-    };
-    return <ul>{this.props.items.map(createItem)}</ul>;
+class TodoList extends React.Component {
+  render() {
+    let createItem = itemText => { return <li>{itemText}</li> }
+    return <ul>{this.props.items.map(createItem)}</ul>
   }
-});
-var TodoApp = React.createClass({
-  getInitialState: function() {
-    return {items: [], text: ''};
-  },
-  onChange: function(e) {
-    this.setState({text: e.target.value});
-  },
-  handleSubmit: function(e) {
-    e.preventDefault();
-    var nextItems = this.state.items.concat([this.state.text]);
-    var nextText = '';
-    this.setState({items: nextItems, text: nextText});
-  },
-  render: function() {
+}
+class TodoApp extends React.Component {
+  constructor() {
+    super()
+    this.state = {items: [], text: ''}
+    this.onChange = this.onChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
+  onChange(e) {
+    this.setState({text: e.target.value})
+  }
+  handleSubmit(e) {
+    e.preventDefault()
+    let nextItems = this.state.items.concat([this.state.text])
+    let nextText = ''
+    this.setState({items: nextItems, text: nextText})
+  }
+  render() {
     return (
       <div>
         <h3>TODO</h3>
@@ -32,12 +32,12 @@ var TodoApp = React.createClass({
         <form onSubmit={this.handleSubmit}>
           <input onChange={this.onChange} value={this.state.text} />
           <button>{'Add #' + (this.state.items.length + 1)}</button>
+          <Timer />
         </form>
-        <Timer />
       </div>
     );
   }
-});
+}
 
 
 React.render(<TodoApp />, mountNode);

@@ -1,26 +1,25 @@
-'use strict';
+const React = require('react');
 
-var React = require('react');
-
-var Timer = React.createClass({
-  getInitialState: function() {
-    return {secondsElapsed: 0};
-  },
-  tick: function() {
+class Timer extends React.Component {
+  constructor() {
+    super()
+    this.state = {secondsElapsed: 0};
+    this.tick = this.tick.bind(this);
+  }
+  tick() {
     this.setState({secondsElapsed: this.state.secondsElapsed + 1});
-  },
-  componentDidMount: function() {
+  }
+  componentDidMount() {
     this.interval = setInterval(this.tick, 1000);
-  },
-  componentWillUnmount: function() {
-    clearInterval(this.interval);
-  },
-  render: function() {
+  }
+  componentWillUnmount() {
+    clearInterval(this.interval)
+  }
+  render() {
     return (
       <div>Seconds Elapsed: {this.state.secondsElapsed}</div>
-    );
+    )
   }
-});
+}
 
-
-module.exports = Timer;
+export default Timer
