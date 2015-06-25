@@ -2,6 +2,8 @@ const React = window.React = require('react'),
     Timer = require("./ui/Timer.js"),
     mountNode = document.getElementById("app")
 
+require("../styles/main.scss")    
+
 class TodoList extends React.Component {
   render() {
     let createItem = itemText => { return <li>{itemText}</li> }
