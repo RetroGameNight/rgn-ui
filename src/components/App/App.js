@@ -58,8 +58,7 @@ class App {
           this.props.path === '/' ?
           <div className="jumbotron">
             <div className="container text-center">
-              <h1>React</h1>
-              <p>Complex web apps made easy</p>
+              <h1>Retro Game Night</h1>
             </div>
           </div> :
           <div className="container">

@@ -16,7 +16,6 @@ class Navbar {
         <div className="container">
           <a className="navbar-brand row" href="/">
             <img src={require('./logo-small.png')} width="38" height="38" alt="React" />
-            <span>React.js Starter Kit</span>
           </a>
         </div>
       </div>
