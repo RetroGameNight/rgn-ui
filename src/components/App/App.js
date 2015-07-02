@@ -9,10 +9,7 @@
 import './App.less';
 import React, { PropTypes } from 'react';
 import invariant from 'react/lib/invariant';
-import AppActions from '../../actions/AppActions';
-import AppStore from '../../stores/AppStore';
 import Navbar from '../Navbar';
-import ContentPage from '../ContentPage';
 import NotFoundPage from '../NotFoundPage';
 import setViewport from './setViewport';
 
@@ -42,14 +39,7 @@ class App {
   }
 
   render() {
-    var page = AppStore.getPage(this.props.path);
-    invariant(page !== undefined, 'Failed to load page content.');
-    this.props.onSetTitle(page.title);
-
-    if (page.type === 'notfound') {
-      this.props.onPageNotFound();
-      return React.createElement(NotFoundPage, page);
-    }
+    this.props.onSetTitle("TITLE");
 
     return (
       <div className="App">
@@ -66,23 +56,17 @@ class App {
             <h2>{page.title}</h2>
           </div>
         }
-        <ContentPage className="container" {...page} />
         <div className="navbar-footer">
           <div className="container">
             <p className="text-muted">
               <span>© Your Company</span>
               <span><a href="/">Home</a></span>
-              <span><a href="/privacy">Privacy</a></span>
               <span>{'Viewport: ' + this.props.viewport.width + 'x' + this.props.viewport.height}</span>
             </p>
           </div>
         </div>
       </div>
     );
-  }
-
-  handlePopState(event) {
-    AppActions.navigateTo(window.location.pathname, {replace: !!event.state});
   }
 
   handleClick(event) {
@@ -133,11 +117,7 @@ class App {
     var path = el.pathname + el.search + (el.hash || '');
 
     event.preventDefault();
-    AppActions.loadPage(path, () => {
-      AppActions.navigateTo(path);
-    });
   }
-
 }
 
 export default setViewport(App);

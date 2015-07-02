@@ -12,9 +12,6 @@ import React from 'react/addons';
 import FastClick from 'fastclick';
 import emptyFunction from 'react/lib/emptyFunction';
 import App from './components/App';
-import Dispatcher from './core/Dispatcher';
-import AppActions from './actions/AppActions';
-import ActionTypes from './constants/ActionTypes';
 
 let path = decodeURI(window.location.pathname);
 let setMetaTag = (name, content) => {
@@ -42,14 +39,6 @@ function run() {
   };
   let element = React.createElement(App, props);
   React.render(element, document.body);
-
-  // Update `Application.path` prop when `window.location` is changed
-  Dispatcher.register((payload) => {
-    if (payload.action.actionType === ActionTypes.CHANGE_LOCATION) {
-      element = React.cloneElement(element, {path: payload.action.path});
-      React.render(element, document.body);
-    }
-  });
 }
 
 // Run the application when both DOM is ready
