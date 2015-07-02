@@ -1,6 +1,6 @@
 /*
- * React.js Starter Kit
- * Copyright (c) 2014 Konstantin Tarkus (@koistya), KriaSoft LLC.
+ * Retro Game Night
+ * Copyright (c) 2015 Sasha Fahrenkopf, ... add your name
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE.txt file in the root directory of this source tree.
@@ -54,24 +54,11 @@ class App {
     return (
       <div className="App">
         <Navbar />
-        {
-          this.props.path === '/' ?
-          <div className="jumbotron">
-            <div className="container text-center">
-              <h1>Retro Game Night</h1>
-            </div>
-          </div> :
-          <div className="container">
-            <h2>{page.title}</h2>
-          </div>
-        }
         <ContentPage className="container" {...page} />
         <div className="navbar-footer">
           <div className="container">
             <p className="text-muted">
-              <span>© Your Company</span>
-              <span><a href="/">Home</a></span>
-              <span><a href="/privacy">Privacy</a></span>
+              <span><a href="https://github.com/RetroGameNight/">Contribute!</a></span>
               <span>{'Viewport: ' + this.props.viewport.width + 'x' + this.props.viewport.height}</span>
             </p>
           </div>
