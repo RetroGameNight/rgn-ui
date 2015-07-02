@@ -1,6 +1,6 @@
 /*
- * React.js Starter Kit
- * Copyright (c) 2014 Konstantin Tarkus (@koistya), KriaSoft LLC.
+ * Retro Game Night
+ * Copyright (c) 2015 Sasha Fahrenkopf, ... add your name
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE.txt file in the root directory of this source tree.
@@ -15,9 +15,16 @@ class Navbar {
       <div className="navbar-top" role="navigation">
         <div className="container">
           <a className="navbar-brand row" href="/">
-            <img src={require('./logo-small.png')} width="38" height="38" alt="React" />
-            <span>React.js Starter Kit</span>
+            <img src={require('./logo-small.png')} width="300" height="35" alt="React" />
           </a>
+          <ul className="nav navbar-nav  navbar-left">
+            <li className="active"><a href="/challenges">Challenges</a></li>
+            <li><a href="/players">Players</a></li>
+          </ul>
+        
+          <ul className="nav navbar-nav navbar-right">
+            <li><a href="/login">Sign In</a></li>
+          </ul>
         </div>
       </div>
     );
