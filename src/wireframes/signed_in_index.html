@@ -1,0 +1,92 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Signed In | RGN Wireframes</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    
+</head>
+
+<body>
+    <! -- Nav --> 
+    <div class="navbar-top" role="navigation" style="border-bottom: 1px solid black;">
+        <div class="container">
+          <a class="navbar-brand row" href="index.html">
+            <img src="http://placehold.it/300x35" width="300" height="35" />
+          </a>
+          <ul class="nav navbar-nav  navbar-left">
+            <li class="active"><a href="challenges.html">Challenges</a></li>
+            <li><a href="players.html">Players</a></li>
+          </ul>
+
+          <div class="nav navbar-nav navbar-right">
+              <!-- Modals should be component that can be passed their content-->
+              
+              <!-- Trigger the modal -->
+              <h4>Zelda</h4> <!-- We need some way to log-out-->
+              
+          </div>     
+            
+                
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="row">
+            <br> <!-- css please-->
+            <div class="col-sm-12 col-lg-10">
+                <img src="http://placehold.it/175x175" class="pull-left"  style="padding-right: 30px">
+                <h1>Zelda!</h1>
+                <h2><small>z3lda</small></h2>
+                <button type="button" class="btn btn-info btn-default" data-toggle="modal" data-target="#login-modal" style="margin-top: 15px; margin-bottom: 15px;">Checked In</button>
+            </div>
+            
+            <div class="col-sm-12 col-lg-2">
+                
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-sm-12">
+                <!-- These should be components where we can pass a title and the parameters  of the table -->
+                <h2>Challenges</h2>
+                <table class="table table-hover">
+                    <tr>
+                        <th>Game</th>
+                        <th>Challenge</th>
+                        <th>Type</th>
+                        <th>Score</th>
+                    </tr>
+                    <tr>
+                        <td>Zelda: Ocarina of Time</td>
+                        <td>World 1</td>
+                        <td>Point</td>
+                        <td>584000</td>
+                    </tr>
+                    <tr>
+                        <td>SMB</td>
+                        <td>Dungeon 1</td>
+                        <td>Point</td>
+                        <td>38000</td>
+                    </tr>
+                    <tr>
+                        <td>Donkey Kong</td>
+                        <td>Dungeon 1</td>
+                        <td>Speed</td>
+                        <td>1:28</td>
+                    </tr>
+                </table>
+            </div>
+            
+        </div>
+        
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</body>
+</html>

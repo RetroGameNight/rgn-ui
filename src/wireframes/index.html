@@ -1,0 +1,202 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Home | RGN Wireframes</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    
+</head>
+
+<body>
+    <! -- Nav --> 
+    <div class="navbar-top" role="navigation" style="border-bottom: 1px solid black;">
+        <div class="container">
+          <a class="navbar-brand row" href="index.html">
+            <img src="http://placehold.it/300x35" width="300" height="35" />
+          </a>
+          <ul class="nav navbar-nav  navbar-left">
+            <li class="active"><a href="challenges.html">Challenges</a></li>
+            <li><a href="players.html">Players</a></li>
+          </ul>
+
+          <div class="nav navbar-nav navbar-right">
+              <!-- Modals should be component that can be passed their content-->
+              
+              <!-- Trigger the modal -->
+              <button type="button" class="btn btn-info btn-default" data-toggle="modal" data-target="#login-modal" style="margin-top: 15px; margin-bottom: 15px;">Login</button>
+              
+          </div>     
+            
+            <!-- Login Modal -->
+            <div id="login-modal" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Login</h4>
+                  </div>
+                    
+                  <div class="modal-body">
+                    <!-- The Login Form -->
+                      <form>
+                          <div class="form-group">
+                            <label for="exampleInputEmail1">Email address</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                          </div>
+                          <div class="form-group">
+                            <label for="exampleInputPassword1">Password</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                          </div>
+                      </form>
+                      <!-- We should placehold this with some kind of "In Beta" screen-->
+                      <p class="text-center">
+                          <a data-toggle="modal" data-target="#register-modal">
+                              Don't have an account? Register!
+                          </a>
+                      </p>
+                  </div>
+                    
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick=changeURL("signed_in_index.html")>Login</button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            
+            <!-- Register Modal -->
+            <div id="register-modal" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Register</h4>
+                  </div>
+                    
+                  <div class="modal-body">
+                    
+                      <div>
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Register with Google</button>
+                         <button type="button" class="btn btn-default" data-dismiss="modal">Register with Facebook</button>
+                      </div>
+                      <h6>Or... </h6>
+                      <!-- Register Form -->
+                      <form>
+                        <div class="form-group">
+                            <!-- Do we need first and last in seperate fields? Prolly -->
+                            <label for="exampleInputEmail1">Name</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                          </div>
+                          <div class="form-group">
+                            <label for="exampleInputEmail1">Email address</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                          </div>
+                          <div class="form-group">
+                            <label for="exampleInputPassword1">Password</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                          </div>
+                      </form>
+                      
+                  </div>
+                    
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Register</button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+                 
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="row">
+            <h1 class="text-center">Retro Game Night</h1> 
+        </div>
+        
+        <div class="row">
+            <div class="col-sm-12 col-lg-4">
+                <!-- These should be components where we can pass a title and the parameters  of the table -->
+                <h2 class="text-center">Top Players</h2>
+                <table class="table table-hover">
+                    <tr>
+                        <th>Player</th>
+                        <th>Score</th>
+                    </tr>
+                    <tr>
+                        <td>Mario</td>
+                        <td>543</td>
+                    </tr>
+                    <tr>
+                        <td>Luigi</td>
+                        <td>432</td>
+                    </tr>
+                    <tr>
+                        <td>Zelda</td>
+                        <td>321</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="col-sm-12 col-lg-4">
+                <h2 class="text-center">Latest Scores</h2>
+                <table class="table table-hover">
+                    <tr>
+                        <th>Player</th>
+                        <th>Score</th>
+                    </tr>
+                    <tr>
+                        <td>Mario</td>
+                        <td>543</td>
+                    </tr>
+                    <tr>
+                        <td>Luigi</td>
+                        <td>432</td>
+                    </tr>
+                    <tr>
+                        <td>Zelda</td>
+                        <td>321</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="col-sm-12 col-lg-4">
+                <h2 class="text-center">Top Patrons</h2>
+                <table class="table table-hover">
+                    <tr>
+                        <th>Player</th>
+                        <th>Score</th>
+                    </tr>
+                    <tr>
+                        <td>Mario</td>
+                        <td>543</td>
+                    </tr>
+                    <tr>
+                        <td>Luigi</td>
+                        <td>432</td>
+                    </tr>
+                    <tr>
+                        <td>Zelda</td>
+                        <td>321</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>    
+    <script src="redirect.js"></script>
+</body>
+</html>
