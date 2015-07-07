@@ -167,6 +167,7 @@ gulp.task('sync', ['serve'], function(cb) {
   browserSync = require('browser-sync');
 
   browserSync({
+    port: 8080,
     logPrefix: 'RSK',
     notify: false,
     // Run as an https by setting 'https: true'
