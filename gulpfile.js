@@ -168,6 +168,8 @@ gulp.task('sync', ['serve'], function(cb) {
   browserSync = require('browser-sync');
 
   browserSync({
+    // Defines the default port
+    port: 8080,
     logPrefix: 'RSK',
     notify: false,
     // Run as an https by setting 'https: true'
@@ -176,7 +178,7 @@ gulp.task('sync', ['serve'], function(cb) {
     https: false,
     // Informs browser-sync to proxy our Express app which would run
     // at the following location
-    proxy: 'localhost:5000'
+    proxy: 'localhost:5000' 
   }, cb);
 
   process.on('exit', function() {
