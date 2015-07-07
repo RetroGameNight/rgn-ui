@@ -12,6 +12,8 @@ import React from 'react/addons';
 import FastClick from 'fastclick';
 import emptyFunction from 'react/lib/emptyFunction';
 import App from './components/App';
+import Router, { Route, RouteHandler, DefaultRoute, NotFoundRoute} from "react-router"
+
 
 let path = decodeURI(window.location.pathname);
 
@@ -20,12 +22,16 @@ function run() {
   let props = {
     path: path,
     onSetTitle: (title) => document.title = title,
-    onSetMeta: setMetaTag,
     onPageNotFound: emptyFunction
   };
   let element = React.createElement(App, props);
-  React.render(element, document.body);
+  //React.render(element, document.body);
 }
+
+const routes = (
+  <Route name="app" handler={App} path="/">
+  </Route>
+)
 
 // Run the application when both DOM is ready
 // and page content is loaded

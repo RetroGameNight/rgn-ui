@@ -12,6 +12,7 @@ import invariant from 'react/lib/invariant';
 import Navbar from '../Navbar';
 import NotFoundPage from '../NotFoundPage';
 import setViewport from './setViewport';
+import Router, { RouteHandler } from "react-router"
 
 class App {
 
@@ -19,7 +20,6 @@ class App {
     path: PropTypes.string.isRequired,
     viewport: PropTypes.object.isRequired,
     onSetTitle: PropTypes.func.isRequired,
-    onSetMeta: PropTypes.func.isRequired,
     onPageNotFound: PropTypes.func.isRequired
   };
 
@@ -43,6 +43,7 @@ class App {
     return (
       <div className="App">
         <Navbar />
+        <RouteHandler />
         <div className="navbar-footer">
           <div className="container">
             <p className="text-muted">
