@@ -14,20 +14,6 @@ import emptyFunction from 'react/lib/emptyFunction';
 import App from './components/App';
 
 let path = decodeURI(window.location.pathname);
-let setMetaTag = (name, content) => {
-  // Remove and create a new <meta /> tag in order to make it work
-  // with bookmarks in Safari
-  let elements = document.getElementsByTagName('meta');
-  [].slice.call(elements).forEach((element) => {
-    if (element.getAttribute('name') === name) {
-      element.parentNode.removeChild(element);
-    }
-  });
-  let meta = document.createElement('meta');
-  meta.setAttribute('name', name);
-  meta.setAttribute('content', content);
-  document.getElementsByTagName('head')[0].appendChild(meta);
-};
 
 function run() {
   // Render the top-level React component
