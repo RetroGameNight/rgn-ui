@@ -8,6 +8,19 @@
 
 import React from 'react'; // eslint-disable-line no-unused-vars
 
+let api = "http://localhost:3000";
+
+class SignIn extends React.Component {
+    render() {
+        let path = this.props.type;
+        let URL = api + "/auth/" + path;
+        
+        return (
+          <a className="btn btn-default" href={URL} role="button">{this.props.text}</a>
+        )
+    }
+}
+
 class Navbar {
 
   render() {
@@ -23,7 +36,8 @@ class Navbar {
           </ul>
         
           <ul className="nav navbar-nav navbar-right">
-            <li><a href="/login">Sign In</a></li>
+            <li><SignIn text="Sign In with Google" type="google" /></li>
+            <li><SignIn text="Sign In with Facebook" type="facebook" /></li>
           </ul>
         </div>
       </div>
