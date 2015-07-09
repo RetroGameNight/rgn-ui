@@ -5,19 +5,17 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE.txt file in the root directory of this source tree.
  */
-import './App.less';
+import './Footer.less';
 import React, { PropTypes } from 'react';
-import Navbar from '../Navbar';
-import Footer from '../Footer';
-import Router, { RouteHandler } from "react-router"
 
-export default class App extends React.Component {
+export default class Footer extends React.Component {
   render() {
     return (
-      <div className="App">
-        <Navbar />
-        <RouteHandler {...this.params} />
-        <Footer />
+      <div className="navbar-footer">
+        <div className="container">
+          <p className="text-muted">
+          </p>
+        </div>
       </div>
     );
   }
