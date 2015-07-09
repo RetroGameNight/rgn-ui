@@ -1,8 +1,7 @@
-/*!
+/*
  * Facebook React Starter Kit | https://github.com/kriasoft/react-starter-kit
  * Copyright (c) KriaSoft, LLC. All rights reserved. See LICENSE.txt
  */
-
 'use strict';
 
 var _ = require('lodash');
@@ -101,7 +100,7 @@ var appConfig = _.merge({}, config, {
   entry: './src/app.js',
   output: {
     filename: 'app.js'
-  },
+  }
   plugins: config.plugins.concat([
       new webpack.DefinePlugin(_.merge(GLOBALS, {'__SERVER__': false}))
     ].concat(DEBUG ? [] : [
@@ -112,37 +111,4 @@ var appConfig = _.merge({}, config, {
   )
 });
 
-//
-// Configuration for the server-side bundle (server.js)
-// -----------------------------------------------------------------------------
-
-var serverConfig = _.merge({}, config, {
-  entry: './src/server.js',
-  output: {
-    filename: 'server.js',
-    libraryTarget: 'commonjs2'
-  },
-  target: 'node',
-  externals: /^[a-z][a-z\.\-0-9]*$/,
-  node: {
-    console: false,
-    global: false,
-    process: false,
-    Buffer: false,
-    __filename: false,
-    __dirname: false
-  },
-  plugins: config.plugins.concat(
-    new webpack.DefinePlugin(_.merge(GLOBALS, {'__SERVER__': true}))
-  ),
-  module: {
-    loaders: config.module.loaders.map(function(loader) {
-      // Remove style-loader
-      return _.merge(loader, {
-        loader: loader.loader = loader.loader.replace('style-loader!', '')
-      });
-    })
-  }
-});
-
-module.exports = [appConfig, serverConfig];
+module.exports = [appConfig];

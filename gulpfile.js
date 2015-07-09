@@ -13,7 +13,6 @@
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 var del = require('del');
-var path = require('path');
 var runSequence = require('run-sequence');
 var webpack = require('webpack');
 var argv = require('minimist')(process.argv.slice(2));
@@ -34,33 +33,39 @@ var AUTOPREFIXER_BROWSERS = [                 // https://github.com/ai/autoprefi
 
 var src = {};
 var watch = false;
-var browserSync;
+var browserSync = require('browser-sync');
 
 // The default task
-gulp.task('default', ['sync']);
+gulp.task('default', ['watch']);
 
 // Clean output directory
 gulp.task('clean', del.bind(
   null, ['.tmp', 'build/*', '!build/.git'], {dot: true}
 ));
 
-// 3rd party libraries
-gulp.task('vendor', function() {
-  return gulp.src('node_modules/bootstrap/dist/fonts/**')
-    .pipe(gulp.dest('build/fonts'));
+// HTML
+gulp.task("html", function() {
+    return gulp.src("src/*.html")
+        .pipe($.changed("build"))
+        .pipe(gulp.dest("build"))
+        .pipe($.size({title: 'html'}));
 });
 
 // Static files
 gulp.task('assets', function() {
   src.assets = [
     'src/assets/**',
-    'src/content*/**/*.*',
-    'src/templates*/**/*.*'
   ];
   return gulp.src(src.assets)
     .pipe($.changed('build'))
     .pipe(gulp.dest('build'))
     .pipe($.size({title: 'assets'}));
+});
+
+// 3rd party libraries
+gulp.task('vendor', function() {
+  return gulp.src('node_modules/bootstrap/dist/fonts/**')
+    .pipe(gulp.dest('build/fonts'));
 });
 
 // CSS style sheets
@@ -100,7 +105,6 @@ gulp.task('bundle', function(cb) {
       return cb();
     }
   }
-
   if (watch) {
     bundler.watch(200, bundle);
   } else {
@@ -110,103 +114,31 @@ gulp.task('bundle', function(cb) {
 
 // Build the app from source code
 gulp.task('build', ['clean'], function(cb) {
-  runSequence(['vendor', 'assets', 'styles', 'bundle'], cb);
+  runSequence(['vendor', 'assets', 'styles', 'html', 'bundle'], cb);
 });
 
 // Build and start watching for modifications
 gulp.task('build:watch', function(cb) {
   watch = true;
   runSequence('build', function() {
+    gulp.watch(src.assets, ['bundle']);
     gulp.watch(src.assets, ['assets']);
     gulp.watch(src.styles, ['styles']);
     cb();
   });
 });
 
-// Launch a Node.js/Express server
-gulp.task('serve', ['build:watch'], function(cb) {
-  src.server = [
-    'build/server.js',
-    'build/templates/**/*'
-  ];
+gulp.task("watch", ["build:watch"], function() {
+    browserSync = require('browser-sync');
 
-  var started = false;
-  var cp = require('child_process');
-  var assign = require('react/lib/Object.assign');
-
-  var server = (function startup() {
-    var child = cp.fork('build/server.js', {
-      env: assign({NODE_ENV: 'development'}, process.env)
+    browserSync({
+        notify: false,
+        logPrefix: "BS",
+        index: "index.html",
+        // Run as an https by uncommenting "https: true"
+        // Note: this uses an unsigned certificate which on first access
+        //       will present a certificate warning in the browser.
+        // https: true,
+        server: ["build"]
     });
-    child.once('message', function(message) {
-      if (message.match(/^online$/)) {
-        if (browserSync) {
-          browserSync.reload();
-        }
-        if (!started) {
-          started = true;
-          gulp.watch(src.server, function() {
-            $.util.log('Restarting development server.');
-            server.kill('SIGTERM');
-            server = startup();
-          });
-          cb();
-        }
-      }
-    });
-    return child;
-  })();
-
-  process.on('exit', function() {
-    server.kill('SIGTERM');
-  });
-});
-
-// Launch BrowserSync development server
-gulp.task('sync', ['serve'], function(cb) {
-  browserSync = require('browser-sync');
-
-  browserSync({
-    port: 8080,
-    logPrefix: 'RSK',
-    notify: false,
-    // Run as an https by setting 'https: true'
-    // Note: this uses an unsigned certificate which on first access
-    //       will present a certificate warning in the browser.
-    https: false,
-    // Informs browser-sync to proxy our Express app which would run
-    // at the following location
-    proxy: 'localhost:5000'
-  }, cb);
-
-  process.on('exit', function() {
-    browserSync.exit();
-  });
-
-  gulp.watch(['build/**/*.*'].concat(
-    src.server.map(function(file) { return '!' + file; })
-  ), function(file) {
-    browserSync.reload(path.relative(__dirname, file.path));
-  });
-});
-
-// Deploy via Git
-gulp.task('deploy', function(cb) {
-  var push = require('git-push');
-  var remote = argv.production ?
-    'https://github.com/{user}/{repo}.git' :
-    'https://github.com/{user}/{repo}-test.git';
-  push('./build', remote, cb);
-});
-
-// Run PageSpeed Insights
-gulp.task('pagespeed', function(cb) {
-  var pagespeed = require('psi');
-  // Update the below URL to the public URL of your site
-  pagespeed.output('example.com', {
-    strategy: 'mobile'
-    // By default we use the PageSpeed Insights free (no API key) tier.
-    // Use a Google Developer API key if you have one: http://goo.gl/RkN0vE
-    // key: 'YOUR_API_KEY'
-  }, cb);
 });
