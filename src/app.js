@@ -8,8 +8,8 @@
 import React from 'react';
 import App from './components/App';
 import NotFound from './components/NotFound'
-import ChallangePage from './components/ChallangePage'
-import ChallangesPage from './components/ChallangesPage'
+import ChallengePage from './components/ChallengePage'
+import ChallengesPage from './components/ChallengesPage'
 import EventPage from './components/EventPage'
 import EventsPage from './components/EventsPage'
 import GamePage from './components/GamePage'
@@ -27,8 +27,8 @@ const routes = (
     <Route name='players' handler={PlayersPage} />
     <Route name='game' path='game/:id' handler={GamePage} />
     <Route name='games' handler={GamesPage} />
-    <Route name='challange' path='challange/:id' handler={ChallangePage}/>
-    <Route name='challanges' handler={ChallangesPage} />
+    <Route name='challenge' path='challenge/:id' handler={ChallengePage}/>
+    <Route name='challenges' handler={ChallengesPage} />
     <Route name='event' path='event/:id' handler={EventPage} />
     <Route name='events' handler={EventsPage} />
     <NotFoundRoute handler={NotFound} />

@@ -7,6 +7,7 @@
  */
 
 import React from 'react'; // eslint-disable-line no-unused-vars
+import { Link } from 'react-router';
 
 let api = "http://localhost:3000";
 
@@ -27,12 +28,14 @@ class Navbar {
     return (
       <div className="navbar-top" role="navigation">
         <div className="container">
-          <a className="navbar-brand row" href="/">
+          <Link to="app" className="navbar-brand row">
             <img src={require('./logo-small.png')} width="300" height="35" alt="React" />
-          </a>
+          </Link>
           <ul className="nav navbar-nav  navbar-left">
-            <li className="active"><a href="/challenges">Challenges</a></li>
-            <li><a href="/players">Players</a></li>
+            <li><Link to="events">Events</Link></li>
+            <li className="active"><Link to="challenges">Challenges</Link></li>
+            <li><Link to="games">Games</Link></li>
+            <li><Link to="players">Players</Link></li>
           </ul>
         
           <ul className="nav navbar-nav navbar-right">
