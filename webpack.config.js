@@ -100,7 +100,7 @@ var appConfig = _.merge({}, config, {
   entry: './src/app.js',
   output: {
     filename: 'app.js'
-  }
+  },
   plugins: config.plugins.concat([
       new webpack.DefinePlugin(_.merge(GLOBALS, {'__SERVER__': false}))
     ].concat(DEBUG ? [] : [

@@ -16,6 +16,8 @@ var del = require('del');
 var runSequence = require('run-sequence');
 var webpack = require('webpack');
 var argv = require('minimist')(process.argv.slice(2));
+browserSync = require('browser-sync');
+var reload = browserSync.reload;
 
 // Settings
 var RELEASE = !!argv.release;                 // Minimize and optimize during a build?
@@ -30,6 +32,7 @@ var AUTOPREFIXER_BROWSERS = [                 // https://github.com/ai/autoprefi
   'android >= 4.4',
   'bb >= 10'
 ];
+var DEST_BASE = "build/"
 
 var src = {};
 var watch = false;
@@ -45,32 +48,42 @@ gulp.task('clean', del.bind(
 
 // HTML
 gulp.task("html", function() {
-    return gulp.src("src/*.html")
-        .pipe($.changed("build"))
-        .pipe(gulp.dest("build"))
-        .pipe($.size({title: 'html'}));
+    src.html = [
+      "src/*.html"
+    ]
+    var dest = DEST_BASE
+    return gulp.src(src.html)
+      .pipe($.changed(dest))
+      .pipe(gulp.dest(dest))
+      .pipe($.size({title: 'html'}));
 });
 
 // Static files
 gulp.task('assets', function() {
   src.assets = [
-    'src/assets/**',
+    'src/assets/**'
   ];
+  var dest = DEST_BASE
   return gulp.src(src.assets)
-    .pipe($.changed('build'))
-    .pipe(gulp.dest('build'))
+    .pipe($.changed(dest))
+    .pipe(gulp.dest(dest))
     .pipe($.size({title: 'assets'}));
 });
 
-// 3rd party libraries
-gulp.task('vendor', function() {
-  return gulp.src('node_modules/bootstrap/dist/fonts/**')
-    .pipe(gulp.dest('build/fonts'));
+// Fonts
+gulp.task('fonts', function() {
+  src.fonts = [
+    'node_modules/bootstrap/dist/fonts/**'
+  ]
+  var dest = DEST_BASE + 'fonts/'
+  return gulp.src(src.fonts)
+    .pipe(gulp.dest(dest));
 });
 
 // CSS style sheets
 gulp.task('styles', function() {
   src.styles = 'src/styles/**/*.{css,less}';
+  var dest = DEST_BASE + 'css/'
   return gulp.src('src/styles/bootstrap.less')
     .pipe($.plumber())
     .pipe($.less({
@@ -81,28 +94,25 @@ gulp.task('styles', function() {
     .pipe($.autoprefixer({browsers: AUTOPREFIXER_BROWSERS}))
     .pipe($.csscomb())
     .pipe($.if(RELEASE, $.minifyCss()))
-    .pipe(gulp.dest('build/css'))
+    .pipe(gulp.dest(dest))
     .pipe($.size({title: 'styles'}));
 });
 
 // Bundle
-gulp.task('bundle', function(cb) {
+gulp.task('bundle', function(done) {
   var started = false;
   var config = require('./webpack.config.js');
   var bundler = webpack(config);
-
   function bundle(err, stats) {
     if (err) {
       throw new $.util.PluginError('webpack', err);
     }
-
     if (argv.verbose) {
       $.util.log('[webpack]', stats.toString({colors: true}));
     }
-
     if (!started) {
       started = true;
-      return cb();
+      return done();
     }
   }
   if (watch) {
@@ -113,24 +123,26 @@ gulp.task('bundle', function(cb) {
 });
 
 // Build the app from source code
-gulp.task('build', ['clean'], function(cb) {
-  runSequence(['vendor', 'assets', 'styles', 'html', 'bundle'], cb);
+gulp.task('build', ['clean'], function(done) {
+  runSequence(['fonts', 'assets', 'styles', 'html', 'bundle'], done);
 });
 
 // Build and start watching for modifications
-gulp.task('build:watch', function(cb) {
+gulp.task('build:watch', function(done) {
   watch = true;
   runSequence('build', function() {
-    gulp.watch(src.assets, ['bundle']);
-    gulp.watch(src.assets, ['assets']);
-    gulp.watch(src.styles, ['styles']);
-    cb();
+    gulp.watch(src.fonts, ['fonts', reload]);
+    gulp.watch(src.assets, ['assets', reload]);
+    gulp.watch(src.styles, ['styles', reload]);
+    gulp.watch(src.html, ['html', reload]);
+    gulp.watch([
+      'src/**/*.js',
+    ], ['bundle', reload])
+    done();
   });
 });
 
 gulp.task("watch", ["build:watch"], function() {
-    browserSync = require('browser-sync');
-
     browserSync({
         notify: false,
         logPrefix: "BS",
