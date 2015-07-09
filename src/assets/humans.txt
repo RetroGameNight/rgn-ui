@@ -2,12 +2,11 @@
 # The humans responsible & technology colophon
 
 # TEAM
-
-    <name> -- <role> -- <twitter>
-
-# THANKS
-
-    <name>
+	
+    Sasha Fahrenkopf 
+    Cameron White -- Developer -- cameronbwhite.com
+    Chris Leoper
+    Andrew Reder 
 
 # TECHNOLOGY COLOPHON
 
