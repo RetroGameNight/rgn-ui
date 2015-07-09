@@ -10,12 +10,12 @@ import React, { PropTypes } from 'react';
 import Navbar from '../Navbar';
 import Router, { RouteHandler } from "react-router"
 
-export default class App {
+export default class App extends React.Component {
   render() {
     return (
       <div className="App">
         <Navbar />
-        <RouteHandler />
+        <RouteHandler {...this.params} />
         <div className="navbar-footer">
           <div className="container">
             <p className="text-muted">

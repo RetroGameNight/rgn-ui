@@ -1,0 +1,6 @@
+{
+  "name": "EventPage",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./EventPage.js"
+}

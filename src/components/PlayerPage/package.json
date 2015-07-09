@@ -1,0 +1,6 @@
+{
+  "name": "PlayerPage",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./PlayerPage.js"
+}
