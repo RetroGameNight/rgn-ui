@@ -22,8 +22,24 @@ class SignIn extends React.Component {
     }
 }
 
-class Navbar {
+class NavbarLink extends React.Component {
+  static contextTypes = {
+    router: React.PropTypes.func.isRequired
+  }
+  render() {
+    const currentRoutes = this.context.router.getCurrentRoutes();
+    const activeRouteName = currentRoutes[currentRoutes.length - 1].name;
+    let className = ""
+    if (this.props.to == activeRouteName) {
+      className = "active"
+    } 
+    return (
+      <Link className={className} to={this.props.to}>{this.props.children}</Link>
+    )
+  }
+}
 
+class Navbar {
   render() {
     return (
       <div className="navbar-top" role="navigation">
@@ -32,12 +48,11 @@ class Navbar {
             <img src={require('./logo-small.png')} width="300" height="35" alt="React" />
           </Link>
           <ul className="nav navbar-nav  navbar-left">
-            <li><Link to="events">Events</Link></li>
-            <li className="active"><Link to="challenges">Challenges</Link></li>
-            <li><Link to="games">Games</Link></li>
-            <li><Link to="players">Players</Link></li>
+            <li><NavbarLink to="events">Events</NavbarLink></li>
+            <li><NavbarLink to="challenges">Challenges</NavbarLink></li>
+            <li><NavbarLink to="games">Games</NavbarLink></li>
+            <li><NavbarLink to="players">Players</NavbarLink></li>
           </ul>
-        
           <ul className="nav navbar-nav navbar-right">
             <li><SignIn text="Sign In with Google" type="google" /></li>
             <li><SignIn text="Sign In with Facebook" type="facebook" /></li>
@@ -46,7 +61,6 @@ class Navbar {
       </div>
     );
   }
-
 }
 
 export default Navbar;
