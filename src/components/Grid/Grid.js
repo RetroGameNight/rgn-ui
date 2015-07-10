@@ -10,24 +10,24 @@ import React, { PropTypes } from 'react';
 import _ from 'underscore'
 
 export default class Grid extends React.Component {
-	render() {
-		const headers = _.chain(this.props.headers)
-			.map((eachRow) => {
-				const row = _.chain(eachRow)
-					.map((eachElement) => <td>{eachElement}</td>)
-				return <tr>{row}</tr>
-			})
-		const rows = _.chain(this.props.rows)
-			.map((eachRow) => {
-				const row = _.chain(eachRow)
-					.map((eachElement) => <td>{eachElement}</td>)
-				return <tr>{row}</tr>
-			})
-		return (
-			<table>
-				<thead>{headers}</thead>
-				<tbody>{rows}</tbody>
-			</table>
-		)
-	}
+  render() {
+    const rows = _.pairs(this.props.object)
+        .map((pair) => {
+          return (
+            <tr>
+              <td>{pair[0]}</td>
+              <td>{pair[1]}</td>
+            </tr>
+          )
+        })
+    return (
+      <table className="table">
+        <tr>
+          <th>Key</th>
+          <th>Value</th>
+        </tr>
+        {rows}
+      </table> 
+    )
+  }
 }
