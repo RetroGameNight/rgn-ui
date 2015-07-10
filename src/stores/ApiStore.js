@@ -1,12 +1,12 @@
 import { Store } from 'flummox'
 
-export default class ActiveUserStore extends Store {
+export default class ApiStore extends Store {
   constructor(flux) {
     super();
 
-    const activeUserActions = flux.getActions('activeUser');
-    this.register(activeUserActions.login, this.handleLogin);
-    this.register(activeUserActions.logout, this.handleLogout);
+    const apiActions = flux.getActions('api');
+    this.register(apiActions.login, this.handleLogin);
+    this.register(apiActions.logout, this.handleLogout);
 
     this.state = {
       activeUser: null

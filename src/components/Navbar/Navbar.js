@@ -27,7 +27,7 @@ class SignIn extends React.Component {
 
 class Logout extends React.Component {
   clickHandler() {
-    flux.getActions('activeUser').logout('')
+    flux.getActions('api').logout('')
   }
   render() {
     return (
@@ -39,7 +39,7 @@ class Logout extends React.Component {
 export default class Navbar {
   render() {
     return (
-      <FluxComponent connectToStores={['activeUser']}>
+      <FluxComponent connectToStores={['api']}>
         <NavbarInner />
       </FluxComponent>
     )
@@ -72,7 +72,7 @@ class NavbarInner {
     }
   }
   componentDidMount() {
-    flux.getActions('activeUser').login()
+    flux.getActions('api').login()
   }
   render() {
     let userManagementLinks = []

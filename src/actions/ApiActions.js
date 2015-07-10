@@ -1,6 +1,6 @@
 import { Actions } from 'flummox';
 
-export default class ActiveUserActions extends Actions {
+export default class ApiActions extends Actions {
   login() {
     return null; // automatically dispatched
   }

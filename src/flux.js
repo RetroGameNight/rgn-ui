@@ -1,14 +1,14 @@
 import { Flummox } from 'flummox';
-import ActiveUserActions from './actions/ActiveUserActions'
-import ActiveUserStore from './stores/ActiveUserStore'
+import ApiActions from './actions/ApiActions'
+import ApiStore from './stores/ApiStore'
 
 class Flux extends Flummox {
   constructor() {
     super();
 
     // activeUser
-    this.createActions('activeUser', ActiveUserActions);
-    this.createStore('activeUser', ActiveUserStore, this);
+    this.createActions('api', ApiActions);
+    this.createStore('api', ApiStore, this);
   }
 }
 

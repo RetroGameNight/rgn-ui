@@ -14,7 +14,7 @@ import _ from 'underscore'
 export default class ActivePlayerPage extends React.Component {
   render() {
     return (
-      <FluxComponent connectToStores={['activeUser']}>
+      <FluxComponent connectToStores={['api']}>
         <ActivePlayerPageInner />
       </FluxComponent>
     )
