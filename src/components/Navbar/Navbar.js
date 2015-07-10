@@ -8,18 +8,42 @@
 
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Link } from 'react-router';
+import flux from '../../flux'
+import FluxComponent from 'flummox/component';
+
 
 let api = "http://localhost:3000";
 
 class SignIn extends React.Component {
-    render() {
-        let path = this.props.type;
-        let URL = api + "/auth/" + path;
-        
-        return (
-          <a className="btn btn-default" href={URL} role="button">{this.props.text}</a>
-        )
-    }
+  render() {
+    let path = this.props.type;
+    let URL = api + "/auth/" + path;
+
+    return (
+      <a className="btn btn-default" href={URL} role="button">{this.props.text}</a>
+    )
+  }
+}
+
+class Logout extends React.Component {
+  clickHandler() {
+    flux.getActions('activeUser').logout('')
+  }
+  render() {
+    return (
+      <a onClick={this.clickHandler} className="btn btn-default">Logout</a>
+    )
+  }
+}
+
+export default class Navbar {
+  render() {
+    return (
+      <FluxComponent connectToStores={['activeUser']}>
+        <NavbarInner />
+      </FluxComponent>
+    )
+  }
 }
 
 class NavbarLink extends React.Component {
@@ -39,8 +63,29 @@ class NavbarLink extends React.Component {
   }
 }
 
-class Navbar {
+class NavbarInner {
+  loggedIn() {
+    if (this.props.activeUser) {
+      return true
+    } else {
+      return false
+    }
+  }
+  componentDidMount() {
+    flux.getActions('activeUser').login()
+  }
   render() {
+    let userManagementLinks = []
+    if (this.loggedIn()) {
+      userManagementLinks = [
+        <li><Logout /></li>
+      ]
+    } else {
+      userManagementLinks = [
+        <li><SignIn text="Sign In with Google" type="google" /></li>,
+        <li><SignIn text="Sign In with Facebook" type="facebook" /></li>
+      ]
+    }
     return (
       <div className="navbar-top" role="navigation">
         <div className="container">
@@ -54,13 +99,10 @@ class Navbar {
             <li><NavbarLink to="players">Players</NavbarLink></li>
           </ul>
           <ul className="nav navbar-nav navbar-right">
-            <li><SignIn text="Sign In with Google" type="google" /></li>
-            <li><SignIn text="Sign In with Facebook" type="facebook" /></li>
+            {userManagementLinks}
           </ul>
         </div>
       </div>
     );
   }
 }
-
-export default Navbar;

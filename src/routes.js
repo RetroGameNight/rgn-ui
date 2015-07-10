@@ -16,11 +16,12 @@ import GamePage from './components/GamePage'
 import GamesPage from './components/GamesPage'
 import PlayerPage from './components/PlayerPage'
 import PlayersPage from './components/PlayersPage'
+import ActivePlayerPage from './components/ActivePlayerPage'
 import { Route, NotFoundRoute, DefaultRoute } from 'react-router';
 
 const routes = (
   <Route name='app' handler={App} path='/'>
-    <DefaultRoute handler={EventsPage} />
+    <DefaultRoute handler={ActivePlayerPage} />
     <Route name='player' path='player/:id' handler={PlayerPage}/>
     <Route name='players' handler={PlayersPage} />
     <Route name='game' path='game/:id' handler={GamePage} />

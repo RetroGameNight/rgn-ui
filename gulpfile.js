@@ -144,6 +144,7 @@ gulp.task('build:watch', function(done) {
 
 gulp.task("watch", ["build:watch"], function() {
     browserSync({
+        port: 8081,
         notify: false,
         logPrefix: "BS",
         index: "index.html",
