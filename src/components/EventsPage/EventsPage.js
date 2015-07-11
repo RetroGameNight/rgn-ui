@@ -23,11 +23,11 @@ class EventsPageInner extends React.Component {
   }
   render() {
     const events = _.chain(this.props.events)
-        .values()
         .map(each => <Grid object={each} />)
+    const size = _.chain(this.props.events).values().size()
     return (
       <div>
-        <h1>Events Page</h1>
+        <h1>Events Page - #{size}</h1>
         <a className="btn btn-default" onClick={this.newEvent}>New Event</a>
         { events }
       </div>

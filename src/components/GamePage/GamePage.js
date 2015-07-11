@@ -19,10 +19,13 @@ class GamePageInner extends React.Component {
     flux.getActions('api').getGame(this.props.params.id)
   }
   render() {
+    const game = this.props.games.find((game) => {
+      return game && game.id == this.props.params.id 
+    })
     return (
       <div>
         <h1>Game Page</h1>
-        <Grid object={this.props.games[this.props.params.id]} />
+        <Grid object={game} />
       </div>
     )
   }

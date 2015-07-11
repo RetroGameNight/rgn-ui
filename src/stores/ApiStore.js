@@ -4,11 +4,11 @@ import _ from 'underscore'
 const API_BASENAME = "http://localhost:3000"
 const DEFAULT_STATE = {
   activeUser: null,
-  users: {},
-  games: {},
-  events: {},
-  challenges: {},
-  scores: {},
+  users: [],
+  games: [],
+  events: [],
+  challenges: [],
+  scores: [],
 }
 
 export default class ApiStore extends Store {
@@ -23,8 +23,10 @@ export default class ApiStore extends Store {
     this.registerAsync(apiActions.newGame, null, this.handleNewGame, null);
     this.registerAsync(apiActions.getEvent, null, this.handleGetEvent, null);
     this.registerAsync(apiActions.getEvents, null, this.handleGetEvents, null);
+    this.registerAsync(apiActions.newEvent, null, this.handleNewEvent, null);
     this.registerAsync(apiActions.getChallenge, null, this.handleGetChallenge, null);
     this.registerAsync(apiActions.getChallenges, null, this.handleGetChallenges, null);
+    this.registerAsync(apiActions.newChallenge, null, this.handleNewChallenge, null);
     this.registerAsync(apiActions.getUser, null, this.handleGetUser, null);
     this.registerAsync(apiActions.getUsers, null, this.handleGetUsers, null);
 
@@ -53,6 +55,9 @@ export default class ApiStore extends Store {
   handleGetChallenges(challenges) {
     this.setMany(challenges, 'challenges')
   }
+  handleNewChallenge(challenge) {
+    this.setOne(challenge, 'challenges')
+  }
   handleGetUser(user) {
     this.setOne(user, 'users')
   }
@@ -65,9 +70,13 @@ export default class ApiStore extends Store {
   handleGetEvents(events) {
     this.setMany(events, 'events')
   }
+  handleNewEvent(event) {
+    this.setOne(event, 'events')
+  }
   setOne(object, into) {
     this.setState((state, currentProps) => {
-      const newState = _.extend(state[into], { [object.id]: object }).value()
+      const previous = state[into]
+      const newState = _.contains(previous, object) ? previous : previous.concat([object])
       return { 
         [into]: newState
       }
@@ -75,11 +84,7 @@ export default class ApiStore extends Store {
   }
   setMany(objects, into) {
     this.setState({
-      [into]: _.chain(objects)
-        .map((each) => { 
-          return [each.id, each] 
-        })
-        .object()
+      [into]: objects
     })
   }
 }

@@ -20,11 +20,11 @@ export default class PlayersPage extends React.Component {
 class PlayersPageInner extends React.Component {
   render() {
     const players = _.chain(this.props.users)
-        .values()
         .map(each => <Grid object={each} />)
+    const size = _.chain(this.props.users).values().size()
     return (
       <div>
-        <h1>Players Page</h1>
+        <h1>Players Page - #{size}</h1>
         { players }
       </div>
     )

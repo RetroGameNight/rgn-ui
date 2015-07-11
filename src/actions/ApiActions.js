@@ -1,5 +1,4 @@
 import { Actions } from 'flummox';
-//import request from 'superagent'
 import request from 'superagent-bluebird-promise'
 
 const API_BASENAME = "http://localhost:3000"

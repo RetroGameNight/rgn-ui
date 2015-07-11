@@ -18,10 +18,13 @@ class PlayerPageInner extends React.Component {
     flux.getActions('api').getUser(this.props.params.id)
   }
   render() {
+    const player = this.props.users.find((user) => {
+      return user && user.id == this.props.params.id 
+    })
     return (
       <div>
         <h1>Player Page</h1>
-        <Grid object={this.props.users[this.props.params.id]} />
+        <Grid object={player} />
       </div>
     )
   }

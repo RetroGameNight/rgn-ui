@@ -23,11 +23,11 @@ class ChallengesPageInner extends React.Component {
   }
   render() {
     const Challenges = _.chain(this.props.challenges)
-        .values()
         .map(each => <Grid object={each} />)
+    const size = _.chain(this.props.challenges).values().size()
     return (
       <div>
-        <h1>Challenges Page</h1>
+        <h1>Challenges Page - #{size}</h1>
         <a className="btn btn-default" onClick={this.newChallenge}>New Challenge</a>
         { Challenges }
       </div>

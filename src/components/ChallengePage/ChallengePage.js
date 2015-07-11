@@ -18,10 +18,13 @@ class ChallengePageInner extends React.Component {
     flux.getActions('api').getChallenge(this.props.params.id)
   }
   render() {
+    const challenge = this.props.challenges.find((challenge) => {
+      return challenge && challenge.id == this.props.params.id 
+    })
     return (
       <div>
         <h1>Challenge Page</h1>
-        <Grid object={this.props.challenges[this.props.params.id]} />
+        <Grid object={challenge} />
       </div>
     )
   }

@@ -23,7 +23,6 @@ class GamesPageInner extends React.Component {
   }
   render() {
     const games = _.chain(this.props.games)
-        .values()
         .map(each => <Grid object={each} />)
     const size = _.chain(this.props.games).values().size()
     return (
