@@ -16,106 +16,70 @@ export default class ApiStore extends Store {
     super();
 
     const apiActions = flux.getActions('api');
-    this.register(apiActions.login, this.handleLogin);
-    this.register(apiActions.logout, this.handleLogout);
-    this.register(apiActions.getGame, this.handleGetGame);
-    this.register(apiActions.getGames, this.handleGetGames);
-    this.register(apiActions.getEvent, this.handleGetEvent);
-    this.register(apiActions.getEvents, this.handleGetEvents);
-    this.register(apiActions.getChallenge, this.handleGetChallenge);
-    this.register(apiActions.getChallenges, this.handleGetChallenges);
-    this.register(apiActions.getUser, this.handleGetUser);
-    this.register(apiActions.getUsers, this.handleGetUsers);
+    this.registerAsync(apiActions.login, null, this.handleLogin, null);
+    this.registerAsync(apiActions.logout, null, this.handleLogout, null);
+    this.registerAsync(apiActions.getGame, null, this.handleGetGame, null);
+    this.registerAsync(apiActions.getGames, null, this.handleGetGames, null);
+    this.registerAsync(apiActions.newGame, null, this.handleNewGame, null);
+    this.registerAsync(apiActions.getEvent, null, this.handleGetEvent, null);
+    this.registerAsync(apiActions.getEvents, null, this.handleGetEvents, null);
+    this.registerAsync(apiActions.getChallenge, null, this.handleGetChallenge, null);
+    this.registerAsync(apiActions.getChallenges, null, this.handleGetChallenges, null);
+    this.registerAsync(apiActions.getUser, null, this.handleGetUser, null);
+    this.registerAsync(apiActions.getUsers, null, this.handleGetUsers, null);
 
     this.state = DEFAULT_STATE
   }
-  handleLogin() {
-    fetch(API_BASENAME+'/logged-in', {
-        credentials: 'include' 
-      })
-      .then((response) => {
-        return response.json()
-      })  
-      .then((json) => {
-        this.setState({
-          activeUser: json
-        })
-      })  
-      .catch((error) => {  
-        console.log('error', error)
-      });
+  handleLogin(user) {
+    this.setState({
+      activeUser: user
+    })
   }
   handleLogout() {
-    fetch(API_BASENAME+'/logout', {
-        credentials: 'include'    
-      })
-      .then((response) => {
-        this.replaceState(DEFAULT_STATE)
-      })  
-      .catch((error) => {  
-        console.log('error', error)
-      });
+    this.replaceState(DEFAULT_STATE)
   }
-  handleGetGame(id) {
-    this.fetchOne('/games/'+id, 'games')
+  handleGetGame(game) {
+    this.setOne(game, 'games')
   }
-  handleGetGames() {
-    this.fetchMany('/games/all', 'games')
+  handleGetGames(games) {
+    this.setMany(games, 'games')
   }
-  handleGetChallenge(id) {
-    this.fetchOne('/challenges/'+id, 'challenges')
+  handleNewGame(game) {
+    this.setOne(game, 'games')
   }
-  handleGetChallenges() {
-    this.fetchMany('/challenges/all', 'challenges')
+  handleGetChallenge(challenge) {
+    this.setOne(challenge, 'challenges')
   }
-  handleGetUser(id) {
-    this.fetchOne('/users/'+id, 'users')
+  handleGetChallenges(challenges) {
+    this.setMany(challenges, 'challenges')
   }
-  handleGetUsers() {
-    this.fetchMany('/users/all', 'users')
+  handleGetUser(user) {
+    this.setOne(user, 'users')
   }
-  handleGetEvent(id) {
-    this.fetchOne('/events/'+id, 'events')
+  handleGetUsers(users) {
+    this.setMany(users, 'users')
   }
-  handleGetEvents() {
-    this.fetchMany('/events/all', 'events')
+  handleGetEvent(event) {
+    this.setOne(event, 'events')
   }
-  fetchOne(resource, into) {
-    fetch(API_BASENAME+resource, {
-        credentials: 'include'    
-      })
-      .then((response) => {
-        return response.json()
-      })  
-      .then((json) => {
-        this.setState((previousState, currentProps) => {
-          return { 
-            [into]: _.extend(previousState[into], { [json.id]: json }) 
-          }
+  handleGetEvents(events) {
+    this.setMany(events, 'events')
+  }
+  setOne(object, into) {
+    this.setState((state, currentProps) => {
+      const newState = _.extend(state[into], { [object.id]: object }).value()
+      return { 
+        [into]: newState
+      }
+    })
+  }
+  setMany(objects, into) {
+    this.setState({
+      [into]: _.chain(objects)
+        .map((each) => { 
+          return [each.id, each] 
         })
-      })  
-      .catch((error) => {  
-        console.log('error', error)
-      });
-  }
-  fetchMany(resource, into) {
-    fetch(API_BASENAME+resource, {
-        credentials: 'include'    
-      })
-      .then((response) => {
-        return response.json()
-      })  
-      .then((json) => {
-        this.setState({
-          [into]: _.chain(json)
-            .map((each) => { 
-              return [each.id, each] 
-            })
-            .object()
-        })
-      })  
-      .catch((error) => {  
-        console.log('error', error)
-      });
+        .object()
+    })
   }
 }

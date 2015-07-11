@@ -18,6 +18,9 @@ export default class ChallengesPage extends React.Component {
 }
 
 class ChallengesPageInner extends React.Component {
+  newChallenge() {
+    flux.getActions('api').newChallenge()
+  }
   render() {
     const Challenges = _.chain(this.props.challenges)
         .values()
@@ -25,6 +28,7 @@ class ChallengesPageInner extends React.Component {
     return (
       <div>
         <h1>Challenges Page</h1>
+        <a className="btn btn-default" onClick={this.newChallenge}>New Challenge</a>
         { Challenges }
       </div>
     )

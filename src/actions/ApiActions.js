@@ -1,34 +1,58 @@
 import { Actions } from 'flummox';
+//import request from 'superagent'
+import request from 'superagent-bluebird-promise'
+
+const API_BASENAME = "http://localhost:3000"
+
+async function apiGetRequest(uri) {
+  let response = await request
+    .get(`${API_BASENAME}${uri}`)
+    .withCredentials() 
+    .promise()
+  return response.body
+}
 
 export default class ApiActions extends Actions {
-  login() {
-    return null
+  async login() {
+    return apiGetRequest('/logged-in')
   }
-  logout() {
-    return null
+  async logout() {
+    return apiGetRequest('/logout')
   }
-  getGame(id) {
-    return id
+  async getGame(id) {
+    return apiGetRequest(`/games/${id}`)
   }
-  getGames() {
-    return null
+  async getGames() {
+    return apiGetRequest('/games/all')
   }
-  getEvent(id) {
-    return id
+  async newGame() {
+    return apiGetRequest('/games/new')
   }
-  getEvents() {
-    return null
+  async getEvent(id) {
+    return apiGetRequest(`/events/${id}`)
   }
-  getUser(id) {
-    return id
+  async getEvents() {
+    return apiGetRequest('/events/all')
   }
-  getUsers() {
-    return null
+  async newEvent() {
+    return apiGetRequest('/events/new')
   }
-  getChallenge(id) {
-    return id
+  async getUser(id) {
+    return apiGetRequest(`/users/${id}`)
   }
-  getChallenges() {
-    return null
+  async getUsers() {
+    return apiGetRequest('/users/all')
+  }
+  async newUser() {
+    return apiGetRequest('/users/new')
+  }
+  async getChallenge(id) {
+    return apiGetRequest(`/challenges/${id}`)
+  }
+  async getChallenges() {
+    return apiGetRequest('/challenges/all')
+  }
+  async newChallenge() {
+    return apiGetRequest('/challenges/new')
   }
 }

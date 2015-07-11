@@ -18,6 +18,9 @@ export default class EventsPage extends React.Component {
 }
 
 class EventsPageInner extends React.Component {
+  newEvent() {
+    flux.getActions('api').newEvent()
+  }
   render() {
     const events = _.chain(this.props.events)
         .values()
@@ -25,6 +28,7 @@ class EventsPageInner extends React.Component {
     return (
       <div>
         <h1>Events Page</h1>
+        <a className="btn btn-default" onClick={this.newEvent}>New Event</a>
         { events }
       </div>
     )

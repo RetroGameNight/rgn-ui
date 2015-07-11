@@ -18,13 +18,18 @@ export default class GamesPage extends React.Component {
 }
 
 class GamesPageInner extends React.Component {
+  newGame() {
+    flux.getActions('api').newGame()
+  }
   render() {
     const games = _.chain(this.props.games)
         .values()
         .map(each => <Grid object={each} />)
+    const size = _.chain(this.props.games).values().size()
     return (
       <div>
-        <h1>Games Page</h1>
+        <h1>Games Page - #{size}</h1>
+        <a className="btn btn-default" onClick={this.newGame}>New Game</a>
         { games }
       </div>
     )
