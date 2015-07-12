@@ -4,6 +4,7 @@ import FluxComponent from 'flummox/component'
 import _ from 'underscore'
 import Grid from '../Grid'
 import Page from '../Page'
+import GameForm from '../GameForm'
 
 export default class GamePage extends React.Component {
   render() {
@@ -16,7 +17,7 @@ export default class GamePage extends React.Component {
 }
 
 class GamePageInner extends React.Component {
-  componentDidMount() {
+  componentWillMount() {
     flux.getActions('api').getGame(this.props.params.id)
   }
   render() {
@@ -26,7 +27,9 @@ class GamePageInner extends React.Component {
     return (
       <Page>
         <h1>Game Page</h1>
-        <Grid object={game} />
+        <FluxComponent connectToStores={['api']}>
+          <GameForm game={game} />
+        </FluxComponent>
       </Page>
     )
   }

@@ -21,6 +21,7 @@ export default class ApiStore extends Store {
     this.registerAsync(apiActions.getGames, null, this.handleGetGames, null);
     this.registerAsync(apiActions.newGame, null, this.handleNewGame, null);
     this.registerAsync(apiActions.deleteGame, null, this.handleDeleteGame, null);
+    this.registerAsync(apiActions.updateGame, null, this.handleUpdateGame, null);
     this.registerAsync(apiActions.getEvent, null, this.handleGetEvent, null);
     this.registerAsync(apiActions.getEvents, null, this.handleGetEvents, null);
     this.registerAsync(apiActions.newEvent, null, this.handleNewEvent, null);
@@ -54,6 +55,9 @@ export default class ApiStore extends Store {
   }
   handleDeleteGame(id) {
     this.removeOneById(id, "games")
+  }
+  handleUpdateGame(game) {
+    this.setOne(game, "games")
   }
   handleGetChallenge(challenge) {
     this.setOne(challenge, 'challenges')

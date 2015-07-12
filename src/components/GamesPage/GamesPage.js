@@ -26,7 +26,6 @@ class GamesPageInner extends React.Component {
   }
   render() {
     const games = _.chain(this.props.games)
-        .sortBy('name')
         .map(each => <Game game={each} />)
     return (
       <Page>

@@ -6,14 +6,19 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 import './GameForm.less';
+import flux from '../../flux'
 import React, { PropTypes } from 'react';
 
 export default class GameForm extends React.Component {
-  constructor() {
-    super()
+  static contextTypes = {
+    router: React.PropTypes.func.isRequired
+  }
+  constructor(props) {
+    super(props)
+
     this.state = {
-      name: "",
-      system: ""
+      name: props.game ? props.game.name : "",
+      system: props.game ? props.game.system : "",
     }
   }
   handleChange = (event) => {
@@ -21,7 +26,12 @@ export default class GameForm extends React.Component {
   }
   handleSubmit = (event) => {
     event.preventDefault()
-    this.props.flux.getActions('api').newGame(this.state)  
+    if (this.props.game) {
+      this.props.flux.getActions('api').updateGame(this.props.game.id, this.state)
+      this.context.router.transitionTo('games')
+    } else {
+      this.props.flux.getActions('api').newGame(this.state)  
+    }
   }
   render() {
     return (
