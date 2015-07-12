@@ -27,7 +27,6 @@ class EventsPageInner extends React.Component {
   render() {
     const events = _.chain(this.props.events)
         .map(each => <Event event={each}/>)
-    const size = _.chain(this.props.events).values().size()
     return (
       <Page>
         <h1>Events</h1>

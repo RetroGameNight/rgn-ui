@@ -9,10 +9,13 @@ import './EventForm.less';
 import React, { PropTypes } from 'react';
 
 export default class EventForm extends React.Component {
-  constructor() {
-    super()
+  static contextTypes = {
+    router: React.PropTypes.func.isRequired
+  }
+  constructor(props) {
+    super(props)
     this.state = {
-      name: "",
+      name: props.event ? props.event.name : "",
     }
   }
   handleChange = (event) => {
@@ -20,7 +23,13 @@ export default class EventForm extends React.Component {
   }
   handleSubmit = (event) => {
     event.preventDefault()
-    this.props.flux.getActions('api').newEvent(this.state)  
+    console.log(this.props.event)
+    if (this.props.event) {
+      this.props.flux.getActions('api').updateEvent(this.props.event.id, this.state)
+      this.context.router.transitionTo('events')
+    } else {
+      this.props.flux.getActions('api').newEvent(this.state)  
+    }
   }
   render() {
     return (

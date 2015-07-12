@@ -9,11 +9,14 @@ import './ChallengeForm.less';
 import React, { PropTypes } from 'react';
 
 export default class ChallengeForm extends React.Component {
-  constructor() {
-    super()
+  static contextTypes = {
+    router: React.PropTypes.func.isRequired
+  }
+  constructor(props) {
+    super(props)
     this.state = {
-      name: "",
-      game: ""
+      name: props.challenge ? props.challenge.name : "",
+      game: props.challenge ? props.challenge.game : "",
     }
   }
   handleChange = (event) => {
@@ -21,7 +24,12 @@ export default class ChallengeForm extends React.Component {
   }
   handleSubmit = (event) => {
     event.preventDefault()
-    this.props.flux.getActions('api').newChallenge(this.state)  
+    if (this.props.challenge) {
+      this.props.flux.getActions('api').updateChallenge(this.props.challenge.id, this.state)
+      this.context.router.transitionTo('challenges')
+    } else {    
+      this.props.flux.getActions('api').newChallenge(this.state)  
+    }
   }
   render() {
     return (

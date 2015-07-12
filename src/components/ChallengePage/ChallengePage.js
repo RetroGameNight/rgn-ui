@@ -3,6 +3,7 @@ import flux from '../../flux'
 import FluxComponent from 'flummox/component'
 import Grid from '../Grid'
 import Page from '../Page'
+import ChallengeForm from '../ChallengeForm'
 
 export default class ChallengePage extends React.Component {
   render() {
@@ -25,7 +26,9 @@ class ChallengePageInner extends React.Component {
     return (
       <Page>
         <h1>Challenge Page</h1>
-        <Grid object={challenge} />
+        <FluxComponent connectToStores={['api']}>
+          <ChallengeForm challenge={challenge} />
+        </FluxComponent>
       </Page>
     )
   }

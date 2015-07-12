@@ -1,8 +1,8 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import flux from '../../flux'
 import FluxComponent from 'flummox/component'
-import Grid from '../Grid'
 import Page from '../Page'
+import EventForm from '../EventForm'
 
 export default class EventPage extends React.Component {
   render() {
@@ -25,7 +25,9 @@ class EventPageInner extends React.Component {
     return (
       <Page>
         <h1>Event Page</h1>
-        <Grid object={event} />
+        <FluxComponent connectToStores={['api']}>
+          <EventForm event={event} />
+        </FluxComponent>
       </Page>
     )
   }

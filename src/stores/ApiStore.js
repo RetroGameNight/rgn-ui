@@ -26,13 +26,16 @@ export default class ApiStore extends Store {
     this.registerAsync(apiActions.getEvents, null, this.handleGetEvents, null);
     this.registerAsync(apiActions.newEvent, null, this.handleNewEvent, null);
     this.registerAsync(apiActions.deleteEvent, null, this.handleDeleteEvent, null);
+    this.registerAsync(apiActions.updateEvent, null, this.handleUpdateEvent, null);
     this.registerAsync(apiActions.getChallenge, null, this.handleGetChallenge, null);
     this.registerAsync(apiActions.getChallenges, null, this.handleGetChallenges, null);
     this.registerAsync(apiActions.newChallenge, null, this.handleNewChallenge, null);
     this.registerAsync(apiActions.deleteChallenge, null, this.handleDeleteChallenge, null);
+    this.registerAsync(apiActions.updateChallenge, null, this.handleUpdateChallenge, null);
     this.registerAsync(apiActions.getUser, null, this.handleGetUser, null);
     this.registerAsync(apiActions.getUsers, null, this.handleGetUsers, null);
     this.registerAsync(apiActions.deleteUser, null, this.handleDeleteUser, null);
+    this.registerAsync(apiActions.updateUser, null, this.handleUpdateUser, null);
 
     this.state = DEFAULT_STATE
   }
@@ -57,7 +60,7 @@ export default class ApiStore extends Store {
     this.removeOneById(id, "games")
   }
   handleUpdateGame(game) {
-    this.setOne(game, "games")
+    this.replaceOne(game, "games")
   }
   handleGetChallenge(challenge) {
     this.setOne(challenge, 'challenges')
@@ -71,6 +74,9 @@ export default class ApiStore extends Store {
   handleDeleteChallenge(id) {
     this.removeOneById(id, "challenges")
   }
+  handleUpdateChallenge(challenge) {
+    this.replaceOne(challenge, "challenges")
+  }
   handleGetUser(user) {
     this.setOne(user, 'users')
   }
@@ -80,6 +86,9 @@ export default class ApiStore extends Store {
   handleDeleteUser(id) {
     this.removeOneById(id, "users")
   }
+  handleUpdateUser(user) {
+    this.replaceOne(user, "users")
+  }
   handleGetEvent(event) {
     this.setOne(event, 'events')
   }
@@ -88,6 +97,9 @@ export default class ApiStore extends Store {
   }
   handleNewEvent(event) {
     this.setOne(event, 'events')
+  }
+  handleUpdateEvent(event) {
+    this.replaceOne(event, "events")
   }
   handleDeleteEvent(id) {
     this.removeOneById(id, "events")
@@ -104,6 +116,18 @@ export default class ApiStore extends Store {
   setMany(objects, into) {
     this.setState({
       [into]: objects
+    })
+  }
+  replaceOne(object, into) {
+    this.setState((state, currentProps) => {
+      const previous = state[into]
+      const oldObject = this.state[into].find((each) => {
+        return each && each.id == object.id
+      })
+      const newState = _.without(previous, oldObject).concat([object])
+      return { 
+        [into]: newState
+      }
     })
   }
   removeOneById(id, into) {
