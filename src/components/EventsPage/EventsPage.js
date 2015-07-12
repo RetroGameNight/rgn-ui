@@ -6,6 +6,7 @@ import Grid from '../Grid'
 import EventForm from '../EventForm'
 import Page from '../Page'
 import { Link } from 'react-router'
+import Modal from '../Modal'
 
 export default class EventsPage extends React.Component {
   componentDidMount() {
@@ -21,8 +22,25 @@ export default class EventsPage extends React.Component {
 }
 
 class EventsPageInner extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      isCreateFormModalOpen: false
+    }
+  }
   newEvent() {
     flux.getActions('api').newEvent()
+  }
+  handleClick = (event) => {
+    if (event.target.id == "openCreateEvent") {
+      this.setState({
+        isCreateFormModalOpen: true
+      })
+    } else if (event.target.id == "closeCreateEvent") {
+      this.setState({
+        isCreateFormModalOpen: false
+      })
+    }
   }
   render() {
     const events = _.chain(this.props.events)
@@ -30,9 +48,26 @@ class EventsPageInner extends React.Component {
     return (
       <Page>
         <h1>Events</h1>
-        <FluxComponent connectToStores={['api']}>
-          <EventForm />
-        </FluxComponent> 
+        <button className="btn btn-default"
+                id="openCreateEvent"
+                onClick={this.handleClick}>
+          Create Event
+        </button>
+        <Modal isOpen={this.state.isCreateFormModalOpen}>
+          <div className="modal-header">
+            <button type="button" class="close"
+                    id="closeCreateEvent"
+                    onClick={this.handleClick}>
+              <span>&times;</span>
+            </button>
+            <h4 className="modal-title">Create Event</h4>
+          </div>
+          <div className="modal-body">
+            <FluxComponent connectToStores={['api']}>
+              <EventForm />
+            </FluxComponent> 
+          </div>
+        </Modal>
         { events }
       </Page>
     )

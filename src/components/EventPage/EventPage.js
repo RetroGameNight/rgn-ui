@@ -3,6 +3,7 @@ import flux from '../../flux'
 import FluxComponent from 'flummox/component'
 import Page from '../Page'
 import EventForm from '../EventForm'
+import Modal from '../Modal'
 
 export default class EventPage extends React.Component {
   render() {
