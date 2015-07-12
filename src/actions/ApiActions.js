@@ -11,6 +11,15 @@ async function apiGetRequest(uri) {
   return response.body
 }
 
+async function apiPostRequest(uri, payload) {
+  let response = await request
+    .post(`${API_BASENAME}${uri}`)
+    .send(payload)
+    .withCredentials() 
+    .promise()
+  return response.body
+}
+
 export default class ApiActions extends Actions {
   async login() {
     return apiGetRequest('/logged-in')
@@ -24,8 +33,8 @@ export default class ApiActions extends Actions {
   async getGames() {
     return apiGetRequest('/games/all')
   }
-  async newGame() {
-    return apiGetRequest('/games/new')
+  async newGame(payload) {
+    return apiPostRequest('/games/new', payload)
   }
   async getEvent(id) {
     return apiGetRequest(`/events/${id}`)
