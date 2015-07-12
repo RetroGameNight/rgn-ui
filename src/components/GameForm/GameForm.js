@@ -27,17 +27,17 @@ export default class GameForm extends React.Component {
     return (
       <form>
         <h3>Game Form</h3>
-          <div class="form-group">
+          <div className="form-group">
             <label for="name">Name</label>
-            <input type="text" class="form-control" id="name" 
+            <input type="text" className="form-control" id="name" 
                    value={this.state.name} onChange={this.handleChange}/>
           </div>
-          <div class="form-group">
+          <div className="form-group">
             <label for="system">System</label>
-            <input type="text" class="form-control" id="system" 
+            <input type="text" className="form-control" id="system" 
                    value={this.state.system} onChange={this.handleChange}/>
           </div>
-          <button type="submit" class="btn btn-default"
+          <button type="submit" className="btn btn-default"
                   onClick={this.handleSubmit}>Submit</button>
       </form>
     )
