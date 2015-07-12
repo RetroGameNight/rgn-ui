@@ -24,8 +24,7 @@ export default class EventForm extends React.Component {
   }
   render() {
     return (
-      <form>
-        <h3>Event Form</h3>
+      <form className="form-inline">
         <div className="form-group">
           <label for="name">Name</label>
           <input type="text" className="form-control" id="name" 

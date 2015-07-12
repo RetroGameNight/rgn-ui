@@ -5,6 +5,7 @@ import _ from 'underscore'
 import Grid from '../Grid'
 import ChallengeForm from '../ChallengeForm'
 import Page from '../Page'
+import { Link } from 'react-router'
 
 export default class ChallengesPage extends React.Component {
   componentDidMount() {
@@ -25,20 +26,37 @@ class ChallengesPageInner extends React.Component {
   }
   render() {
     const Challenges = _.chain(this.props.challenges)
-        .map(each => <div>
-          <Grid object={each} />
-          <DeleteButton id={each.id}/>
-        </div>)
-    const size = _.chain(this.props.challenges).values().size()
+        .map(each => <Challenge challenge={each}/>)
     return (
       <Page>
-        <h1>Challenges Page - #{size}</h1>
-        <a className="btn btn-default" onClick={this.newChallenge}>New Challenge</a>
+        <h1>Challenges</h1>
         <FluxComponent connectToStores={['api']}>
           <ChallengeForm />
         </FluxComponent> 
         { Challenges }
       </Page>
+    )
+  }
+}
+
+class Challenge extends React.Component {
+  render() {
+    const challenge = this.props.challenge
+    return (
+      <div className="media">
+        <div className="media-left">
+          <div className='thumbnail'></div>
+        </div>
+        <div className="media-body">
+          <Link to="challenge" params={{ id: challenge.id }}>
+            <h4 className="media-heading">{`${challenge.name} for ${challenge.game}`}</h4>
+          </Link>
+          {challenge.id}
+        </div>
+        <div className="media-left">
+          <DeleteButton id={challenge.id} />
+        </div>
+      </div>
     )
   }
 }
@@ -49,9 +67,9 @@ class DeleteButton extends React.Component {
   }
   render() {
     return (
-      <button className="btn btn-default"
+      <button className="btn btn-danger"
               onClick={this.handleClick}>
-        Delete - {this.props.id}
+        Delete
       </button>
     )
   }

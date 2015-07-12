@@ -5,6 +5,7 @@ import _ from 'underscore'
 import Grid from '../Grid'
 import EventForm from '../EventForm'
 import Page from '../Page'
+import { Link } from 'react-router'
 
 export default class EventsPage extends React.Component {
   componentDidMount() {
@@ -25,20 +26,38 @@ class EventsPageInner extends React.Component {
   }
   render() {
     const events = _.chain(this.props.events)
-        .map(each => <div>
-          <Grid object={each} />
-          <DeleteButton id={each.id}/>
-        </div>)
+        .map(each => <Event event={each}/>)
     const size = _.chain(this.props.events).values().size()
     return (
       <Page>
-        <h1>Events Page - #{size}</h1>
-        <a className="btn btn-default" onClick={this.newEvent}>New Event</a>
+        <h1>Events</h1>
         <FluxComponent connectToStores={['api']}>
           <EventForm />
         </FluxComponent> 
         { events }
       </Page>
+    )
+  }
+}
+
+class Event extends React.Component {
+  render() {
+    const event = this.props.event
+    return (
+      <div className="media">
+        <div className="media-left">
+          <div className='thumbnail'></div>
+        </div>
+        <div className="media-body">
+          <Link to="event" params={{ id: event.id }}>
+            <h4 className="media-heading">{`${event.name}`}</h4>
+          </Link>
+          {event.id}
+        </div>
+        <div className="media-left">
+          <DeleteButton id={event.id} />
+        </div>
+      </div>
     )
   }
 }
@@ -49,9 +68,9 @@ class DeleteButton extends React.Component {
   }
   render() {
     return (
-      <button className="btn btn-default"
+      <button className="btn btn-danger"
               onClick={this.handleClick}>
-        Delete - {this.props.id}
+        Delete
       </button>
     )
   }
