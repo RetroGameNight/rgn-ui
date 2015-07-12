@@ -42,8 +42,8 @@ export default class ApiActions extends Actions {
   async getEvents() {
     return apiGetRequest('/events/all')
   }
-  async newEvent() {
-    return apiGetRequest('/events/new')
+  async newEvent(payload) {
+    return apiPostRequest('/events/new', payload)
   }
   async getUser(id) {
     return apiGetRequest(`/users/${id}`)
@@ -51,8 +51,8 @@ export default class ApiActions extends Actions {
   async getUsers() {
     return apiGetRequest('/users/all')
   }
-  async newUser() {
-    return apiGetRequest('/users/new')
+  async newUser(payload) {
+    return apiPostRequest('/users/new', payload)
   }
   async getChallenge(id) {
     return apiGetRequest(`/challenges/${id}`)
@@ -60,7 +60,7 @@ export default class ApiActions extends Actions {
   async getChallenges() {
     return apiGetRequest('/challenges/all')
   }
-  async newChallenge() {
-    return apiGetRequest('/challenges/new')
+  async newChallenge(payload) {
+    return apiGetRequest('/challenges/new', payload)
   }
 }
