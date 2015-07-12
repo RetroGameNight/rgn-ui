@@ -81,7 +81,7 @@ export default class ApiActions extends Actions {
     return apiGetRequest('/challenges/all')
   }
   async newChallenge(payload) {
-    return apiGetRequest('/challenges/new', payload)
+    return apiPostRequest('/challenges/new', payload)
   }
   async deleteChallenge(id) {
     await apiDeleteRequest(`/challenges/${id}`)
