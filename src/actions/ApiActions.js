@@ -1,7 +1,10 @@
 import { Actions } from 'flummox';
 import request from 'superagent-bluebird-promise'
+import config from '../config'
 
-const API_BASENAME = "http://localhost:3000"
+const { protocal, host, port } = config.api.location
+
+const API_BASENAME = `${protocal}://${host}:${port}`
 
 async function apiGetRequest(uri) {
   let response = await request
