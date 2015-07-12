@@ -3,6 +3,7 @@ import flux from '../../flux'
 import FluxComponent from 'flummox/component'
 import _ from 'underscore'
 import Grid from '../Grid'
+import { Link } from 'react-router'
 
 export default class PlayersPage extends React.Component {
   componentDidMount() {
@@ -20,15 +21,32 @@ export default class PlayersPage extends React.Component {
 class PlayersPageInner extends React.Component {
   render() {
     const players = _.chain(this.props.users)
-    .map(each => <div>
-          <Grid object={each} />
-          <DeleteButton id={each.id}/>
-        </div>)
-    const size = _.chain(this.props.users).values().size()
+      .map(each => <Player player={each} />)
     return (
       <div>
-        <h1>Players Page - #{size}</h1>
+        <h1>Players</h1>
         { players }
+      </div>
+    )
+  }
+}
+
+class Player extends React.Component {
+  render() {
+    const player = this.props.player
+    return (
+      <div className="media">
+        <div className="media-left">
+          <div className='thumbnail'></div>
+        </div>
+        <div className="media-body">
+          <Link to="player" params={{ id: player.id }}>
+            {player.name} - {player.email} - {player.type}
+          </Link>
+        </div>
+        <div className="media-left">
+          <DeleteButton id={player.id} />
+        </div>
       </div>
     )
   }
@@ -40,9 +58,9 @@ class DeleteButton extends React.Component {
   }
   render() {
     return (
-      <button className="btn btn-default"
+      <button className="btn btn-danger"
               onClick={this.handleClick}>
-        Delete - {this.props.id}
+        Delete
       </button>
     )
   }
