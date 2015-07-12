@@ -23,7 +23,10 @@ class ChallengesPageInner extends React.Component {
   }
   render() {
     const Challenges = _.chain(this.props.challenges)
-        .map(each => <Grid object={each} />)
+        .map(each => <div>
+          <Grid object={each} />
+          <DeleteButton id={each.id}/>
+        </div>)
     const size = _.chain(this.props.challenges).values().size()
     return (
       <div>
@@ -31,6 +34,20 @@ class ChallengesPageInner extends React.Component {
         <a className="btn btn-default" onClick={this.newChallenge}>New Challenge</a>
         { Challenges }
       </div>
+    )
+  }
+}
+
+class DeleteButton extends React.Component {
+  handleClick = (event) => {
+    flux.getActions('api').deleteChallenge(this.props.id)
+  }
+  render() {
+    return (
+      <button className="btn btn-default"
+              onClick={this.handleClick}>
+        Delete - {this.props.id}
+      </button>
     )
   }
 }

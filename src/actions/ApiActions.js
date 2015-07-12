@@ -57,6 +57,10 @@ export default class ApiActions extends Actions {
   async newEvent(payload) {
     return apiPostRequest('/events/new', payload)
   }
+  async deleteEvent(id) {
+    await apiDeleteRequest(`/events/${id}`)
+    return id
+  }
   async getUser(id) {
     return apiGetRequest(`/users/${id}`)
   }
@@ -66,6 +70,10 @@ export default class ApiActions extends Actions {
   async newUser(payload) {
     return apiPostRequest('/users/new', payload)
   }
+  async deleteUser(id) {
+    await apiDeleteRequest(`/users/${id}`)
+    return id
+  }
   async getChallenge(id) {
     return apiGetRequest(`/challenges/${id}`)
   }
@@ -74,5 +82,9 @@ export default class ApiActions extends Actions {
   }
   async newChallenge(payload) {
     return apiGetRequest('/challenges/new', payload)
+  }
+  async deleteChallenge(id) {
+    await apiDeleteRequest(`/challenges/${id}`)
+    return id
   }
 }

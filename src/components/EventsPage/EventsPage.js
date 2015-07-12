@@ -23,7 +23,10 @@ class EventsPageInner extends React.Component {
   }
   render() {
     const events = _.chain(this.props.events)
-        .map(each => <Grid object={each} />)
+        .map(each => <div>
+          <Grid object={each} />
+          <DeleteButton id={each.id}/>
+        </div>)
     const size = _.chain(this.props.events).values().size()
     return (
       <div>
@@ -31,6 +34,20 @@ class EventsPageInner extends React.Component {
         <a className="btn btn-default" onClick={this.newEvent}>New Event</a>
         { events }
       </div>
+    )
+  }
+}
+
+class DeleteButton extends React.Component {
+  handleClick = (event) => {
+    flux.getActions('api').deleteEvent(this.props.id)
+  }
+  render() {
+    return (
+      <button className="btn btn-default"
+              onClick={this.handleClick}>
+        Delete - {this.props.id}
+      </button>
     )
   }
 }

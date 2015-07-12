@@ -12,8 +12,7 @@ const DEFAULT_STATE = {
 }
 
 export default class ApiStore extends Store {
-  constructor(flux) {
-    super();
+  constructor(flux) {super();
 
     const apiActions = flux.getActions('api');
     this.registerAsync(apiActions.login, null, this.handleLogin, null);
@@ -25,11 +24,14 @@ export default class ApiStore extends Store {
     this.registerAsync(apiActions.getEvent, null, this.handleGetEvent, null);
     this.registerAsync(apiActions.getEvents, null, this.handleGetEvents, null);
     this.registerAsync(apiActions.newEvent, null, this.handleNewEvent, null);
+    this.registerAsync(apiActions.deleteEvent, null, this.handleDeleteEvent, null);
     this.registerAsync(apiActions.getChallenge, null, this.handleGetChallenge, null);
     this.registerAsync(apiActions.getChallenges, null, this.handleGetChallenges, null);
     this.registerAsync(apiActions.newChallenge, null, this.handleNewChallenge, null);
+    this.registerAsync(apiActions.deleteChallenge, null, this.handleDeleteChallenge, null);
     this.registerAsync(apiActions.getUser, null, this.handleGetUser, null);
     this.registerAsync(apiActions.getUsers, null, this.handleGetUsers, null);
+    this.registerAsync(apiActions.deleteUser, null, this.handleDeleteUser, null);
 
     this.state = DEFAULT_STATE
   }
@@ -51,17 +53,7 @@ export default class ApiStore extends Store {
     this.setOne(game, 'games')
   }
   handleDeleteGame(id) {
-    const into = "games"
-    const game = this.state.games.find((game) => {
-      return game && game.id == id
-    })
-    this.setState((state, currentProps) => {
-      const previous = state[into]
-      const newState = _.without(previous, game)
-      return { 
-        [into]: newState
-      }
-    })
+    this.removeOneById(id, "games")
   }
   handleGetChallenge(challenge) {
     this.setOne(challenge, 'challenges')
@@ -72,11 +64,17 @@ export default class ApiStore extends Store {
   handleNewChallenge(challenge) {
     this.setOne(challenge, 'challenges')
   }
+  handleDeleteChallenge(id) {
+    this.removeOneById(id, "challenges")
+  }
   handleGetUser(user) {
     this.setOne(user, 'users')
   }
   handleGetUsers(users) {
     this.setMany(users, 'users')
+  }
+  handleDeleteUser(id) {
+    this.removeOneById(id, "users")
   }
   handleGetEvent(event) {
     this.setOne(event, 'events')
@@ -86,6 +84,9 @@ export default class ApiStore extends Store {
   }
   handleNewEvent(event) {
     this.setOne(event, 'events')
+  }
+  handleDeleteEvent(id) {
+    this.removeOneById(id, "events")
   }
   setOne(object, into) {
     this.setState((state, currentProps) => {
@@ -99,6 +100,18 @@ export default class ApiStore extends Store {
   setMany(objects, into) {
     this.setState({
       [into]: objects
+    })
+  }
+  removeOneById(id, into) {
+    const object = this.state[into].find((each) => {
+      return each && each.id == id
+    })
+    this.setState((state, currentProps) => {
+      const previous = state[into]
+      const newState = _.without(previous, object)
+      return { 
+        [into]: newState
+      }
     })
   }
 }
