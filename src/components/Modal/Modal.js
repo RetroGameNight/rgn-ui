@@ -20,9 +20,11 @@ export default class Modal extends React.Component {
        return (<div></div>)
     } else {
       return (
-        <div className="modal-dialog">
-          <div className="modal-content">
-            {this.props.children}
+        <div className="Modal">
+          <div className="modal-dialog">
+            <div className="modal-content">
+              {this.props.children}
+            </div>
           </div>
         </div>
       )

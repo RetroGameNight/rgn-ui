@@ -47,12 +47,6 @@ class EventsPageInner extends React.Component {
         .map(each => <Event event={each}/>)
     return (
       <Page>
-        <h1>Events</h1>
-        <button className="btn btn-default"
-                id="openCreateEvent"
-                onClick={this.handleClick}>
-          Create Event
-        </button>
         <Modal isOpen={this.state.isCreateFormModalOpen}>
           <div className="modal-header">
             <button type="button" class="close"
@@ -68,6 +62,12 @@ class EventsPageInner extends React.Component {
             </FluxComponent> 
           </div>
         </Modal>
+        <h1>Events</h1>
+        <button className="btn btn-default"
+                id="openCreateEvent"
+                onClick={this.handleClick}>
+          Create Event
+        </button>
         { events }
       </Page>
     )
