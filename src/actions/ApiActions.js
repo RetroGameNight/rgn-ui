@@ -7,7 +7,7 @@ const { protocal, host, port } = config.api.location
 const API_BASENAME = `${protocal}://${host}:${port}`
 
 async function apiGetRequest(uri) {
-  let response = await request
+  const response = await request
     .get(`${API_BASENAME}${uri}`)
     .withCredentials() 
     .promise()
@@ -15,7 +15,7 @@ async function apiGetRequest(uri) {
 }
 
 async function apiPostRequest(uri, payload) {
-  let response = await request
+  const response = await request
     .post(`${API_BASENAME}${uri}`)
     .send(payload)
     .withCredentials() 
@@ -24,7 +24,7 @@ async function apiPostRequest(uri, payload) {
 }
 
 async function apiPutRequest(uri, payload) {
-  let response = await request
+  const response = await request
     .put(`${API_BASENAME}${uri}`)
     .send(payload)
     .withCredentials() 

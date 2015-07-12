@@ -23,7 +23,6 @@ export default class EventForm extends React.Component {
   }
   handleSubmit = (event) => {
     event.preventDefault()
-    console.log(this.props.event)
     if (this.props.event) {
       this.props.flux.getActions('api').updateEvent(this.props.event.id, this.state)
       this.context.router.transitionTo('events')
