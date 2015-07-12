@@ -4,6 +4,7 @@ import FluxComponent from 'flummox/component'
 import _ from 'underscore'
 import Grid from '../Grid'
 import GameForm from '../GameForm'
+import Page from '../Page'
 
 export default class GamesPage extends React.Component {
   componentDidMount() {
@@ -31,14 +32,14 @@ class GamesPageInner extends React.Component {
         </div>)
     const size = _.chain(this.props.games).values().size()
     return (
-      <div>
+      <Page>
         <h1>Games Page - #{size}</h1>
         <a className="btn btn-default" onClick={this.newGame}>New Game</a>
         <FluxComponent connectToStores={['api']}>
           <GameForm />
         </FluxComponent> 
         { games }
-      </div>
+      </Page>
     )
   }
 }

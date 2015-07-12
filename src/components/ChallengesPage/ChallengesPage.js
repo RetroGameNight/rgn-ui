@@ -4,6 +4,7 @@ import FluxComponent from 'flummox/component'
 import _ from 'underscore'
 import Grid from '../Grid'
 import ChallengeForm from '../ChallengeForm'
+import Page from '../Page'
 
 export default class ChallengesPage extends React.Component {
   componentDidMount() {
@@ -30,14 +31,14 @@ class ChallengesPageInner extends React.Component {
         </div>)
     const size = _.chain(this.props.challenges).values().size()
     return (
-      <div>
+      <Page>
         <h1>Challenges Page - #{size}</h1>
         <a className="btn btn-default" onClick={this.newChallenge}>New Challenge</a>
         <FluxComponent connectToStores={['api']}>
           <ChallengeForm />
         </FluxComponent> 
         { Challenges }
-      </div>
+      </Page>
     )
   }
 }

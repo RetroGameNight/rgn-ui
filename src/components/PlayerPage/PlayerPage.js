@@ -2,6 +2,7 @@ import React from 'react'; // eslint-disable-line no-unused-vars
 import flux from '../../flux'
 import FluxComponent from 'flummox/component'
 import Grid from '../Grid'
+import Page from '../Page'
 
 export default class PlayerPage extends React.Component {
   render() {
@@ -22,10 +23,10 @@ class PlayerPageInner extends React.Component {
       return user && user.id == this.props.params.id 
     })
     return (
-      <div>
+      <Page>
         <h1>Player Page</h1>
         <Grid object={player} />
-      </div>
+      </Page>
     )
   }
 }

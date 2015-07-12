@@ -4,6 +4,7 @@ import FluxComponent from 'flummox/component'
 import _ from 'underscore'
 import Grid from '../Grid'
 import { Link } from 'react-router'
+import Page from '../Page'
 
 export default class PlayersPage extends React.Component {
   componentDidMount() {
@@ -23,10 +24,10 @@ class PlayersPageInner extends React.Component {
     const players = _.chain(this.props.users)
       .map(each => <Player player={each} />)
     return (
-      <div>
+      <Page>
         <h1>Players</h1>
         { players }
-      </div>
+      </Page>
     )
   }
 }
@@ -41,8 +42,9 @@ class Player extends React.Component {
         </div>
         <div className="media-body">
           <Link to="player" params={{ id: player.id }}>
-            {player.name} - {player.email} - {player.type}
+            <h4 className="media-heading">{player.name}</h4>
           </Link>
+          {player.email} - {player.type}
         </div>
         <div className="media-left">
           <DeleteButton id={player.id} />

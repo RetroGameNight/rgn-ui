@@ -4,6 +4,7 @@ import FluxComponent from 'flummox/component'
 import _ from 'underscore'
 import Grid from '../Grid'
 import EventForm from '../EventForm'
+import Page from '../Page'
 
 export default class EventsPage extends React.Component {
   componentDidMount() {
@@ -30,14 +31,14 @@ class EventsPageInner extends React.Component {
         </div>)
     const size = _.chain(this.props.events).values().size()
     return (
-      <div>
+      <Page>
         <h1>Events Page - #{size}</h1>
         <a className="btn btn-default" onClick={this.newEvent}>New Event</a>
         <FluxComponent connectToStores={['api']}>
           <EventForm />
         </FluxComponent> 
         { events }
-      </div>
+      </Page>
     )
   }
 }

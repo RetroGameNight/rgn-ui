@@ -3,6 +3,7 @@ import flux from '../../flux'
 import FluxComponent from 'flummox/component'
 import _ from 'underscore'
 import Grid from '../Grid'
+import Page from '../Page'
 
 export default class GamePage extends React.Component {
   render() {
@@ -23,10 +24,10 @@ class GamePageInner extends React.Component {
       return game && game.id == this.props.params.id 
     })
     return (
-      <div>
+      <Page>
         <h1>Game Page</h1>
         <Grid object={game} />
-      </div>
+      </Page>
     )
   }
 }
