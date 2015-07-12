@@ -8,23 +8,84 @@
 
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Link } from 'react-router';
+import flux from '../../flux'
+import FluxComponent from 'flummox/component';
+
 
 let api = "http://localhost:3000";
 
 class SignIn extends React.Component {
-    render() {
-        let path = this.props.type;
-        let URL = api + "/auth/" + path;
-        
-        return (
-          <a className="btn btn-default" href={URL} role="button">{this.props.text}</a>
-        )
-    }
+  render() {
+    let path = this.props.type;
+    let URL = api + "/auth/" + path;
+
+    return (
+      <a className="btn btn-default" href={URL} role="button">{this.props.text}</a>
+    )
+  }
 }
 
-class Navbar {
-
+class Logout extends React.Component {
+  clickHandler() {
+    flux.getActions('api').logout('')
+  }
   render() {
+    return (
+      <a onClick={this.clickHandler} className="btn btn-default">Logout</a>
+    )
+  }
+}
+
+export default class Navbar {
+  render() {
+    return (
+      <FluxComponent connectToStores={['api']}>
+        <NavbarInner />
+      </FluxComponent>
+    )
+  }
+}
+
+class NavbarLink extends React.Component {
+  static contextTypes = {
+    router: React.PropTypes.func.isRequired
+  }
+  render() {
+    const currentRoutes = this.context.router.getCurrentRoutes();
+    const activeRouteName = currentRoutes[currentRoutes.length - 1].name;
+    let className = ""
+    if (this.props.to == activeRouteName) {
+      className = "active"
+    } 
+    return (
+      <Link className={className} to={this.props.to}>{this.props.children}</Link>
+    )
+  }
+}
+
+class NavbarInner {
+  loggedIn() {
+    if (this.props.activeUser) {
+      return true
+    } else {
+      return false
+    }
+  }
+  componentDidMount() {
+    flux.getActions('api').login()
+  }
+  render() {
+    let userManagementLinks = []
+    if (this.loggedIn()) {
+      userManagementLinks = [
+        <li><Logout /></li>
+      ]
+    } else {
+      userManagementLinks = [
+        <li><SignIn text="Sign In with Google" type="google" /></li>,
+        <li><SignIn text="Sign In with Facebook" type="facebook" /></li>
+      ]
+    }
     return (
       <div className="navbar-top" role="navigation">
         <div className="container">
@@ -32,21 +93,16 @@ class Navbar {
             <img src={require('./logo-small.png')} width="300" height="35" alt="React" />
           </Link>
           <ul className="nav navbar-nav  navbar-left">
-            <li><Link to="events">Events</Link></li>
-            <li className="active"><Link to="challenges">Challenges</Link></li>
-            <li><Link to="games">Games</Link></li>
-            <li><Link to="players">Players</Link></li>
+            <li><NavbarLink to="events">Events</NavbarLink></li>
+            <li><NavbarLink to="challenges">Challenges</NavbarLink></li>
+            <li><NavbarLink to="games">Games</NavbarLink></li>
+            <li><NavbarLink to="players">Players</NavbarLink></li>
           </ul>
-        
           <ul className="nav navbar-nav navbar-right">
-            <li><SignIn text="Sign In with Google" type="google" /></li>
-            <li><SignIn text="Sign In with Facebook" type="facebook" /></li>
+            {userManagementLinks}
           </ul>
         </div>
       </div>
     );
   }
-
 }
-
-export default Navbar;

@@ -15,12 +15,15 @@
     "eventemitter3": "0.1.6",
     "express": "4.12.3",
     "fastclick": "1.0.6",
+    "flummox": "^3.5.2",
     "flux": "2.0.1",
     "front-matter": "1.0.0",
     "lodash": "3.6.0",
     "react": "^0.13.3",
     "react-router": "^0.13.3",
-    "superagent": "1.2.0"
+    "superagent": "^1.2.0",
+    "superagent-bluebird-promise": "^2.0.2",
+    "underscore": "^1.8.3"
   },
   "devDependencies": {
     "autoprefixer-loader": "^1.2.0",

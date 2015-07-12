@@ -1,9 +1,31 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
+import flux from '../../flux'
+import FluxComponent from 'flummox/component'
+import Grid from '../Grid'
 
 export default class ChallengePage extends React.Component {
   render() {
     return (
-      <h1>Challenge Page - {this.props.params.id}</h1>
+      <FluxComponent connectToStores={['api']}>
+        <ChallengePageInner {...this.props} />
+      </FluxComponent> 
+    )
+  }
+}
+
+class ChallengePageInner extends React.Component {
+  componentDidMount() {
+    flux.getActions('api').getChallenge(this.props.params.id)
+  }
+  render() {
+    const challenge = this.props.challenges.find((challenge) => {
+      return challenge && challenge.id == this.props.params.id 
+    })
+    return (
+      <div>
+        <h1>Challenge Page</h1>
+        <Grid object={challenge} />
+      </div>
     )
   }
 }
