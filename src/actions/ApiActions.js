@@ -20,6 +20,14 @@ async function apiPostRequest(uri, payload) {
   return response.body
 }
 
+async function apiDeleteRequest(uri) {
+  let response = await request
+    .del(`${API_BASENAME}${uri}`)
+    .withCredentials() 
+    .promise()
+  return response.body
+}
+
 export default class ApiActions extends Actions {
   async login() {
     return apiGetRequest('/logged-in')
@@ -35,6 +43,10 @@ export default class ApiActions extends Actions {
   }
   async newGame(payload) {
     return apiPostRequest('/games/new', payload)
+  }
+  async deleteGame(id) {
+    await apiDeleteRequest(`/games/${id}`)
+    return id
   }
   async getEvent(id) {
     return apiGetRequest(`/events/${id}`)

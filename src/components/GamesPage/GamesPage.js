@@ -25,7 +25,10 @@ class GamesPageInner extends React.Component {
   render() {
     const games = _.chain(this.props.games)
         .sortBy('name')
-        .map(each => <Grid object={each} />)
+        .map(each => <div>
+          <Grid object={each} />
+          <DeleteButton id={each.id}/>
+        </div>)
     const size = _.chain(this.props.games).values().size()
     return (
       <div>
@@ -36,6 +39,20 @@ class GamesPageInner extends React.Component {
         </FluxComponent> 
         { games }
       </div>
+    )
+  }
+}
+
+class DeleteButton extends React.Component {
+  handleClick = (event) => {
+    flux.getActions('api').deleteGame(this.props.id)
+  }
+  render() {
+    return (
+      <button className="btn btn-default"
+              onClick={this.handleClick}>
+        Delete - {this.props.id}
+      </button>
     )
   }
 }
