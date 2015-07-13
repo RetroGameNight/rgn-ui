@@ -56,7 +56,7 @@ class Player extends React.Component {
 
 class DeleteButton extends React.Component {
   handleClick = (event) => {
-    flux.getActions('api').deletePlayer(this.props.id)
+    flux.getActions('api').deleteUser(this.props.id)
   }
   render() {
     return (
