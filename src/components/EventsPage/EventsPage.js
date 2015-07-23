@@ -6,7 +6,6 @@ import Grid from '../Grid'
 import EventForm from '../EventForm'
 import Page from '../Page'
 import { Link } from 'react-router'
-import Modal from '../Modal'
 
 export default class EventsPage extends React.Component {
   componentDidMount() {
