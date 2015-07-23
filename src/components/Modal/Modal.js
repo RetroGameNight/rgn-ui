@@ -9,9 +9,17 @@ import './Modal.less'
 import React from 'react'
 
 export default class Modal extends React.Component {
+  // The Component that manages the component needs to pass
+  // a boolean object to isOpen to control when the modal 
+  // get displayed. The handleCancelButtonClick property is
+  // what is ran when the user clicks the 'x' button in the
+  // top right corner. A title may also be passed. The
+  // modal supports children.
   // <Modal
+  //   isOpen={this.state.isOpen}
   //   handleCancelButtonClick={/* A function */}
-  //   title={/* a string */}
+  //   title={/* a string */}>
+  // </Modal>
   constructor(props) {
     super(props)
   }
