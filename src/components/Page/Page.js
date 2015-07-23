@@ -7,12 +7,18 @@
  */
 import './Page.less';
 import React, { PropTypes } from 'react';
+import { Link } from 'react-router';
 
 export default class Page extends React.Component {
   render() {
     return (
       <div>
-        {this.props.children}
+      	<div>          
+      		<Link to="app" className="navbar-brand row">
+            <img src={require('./logo-small.png')} width="300" height="35" alt="React" />
+          </Link>
+        </div>
+        <div>{this.props.children}</div>
       </div>
     );
   }

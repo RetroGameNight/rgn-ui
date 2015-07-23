@@ -87,18 +87,19 @@ class NavbarInner {
       ]
     }
     return (
-      <div className="navbar-top" role="navigation">
+      <div className="navigation" role="navigation">
         <div className="container">
-          <Link to="app" className="navbar-brand row">
+          {/*<Link to="app" className="navbar-brand row">
             <img src={require('./logo-small.png')} width="300" height="35" alt="React" />
-          </Link>
-          <ul className="nav navbar-nav  navbar-left">
-            <li><NavbarLink to="events">Events</NavbarLink></li>
-            <li><NavbarLink to="challenges">Challenges</NavbarLink></li>
+          </Link>*/}
+          <div>
+            <i className="fa-fa-fa"></i>
+          </div>
+          <ul className="">
             <li><NavbarLink to="games">Games</NavbarLink></li>
             <li><NavbarLink to="players">Players</NavbarLink></li>
           </ul>
-          <ul className="nav navbar-nav navbar-right">
+          <ul className="">
             {userManagementLinks}
           </ul>
         </div>

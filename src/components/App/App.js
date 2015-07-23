@@ -29,7 +29,9 @@ class AppInner extends React.Component {
     return (
       <div className="App">
         <Navbar />
-        <RouteHandler {...this.params} />
+        <div className="container">
+          <RouteHandler {...this.params} />
+        </div>
         <Footer />
       </div>
     );
