@@ -82,7 +82,10 @@ gulp.task('fonts', function() {
 
 // CSS style sheets
 gulp.task('styles', function() {
-  src.styles = 'src/styles/**/*.{css,less}';
+  src.styles = [
+    'src/styles/**/*.{css,less}',
+    'src/components/**/*.{css,less}',
+  ];
   var dest = DEST_BASE + 'css/'
   return gulp.src('src/styles/bootstrap.less')
     .pipe($.plumber())

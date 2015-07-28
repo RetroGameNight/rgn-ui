@@ -1,14 +1,15 @@
-/*
- * Retro Game Night
- * Copyright (c) 2015 Sasha Fahrenkopf, ... add your name
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE.txt file in the root directory of this source tree.
- */
-
-/* BEGIN Navbar.less
+// =============================================================================
+//
+// Retro Game Night
+// Copyright (c) 2015 Sasha Fahrenkopf, ... add your name
+//
+// This source code is licensed under the MIT license found in the
+// LICENSE.txt file in the root directory of this source tree.
+//
+// =============================================================================
 
 .navigation {
+  background-color: black;
   min-height: @navbar-height;
   margin-top: -(@navbar-height);
 
@@ -22,13 +23,16 @@
     }
 
     a.menu-toggle {
-      border-right: 1px solid @gray-lighter;
-      color: white;
+      border-right: 1px solid rgba(255, 255, 255, .3);
+      color: @gray-light;
       display: block;
       font-size: 1.5em;
       min-height: @navbar-height;
       width: 50px;
 
+      @media(min-width: @screen-md) {
+        display: none;
+      }
 
       span {
         margin-top: (@navbar-height / 2) - 12px;
@@ -37,7 +41,7 @@
   }
 
   .main-panel {
-    margin-left: 50px;  // width of a.menu-toggle 
+    margin-left: 50px;  /* width of a.menu-toggle */
 
     @media(min-width: @screen-md) {
       margin-left: @side-bar-width;
@@ -53,5 +57,3 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0.3);
   }
 }
-
-END Navbar.less */

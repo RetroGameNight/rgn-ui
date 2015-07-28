@@ -1,8 +1,79 @@
-/*
- * Retro Game Night
- * Copyright (c) 2015 Sasha Fahrenkopf, ... add your name
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE.txt file in the root directory of this source tree.
- */
+// =============================================================================
+//
+// Retro Game Night
+// Copyright (c) 2015 Sasha Fahrenkopf, ... add your name
+//
+// This source code is licensed under the MIT license found in the
+// LICENSE.txt file in the root directory of this source tree.
+//
+// =============================================================================
 
+.side-bar {
+  @item-height: 50px;
+  background-color: black;
+  height: 100vh;
+  width: @side-bar-width;
+
+  // Hide on small screens until triggered
+  @media(max-width: @screen-md) {
+    left: -(@side-bar-width);
+  }
+
+  &.visible { 
+    left: 0;
+  } 
+
+  ul.menu {
+    list-style-type: none;
+    padding: 5px 10px;
+    font-size: 1.9em;
+
+    li {
+      line-height: @item-height;
+      padding: 7px 0px;
+      border-bottom: 1px solid rgba(255, 255, 255, .3);
+
+      a {
+        color: white;
+      }
+
+      &:hover {
+        background-color: #33CCFF;
+      }
+    }
+  }
+
+  ul.login {
+    position: absolute;
+    padding: 5px 10px;
+    bottom: @item-height * 2;
+    font-size: 1.3em;
+    width: 100%;
+
+    li {
+      line-height: @item-height;
+      padding: 7px 0px;
+
+      a {
+        display: block;
+        color: white;
+        text-align: center;
+      }
+
+      .google {
+        background-color: rgb(221, 75, 57);
+      }
+
+      .facebook{
+        background-color: #3b5998;
+      }
+    }
+  }
+}
+
+// Give the container some space to compenstate for sidebar on big screens
+@media(min-width: @screen-md) {
+  .container { 
+    padding-left: @side-bar-width + 10px; 
+  }
+}

@@ -6,15 +6,12 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-import './Navbar.less'
+import './Navbar.less';
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Link } from 'react-router';
 import flux from '../../flux/flux'
 import FluxComponent from 'flummox/component';
 import SideMenu from '../SideMenu';
-
-
-
 
 
 export default class Navbar {
@@ -36,13 +33,30 @@ class NavbarInner extends React.Component {
   toggleMenu = () => {
     this.setState({ isVisible: !this.state.isVisible })   
   }
+  componentDidMount() {
+    flux.getActions('api').login()
+  }
+  loggedIn() {
+    if (this.props.activeUser) {
+      return true
+    } else {
+      return false
+    }
+  }
   render() {
+    if(this.activeUser) {
+      console.log(this.activeUser.avatarUrl)
+    }
+    else {
+      console.log("Not logged in")
+    }
     return (
       <div className="navigation header">
         <div className="left-panel">
           <a onClick={this.toggleMenu} className="menu-toggle text-center">
             <span className="glyphicon glyphicon-menu-hamburger"></span>
           </a>
+
         </div>
         <div className="main-panel clearfix">
           <Link to="app" className="navbar-brand">

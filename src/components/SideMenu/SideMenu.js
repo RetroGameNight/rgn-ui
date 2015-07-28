@@ -6,12 +6,23 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
+import './SideMenu.less';
 import React from 'react'; // eslint-disable-line no-unused-vars
 import flux from '../../flux/flux'
 import FluxComponent from 'flummox/component';
 import { Link } from 'react-router';
 
 let api = "http://localhost:3000";
+
+export default class SideMenu {
+  render() {
+    return (
+      <FluxComponent connectToStores={['api']}>
+        <SideBar />
+      </FluxComponent>
+    )
+  }
+}
 
 class NavbarLink extends React.Component {
   static contextTypes = {
@@ -55,7 +66,7 @@ class Logout extends React.Component {
 }
 
 
-export default class SideMenu extends React.Component {
+export default class SideBar extends React.Component {
   constructor(props) {
     super(props)   
   }
