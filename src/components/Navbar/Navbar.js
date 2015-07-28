@@ -8,7 +8,7 @@
 
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Link } from 'react-router';
-import flux from '../../flux'
+import flux from '../../flux/flux'
 import FluxComponent from 'flummox/component';
 
 

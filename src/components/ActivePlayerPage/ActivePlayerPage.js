@@ -7,7 +7,7 @@
  */
 import './ActivePlayerPage.less';
 import React, { PropTypes } from 'react';
-import flux from '../../flux'
+import flux from '../../flux/flux'
 import FluxComponent from 'flummox/component';
 import _ from 'underscore'
 

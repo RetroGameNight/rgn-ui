@@ -6,7 +6,7 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 import './GameForm.less';
-import flux from '../../flux'
+import flux from '../../flux/flux'
 import React, { PropTypes } from 'react';
 
 export default class GameForm extends React.Component {

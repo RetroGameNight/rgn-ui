@@ -1,6 +1,6 @@
 import { Actions } from 'flummox';
 import request from 'superagent-bluebird-promise'
-import config from '../config'
+import config from '../../config'
 
 const { protocal, host, port } = config.api.location
 

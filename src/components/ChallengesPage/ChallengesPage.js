@@ -1,5 +1,5 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
-import flux from '../../flux'
+import flux from '../../flux/flux'
 import FluxComponent from 'flummox/component'
 import _ from 'underscore'
 import Grid from '../Grid'

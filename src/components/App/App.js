@@ -11,7 +11,7 @@ import Navbar from '../Navbar';
 import Footer from '../Footer';
 import Grid from '../Grid'
 import Router, { RouteHandler } from "react-router"
-import flux from '../../flux'
+import flux from '../../flux/flux'
 import FluxComponent from 'flummox/component';
 
 export default class App extends React.Component {

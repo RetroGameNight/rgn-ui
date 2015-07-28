@@ -1,6 +1,6 @@
 import { Flummox } from 'flummox';
-import ApiActions from './actions/ApiActions'
-import ApiStore from './stores/ApiStore'
+import ApiActions from './api/actions'
+import ApiStore from './api/store'
 
 class Flux extends Flummox {
   constructor() {
