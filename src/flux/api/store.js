@@ -63,6 +63,9 @@ export default class ApiStore extends Store {
   getUser(id) {
     return _.find(this.state.users, { id })
   }
+  isLoggedIn() {
+    return !!this.state.activeUser
+  }
   /*
    * Handlers
    */
