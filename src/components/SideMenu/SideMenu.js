@@ -62,16 +62,9 @@ export default class SideMenu extends React.Component {
   componentDidMount() {
     flux.getActions('api').login()
   }
-  loggedIn() {
-    if (this.props.activeUser) {
-      return true
-    } else {
-      return false
-    }
-  }
   render() {
     let userManagementLinks = []
-    if (this.loggedIn()) {
+    if (flux.getStore('api').isLoggedIn()) {
       userManagementLinks = [
         <li><Logout /></li>
       ]
@@ -80,7 +73,7 @@ export default class SideMenu extends React.Component {
         <li><Login text="Sign In with Google" type="google" /></li>,
         <li><Login text="Sign In with Facebook" type="facebook" /></li>
       ]
-      console.log(this.loggedIn())
+      console.log(flux.getStore('api').isLoggedIn())
     }
     return (
       <div className={(this.props.visibility ? "visible " : "") + "side-bar fixed" }>
