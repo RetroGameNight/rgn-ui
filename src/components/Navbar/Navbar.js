@@ -6,35 +6,16 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
+import './Navbar.less'
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { Link } from 'react-router';
 import flux from '../../flux/flux'
 import FluxComponent from 'flummox/component';
+import SideMenu from '../SideMenu';
 
 
-let api = "http://localhost:3000";
 
-class SignIn extends React.Component {
-  render() {
-    let path = this.props.type;
-    let URL = api + "/auth/" + path;
 
-    return (
-      <a className="btn btn-default" href={URL} role="button">{this.props.text}</a>
-    )
-  }
-}
-
-class Logout extends React.Component {
-  clickHandler() {
-    flux.getActions('api').logout('')
-  }
-  render() {
-    return (
-      <a onClick={this.clickHandler} className="btn btn-default">Logout</a>
-    )
-  }
-}
 
 export default class Navbar {
   render() {
@@ -46,63 +27,30 @@ export default class Navbar {
   }
 }
 
-class NavbarLink extends React.Component {
-  static contextTypes = {
-    router: React.PropTypes.func.isRequired
-  }
-  render() {
-    const currentRoutes = this.context.router.getCurrentRoutes();
-    const activeRouteName = currentRoutes[currentRoutes.length - 1].name;
-    let className = ""
-    if (this.props.to == activeRouteName) {
-      className = "active"
-    } 
-    return (
-      <Link className={className} to={this.props.to}>{this.props.children}</Link>
-    )
-  }
-}
 
-class NavbarInner {
-  loggedIn() {
-    if (this.props.activeUser) {
-      return true
-    } else {
-      return false
-    }
+class NavbarInner extends React.Component {
+  constructor(props) {
+    super(props)   
+    this.state = { isVisible: false }
   }
-  componentDidMount() {
-    flux.getActions('api').login()
+  toggleMenu = () => {
+    this.setState({ isVisible: !this.state.isVisible })   
   }
   render() {
-    let userManagementLinks = []
-    if (this.loggedIn()) {
-      userManagementLinks = [
-        <li><Logout /></li>
-      ]
-    } else {
-      userManagementLinks = [
-        <li><SignIn text="Sign In with Google" type="google" /></li>,
-        <li><SignIn text="Sign In with Facebook" type="facebook" /></li>
-      ]
-    }
     return (
-      <div className="navigation" role="navigation">
-        <div className="container">
-          {/*<Link to="app" className="navbar-brand row">
-            <img src={require('./logo-small.png')} width="300" height="35" alt="React" />
-          </Link>*/}
-          <div>
-            <i className="fa-fa-fa"></i>
-          </div>
-          <ul className="">
-            <li><NavbarLink to="games">Games</NavbarLink></li>
-            <li><NavbarLink to="players">Players</NavbarLink></li>
-          </ul>
-          <ul className="">
-            {userManagementLinks}
-          </ul>
+      <div className="navigation header">
+        <div className="left-panel">
+          <a onClick={this.toggleMenu} className="menu-toggle text-center">
+            <span className="glyphicon glyphicon-menu-hamburger"></span>
+          </a>
         </div>
+        <div className="main-panel clearfix">
+          <Link to="app" className="navbar-brand">
+            <img src={require('./logo-small.png')} width="300" height="35" alt="Retro Game Night" />
+          </Link>
+        </div>
+        <hr/>
+        <SideMenu visibility={this.state.isVisible} />
       </div>
     );
   }

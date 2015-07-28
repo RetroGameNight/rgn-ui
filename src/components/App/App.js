@@ -29,7 +29,7 @@ class AppInner extends React.Component {
     return (
       <div className="App">
         <Navbar />
-        <div className="container">
+        <div className="container" style={{"marginLeft" : "0px"}}>
           <RouteHandler {...this.params} />
         </div>
         <Footer />
