@@ -9,7 +9,11 @@ import GameForm from '../GameForm'
 export default class GamePage extends React.Component {
   render() {
     return (
-      <FluxComponent connectToStores={['api']}>
+      <FluxComponent connectToStores={{
+        api: store => ({
+          game: store.getGame(this.props.params.id),
+        }),
+      }}> 
         <GamePageInner {...this.props} />
       </FluxComponent> 
     )
@@ -21,9 +25,7 @@ class GamePageInner extends React.Component {
     flux.getActions('api').getGame(this.props.params.id)
   }
   render() {
-    const game = this.props.games.find((game) => {
-      return game && game.id == this.props.params.id 
-    })
+    const { game } = this.props 
     return (
       <Page>
         <h1>Game Page</h1>

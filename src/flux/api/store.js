@@ -1,5 +1,5 @@
 import { Store } from 'flummox'
-import _ from 'underscore'
+import _ from 'lodash'
 
 const API_BASENAME = "http://localhost:3000"
 const DEFAULT_STATE = {
@@ -39,6 +39,24 @@ export default class ApiStore extends Store {
 
     this.state = DEFAULT_STATE
   }
+  /*
+   * Getters
+   */
+  getGame(id) {
+    return _.find(this.state.games, { id })
+  }
+  getEvent(id) {
+    return _.find(this.state.events, { id })
+  }
+  getChallenge(id) {
+    return _.find(this.state.challenges, { id })
+  }
+  getUser(id) {
+    return _.find(this.state.users, { id })
+  }
+  /*
+   * Handlers
+   */
   handleLogin(user) {
     this.setState({
       activeUser: user
@@ -113,6 +131,9 @@ export default class ApiStore extends Store {
       }
     })
   }
+  /*
+   * Helpers
+   */
   setMany(objects, into) {
     this.setState({
       [into]: objects

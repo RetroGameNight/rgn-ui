@@ -7,7 +7,11 @@ import EventForm from '../EventForm'
 export default class EventPage extends React.Component {
   render() {
     return (
-      <FluxComponent connectToStores={['api']}>
+      <FluxComponent connectToStores={{
+        api: store => ({
+          event: store.getEvent(this.props.params.id),
+        }),
+      }}> 
         <EventPageInner {...this.props} />
       </FluxComponent> 
     )
@@ -19,9 +23,7 @@ class EventPageInner extends React.Component {
     flux.getActions('api').getEvent(this.props.params.id)
   }
   render() {
-    const event = this.props.events.find((event) => {
-      return event && event.id == this.props.params.id 
-    })
+    const { event } = this.props
     return (
       <Page>
         <h1>Event Page</h1>

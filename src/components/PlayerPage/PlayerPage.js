@@ -7,7 +7,11 @@ import Page from '../Page'
 export default class PlayerPage extends React.Component {
   render() {
     return (
-      <FluxComponent connectToStores={['api']}>
+      <FluxComponent connectToStores={{
+        api: store => ({
+          player: store.getUser(this.props.params.id),
+        }),
+      }}> 
         <PlayerPageInner {...this.props} />
       </FluxComponent> 
     )
@@ -19,9 +23,7 @@ class PlayerPageInner extends React.Component {
     flux.getActions('api').getUser(this.props.params.id)
   }
   render() {
-    const player = this.props.users.find((user) => {
-      return user && user.id == this.props.params.id 
-    })
+    const { player } = this.props
     return (
       <Page>
         <h1>Player Page</h1>

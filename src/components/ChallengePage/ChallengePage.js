@@ -8,7 +8,11 @@ import ChallengeForm from '../ChallengeForm'
 export default class ChallengePage extends React.Component {
   render() {
     return (
-      <FluxComponent connectToStores={['api']}>
+      <FluxComponent connectToStores={{
+        api: store => ({
+          challenge: store.getChallenge(this.props.params.id),
+        }),
+      }}> 
         <ChallengePageInner {...this.props} />
       </FluxComponent> 
     )
@@ -20,9 +24,7 @@ class ChallengePageInner extends React.Component {
     flux.getActions('api').getChallenge(this.props.params.id)
   }
   render() {
-    const challenge = this.props.challenges.find((challenge) => {
-      return challenge && challenge.id == this.props.params.id 
-    })
+    const { challenge } = this.props
     return (
       <Page>
         <h1>Challenge Page</h1>
