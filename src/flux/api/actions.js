@@ -111,4 +111,20 @@ export default class ApiActions extends Actions {
   async updateChallenge(id, payload) {
     return apiPutRequest(`/challenges/${id}`, payload)
   }
+  async getTrial(id) {
+    return apiGetRequest(`/trials/${id}`)
+  }
+  async getTrials() {
+    return apiGetRequest('/trials/all')
+  }
+  async newTrial(payload) {
+    return apiPostRequest('/trials/new', payload)
+  }
+  async deleteTrial(id) {
+    await apiDeleteRequest(`/trials/${id}`)
+    return id
+  }
+  async updateChallenge(id, payload) {
+    return apiPutRequest(`/challenges/${id}`, payload)
+  }
 }

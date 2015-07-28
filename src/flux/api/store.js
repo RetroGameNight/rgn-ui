@@ -8,6 +8,7 @@ const DEFAULT_STATE = {
   games: [],
   events: [],
   challenges: [],
+  trials: [],
   scores: [],
 }
 
@@ -32,6 +33,11 @@ export default class ApiStore extends Store {
     this.registerAsync(apiActions.newChallenge, null, this.handleNewChallenge, null);
     this.registerAsync(apiActions.deleteChallenge, null, this.handleDeleteChallenge, null);
     this.registerAsync(apiActions.updateChallenge, null, this.handleUpdateChallenge, null);
+    this.registerAsync(apiActions.getTrial, null, this.handleGetTrial, null);
+    this.registerAsync(apiActions.getTrials, null, this.handleGetTrials, null);
+    this.registerAsync(apiActions.newTrial, null, this.handleNewTrial, null);
+    this.registerAsync(apiActions.deleteTrial, null, this.handleDeleteTrial, null);
+    this.registerAsync(apiActions.updateTrial, null, this.handleUpdateTrial, null);
     this.registerAsync(apiActions.getUser, null, this.handleGetUser, null);
     this.registerAsync(apiActions.getUsers, null, this.handleGetUsers, null);
     this.registerAsync(apiActions.deleteUser, null, this.handleDeleteUser, null);
@@ -50,6 +56,9 @@ export default class ApiStore extends Store {
   }
   getChallenge(id) {
     return _.find(this.state.challenges, { id })
+  }
+  getTrail(id) {
+    return _.find(this.state.trials, { id })
   }
   getUser(id) {
     return _.find(this.state.users, { id })
@@ -91,6 +100,21 @@ export default class ApiStore extends Store {
   }
   handleDeleteChallenge(id) {
     this.removeOneById(id, "challenges")
+  }
+  handleUpdateChallenge(challenge) {
+    this.replaceOne(challenge, "challenges")
+  }
+  handleGetTrial(challenge) {
+    this.setOne(challenge, 'trials')
+  }
+  handleGetTrials(challenges) {
+    this.setMany(challenges, 'trials')
+  }
+  handleNewTrial(challenge) {
+    this.setOne(challenge, 'trials')
+  }
+  handleDeleteTrial(id) {
+    this.removeOneById(id, "trials")
   }
   handleUpdateChallenge(challenge) {
     this.replaceOne(challenge, "challenges")
