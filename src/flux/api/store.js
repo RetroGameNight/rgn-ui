@@ -60,6 +60,9 @@ export default class ApiStore extends Store {
   getTrail(id) {
     return _.find(this.state.trials, { id })
   }
+  getTrialsForGame(gameName) {
+    return _.filter(this.state.trials, { game: gameName })
+  }
   getUser(id) {
     return _.find(this.state.users, { id })
   }

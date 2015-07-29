@@ -9,11 +9,18 @@ import GameForm from '../GameForm'
 export default class GamePage extends React.Component {
   render() {
     return (
-      <FluxComponent connectToStores={{
-        api: store => ({
-          game: store.getGame(this.props.params.id),
-        }),
-      }}> 
+      <FluxComponent
+        connectToStores={['api']}
+        stateGetter={([api]) => {
+          const { params } = this.props
+          const game = api.getGame(params.id)
+          const trials = game ? api.getTrialsForGame(game.name) : []
+          return {
+            game,
+            trials, 
+          }
+        }}
+      >
         <GamePageInner {...this.props} />
       </FluxComponent> 
     )
@@ -23,15 +30,18 @@ export default class GamePage extends React.Component {
 class GamePageInner extends React.Component {
   componentWillMount() {
     flux.getActions('api').getGame(this.props.params.id)
+    flux.getActions('api').getTrials()
   }
   render() {
-    const { game } = this.props 
+    const { game, trials } = this.props 
+    const trialGrids = _.chain(trials)
+      .map(each => <Grid object={each} />)
+      .value()
     return (
       <Page>
         <h1>Game Page</h1>
-        <FluxComponent connectToStores={['api']}>
-          <GameForm game={game} />
-        </FluxComponent>
+        <h2>Trials</h2>
+        { trialGrids }
       </Page>
     )
   }
