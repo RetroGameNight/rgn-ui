@@ -11,6 +11,7 @@ import React from 'react'; // eslint-disable-line no-unused-vars
 import flux from '../../flux/flux'
 import FluxComponent from 'flummox/component';
 import { Link } from 'react-router';
+//import Modal from '../Modal';
 
 let api = "http://localhost:3000";
 
@@ -57,24 +58,25 @@ class Avatar extends React.Component {
     if (isLoggedIn) {
       avatarUrl = player.avatarUrl
       className += "visible"
-      //playerUrl = "player"
+      playerUrl = "player"
     }
     else {
       className += "hidden" 
     }
+    if(isLoggedIn){
+      return (
+        <div className={className}>
+          <Link to={playerUrl} params={{ id: player.id }}>
+            <img src={avatarUrl} width="50" height="50" alt="User Avatar" />
+          </Link>
 
-    return (
-      <div className={className}>
-        {/*<Link to={playerUrl} params={{ id: player.id }}>*/}
-        <Link to={playerUrl}>
-          <img src={avatarUrl} width="50" height="50" alt="User Avatar" />
-        </Link>
-
-        <a onClick={this.clickHandler} className="challenge button">
-          Issue Challenge
-        </a>
-      </div>
-    )
+          <a onClick={this.clickHandler} className="challenge button">
+            Issue Challenge
+          </a>
+        </div>
+      )      
+    }
+    else { return null }
   }
 }
 
