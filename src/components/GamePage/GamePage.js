@@ -2,7 +2,7 @@ import React from 'react'; // eslint-disable-line no-unused-vars
 import flux from '../../flux/flux'
 import FluxComponent from 'flummox/component'
 import _ from 'underscore'
-import Grid from '../Grid'
+import ObjectTable from '../ObjectTable'
 import Page from '../Page'
 import GameForm from '../GameForm'
 
@@ -35,7 +35,7 @@ class GamePageInner extends React.Component {
   render() {
     const { game, trials } = this.props 
     const trialGrids = _.chain(trials)
-      .map(each => <Grid object={each} />)
+      .map(each => <ObjectTable object={each} />)
       .value()
     return (
       <Page>

@@ -9,7 +9,6 @@ import './App.less';
 import React, { PropTypes } from 'react';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
-import Grid from '../Grid'
 import Router, { RouteHandler } from "react-router"
 import flux from '../../flux/flux'
 import FluxComponent from 'flummox/component';
