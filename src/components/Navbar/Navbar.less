@@ -47,7 +47,7 @@
 
     @media(min-width: @screen-md) {
       margin-left: @side-bar-width;
-      padding-left: 150px;
+      padding-left: 25%;
     }
   }
 
@@ -58,4 +58,21 @@
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     border-bottom: 1px solid rgba(255, 255, 255, 0.3);
   }
+}
+
+.navigation {
+  .currentUser {
+    color: white;
+    padding-left: 5px;
+
+    span {
+      padding-left: 5px;
+    }
+
+    .visible {
+        display: inline-block;      
+    }
+  }
+
+
 }

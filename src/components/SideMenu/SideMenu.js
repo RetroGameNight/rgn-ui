@@ -14,16 +14,6 @@ import { Link } from 'react-router';
 
 let api = "http://localhost:3000";
 
-export default class SideMenu {
-  render() {
-    return (
-      <FluxComponent connectToStores={['api']}>
-        <SideBar />
-      </FluxComponent>
-    )
-  }
-}
-
 class NavbarLink extends React.Component {
   static contextTypes = {
     router: React.PropTypes.func.isRequired
@@ -53,6 +43,41 @@ class Login extends React.Component {
   }
 }
 
+class Avatar extends React.Component {
+  clickHandler() {
+    console.log("Open a model!")
+  }
+  render() {
+    const isLoggedIn = flux.getStore('api').isLoggedIn()
+    const player = this.props.user
+    let className = "user-avatar "
+    let avatarUrl = ""
+    let playerUrl = "app"  // Some default
+
+    if (isLoggedIn) {
+      avatarUrl = player.avatarUrl
+      className += "visible"
+      //playerUrl = "player"
+    }
+    else {
+      className += "hidden" 
+    }
+
+    return (
+      <div className={className}>
+        {/*<Link to={playerUrl} params={{ id: player.id }}>*/}
+        <Link to={playerUrl}>
+          <img src={avatarUrl} width="50" height="50" alt="User Avatar" />
+        </Link>
+
+        <a onClick={this.clickHandler} className="challenge button">
+          Issue Challenge
+        </a>
+      </div>
+    )
+  }
+}
+
 
 class Logout extends React.Component {
   clickHandler() {
@@ -60,20 +85,24 @@ class Logout extends React.Component {
   }
   render() {
     return (
-      <a onClick={this.clickHandler} className="logout">Logout</a>
+      <div>
+        <a onClick={this.clickHandler} className="logout">Logout</a>
+      </div>
     )
   }
 }
 
 
-export default class SideBar extends React.Component {
+export default class SideMenu extends React.Component {
   constructor(props) {
-    super(props)   
+    super(props)  
+ 
   }
   componentDidMount() {
     flux.getActions('api').login()
   }
   render() {
+    let avatar = ""
     let userManagementLinks = []
     if (flux.getStore('api').isLoggedIn()) {
       userManagementLinks = [
@@ -84,19 +113,20 @@ export default class SideBar extends React.Component {
         <li><Login text="Sign In with Google" type="google" /></li>,
         <li><Login text="Sign In with Facebook" type="facebook" /></li>
       ]
-      console.log(flux.getStore('api').isLoggedIn())
     }
     return (
       <div className={(this.props.visibility ? "visible " : "") + "side-bar fixed" }>
-          <div>
-          <ul className="menu">
-            <li><NavbarLink to="games">Games</NavbarLink></li>
-            <li><NavbarLink to="players">Players</NavbarLink></li>
-          </ul>
-          <ul className="login">
-            {userManagementLinks}
-          </ul>
-          </div>
+        <ul className="user">
+          {avatar}
+        </ul>
+        <Avatar user={this.props.user} />
+        <ul className="menu">
+          <li><NavbarLink to="games">Games</NavbarLink></li>
+          <li><NavbarLink to="players">Players</NavbarLink></li>
+        </ul>
+        <ul className="login">
+          {userManagementLinks}
+        </ul>
         </div>
     )
   }

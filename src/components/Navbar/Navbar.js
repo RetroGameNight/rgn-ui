@@ -25,6 +25,7 @@ export default class Navbar {
 }
 
 
+
 class NavbarInner extends React.Component {
   constructor(props) {
     super(props)   
@@ -44,19 +45,13 @@ class NavbarInner extends React.Component {
     }
   }
   render() {
-    if(this.activeUser) {
-      console.log(this.activeUser.avatarUrl)
-    }
-    else {
-      console.log("Not logged in")
-    }
     return (
       <div className="navigation header">
         <div className="left-panel">
+ 
           <a onClick={this.toggleMenu} className="menu-toggle text-center">
             <span className="glyphicon glyphicon-menu-hamburger"></span>
           </a>
-
         </div>
         <div className="main-panel clearfix">
           <Link to="app" className="navbar-brand">
@@ -64,7 +59,7 @@ class NavbarInner extends React.Component {
           </Link>
         </div>
         <hr/>
-        <SideMenu visibility={this.state.isVisible} />
+        <SideMenu visibility={this.state.isVisible} user={this.props.activeUser} />
       </div>
     );
   }

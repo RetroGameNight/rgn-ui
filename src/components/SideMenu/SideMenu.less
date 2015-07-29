@@ -25,6 +25,10 @@
     left: 0;
   } 
 
+  a {
+    color: white;
+  }
+
   ul.menu {
     list-style-type: none;
     padding: 5px 10px;
@@ -34,10 +38,6 @@
       line-height: @item-height;
       padding: 7px 0px;
       border-bottom: 1px solid rgba(255, 255, 255, .3);
-
-      a {
-        color: white;
-      }
 
       &:hover {
         background-color: #33CCFF;
@@ -58,19 +58,66 @@
 
       a {
         display: block;
-        color: white;
         text-align: center;
+      }
+
+      &:hover {
+        cursor: pointer;
       }
 
       .google {
         background-color: rgb(221, 75, 57);
+        &:hover {
+          background-color: darken(rgb(221, 75, 57), 15%);
+        }
       }
 
       .facebook{
         background-color: #3b5998;
+        &:hover {
+          background-color: darken(#3b5998, 15%);
+        }
+      }
+
+      .logout {
+        @bg-color: lighten(black, 15%);
+        background-color: @bg-color;
+        &:hover {
+          background-color: darken(@bg-color, 4%);
+        }
       }
     }
   }
+
+  .user-avatar {
+    padding-left: 10px;
+
+    a {
+      display: inline-block;
+    }
+
+
+    a.challenge.button {  // Probably will extract out the button class at some point
+      padding: 7px;
+      line-height: @item-height - 14px;
+      margin: 0px 18px;
+      background-color: @neon-pink;
+      font-size: 1.2em;
+      text-align: center;
+      width: @side-bar-width - 100px;
+
+      &:hover {
+        cursor: pointer;
+        background-color: darken(@neon-pink, 10%);
+      }
+    }
+
+    .visible {
+      display: block;
+    }
+  }
+
+
 }
 
 // Give the container some space to compenstate for sidebar on big screens
