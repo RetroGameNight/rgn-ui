@@ -29,7 +29,7 @@ export default class Modal extends React.Component {
   render() {
     const handleCancelButtonClick = this.props.handleCancelButtonClick
     if (this.modalIsClosed()) {
-      return (<div></div>)
+      return null
     } else {
       return (
         <div className="Modal">
