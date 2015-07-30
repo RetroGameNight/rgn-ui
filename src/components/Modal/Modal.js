@@ -6,7 +6,7 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 import './Modal.less'
-import React from 'react'
+import React, { PropTypes } from 'react'
 
 export default class Modal extends React.Component {
   // The Component that manages the component needs to pass
@@ -15,11 +15,11 @@ export default class Modal extends React.Component {
   // what is ran when the user clicks the 'x' button in the
   // top right corner. A title may also be passed. The
   // modal supports children.
-  // <Modal
-  //   isOpen={this.state.isOpen}
-  //   handleCancelButtonClick={/* A function */}
-  //   title={/* a string */}>
-  // </Modal>
+  propTypes: {
+    isOpen: PropTypes.bool.isRequired,
+    handleCancelButtonClick: PropTypes.func.isRequired,
+    title: PropTypes.string,
+  }
   constructor(props) {
     super(props)
   }
