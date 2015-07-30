@@ -106,18 +106,18 @@ export default class SideMenu extends React.Component {
           <li><NavbarLink to="games">Games</NavbarLink></li>
           <li><NavbarLink to="players">Players</NavbarLink></li>
         </ul>
-        <ul className="login">
-          <IsLoggedIn>
-            <li><Logout /></li>
-          </IsLoggedIn>
-          <IsNotLoggedIn>
-            <li><Login text="Sign In with Google" type="google" /></li>
-          </IsNotLoggedIn>
-          <IsNotLoggedIn>
-            <li><Login text="Sign In with Facebook" type="facebook" /></li>
-          </IsNotLoggedIn>
-        </ul>
-        </div>
+        <IsLoggedIn>
+          <ul className="login">
+              <li><Logout /></li>
+          </ul>
+        </IsLoggedIn>
+        <IsNotLoggedIn>
+          <ul className="login">
+              <li><Login text="Sign In with Google" type="google" /></li>
+              <li><Login text="Sign In with Facebook" type="facebook" /></li>
+          </ul>
+        </IsNotLoggedIn>
+      </div>
     )
   }
 }
