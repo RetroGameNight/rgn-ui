@@ -11,6 +11,8 @@ import React from 'react'; // eslint-disable-line no-unused-vars
 import flux from '../../flux/flux'
 import FluxComponent from 'flummox/component';
 import { Link } from 'react-router';
+import IsLoggedIn from '../IsLoggedIn'
+import IsNotLoggedIn from '../IsNotLoggedIn'
 //import Modal from '../Modal';
 
 let api = "http://localhost:3000";
@@ -49,34 +51,22 @@ class Avatar extends React.Component {
     console.log("Open a model!")
   }
   render() {
-    const isLoggedIn = flux.getStore('api').isLoggedIn()
     const player = this.props.user
-    let className = "user-avatar "
-    let avatarUrl = ""
-    let playerUrl = "app"  // Some default
+    const className = "user-avatar "
+    const avatarUrl = player ? player.avatarUrl : ""
+    const playerUrl = "player"
 
-    if (isLoggedIn) {
-      avatarUrl = player.avatarUrl
-      className += "visible"
-      playerUrl = "player"
-    }
-    else {
-      className += "hidden" 
-    }
-    if(isLoggedIn){
-      return (
-        <div className={className}>
-          <Link to={playerUrl} params={{ id: player.id }}>
-            <img src={avatarUrl} width="50" height="50" alt="User Avatar" />
-          </Link>
+    return (
+      <div className={className}>
+        <Link to={playerUrl} params={{ id: player ? player.id : null}}>
+          <img src={avatarUrl} width="50" height="50" alt="User Avatar" />
+        </Link>
 
-          <a onClick={this.clickHandler} className="challenge button">
-            Issue Challenge
-          </a>
-        </div>
-      )      
-    }
-    else { return null }
+        <a onClick={this.clickHandler} className="challenge button">
+          Issue Challenge
+        </a>
+      </div>
+    )      
   }
 }
 
@@ -98,36 +88,34 @@ class Logout extends React.Component {
 export default class SideMenu extends React.Component {
   constructor(props) {
     super(props)  
- 
   }
   componentDidMount() {
     flux.getActions('api').login()
   }
   render() {
     let avatar = ""
-    let userManagementLinks = []
-    if (flux.getStore('api').isLoggedIn()) {
-      userManagementLinks = [
-        <li><Logout /></li>
-      ]
-    } else {
-      userManagementLinks = [
-        <li><Login text="Sign In with Google" type="google" /></li>,
-        <li><Login text="Sign In with Facebook" type="facebook" /></li>
-      ]
-    }
     return (
       <div className={(this.props.visibility ? "visible " : "") + "side-bar fixed" }>
         <ul className="user">
           {avatar}
         </ul>
-        <Avatar user={this.props.user} />
+        <IsLoggedIn>
+          <Avatar user={this.props.user} />
+        </IsLoggedIn>
         <ul className="menu">
           <li><NavbarLink to="games">Games</NavbarLink></li>
           <li><NavbarLink to="players">Players</NavbarLink></li>
         </ul>
         <ul className="login">
-          {userManagementLinks}
+          <IsLoggedIn>
+            <li><Logout /></li>
+          </IsLoggedIn>
+          <IsNotLoggedIn>
+            <li><Login text="Sign In with Google" type="google" /></li>
+          </IsNotLoggedIn>
+          <IsNotLoggedIn>
+            <li><Login text="Sign In with Facebook" type="facebook" /></li>
+          </IsNotLoggedIn>
         </ul>
         </div>
     )
