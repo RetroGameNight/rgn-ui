@@ -59,10 +59,6 @@ class Avatar extends React.Component {
           <img src={avatarUrl} width="50" height="50" alt="User Avatar" />
         </Link>
 
-        {/*<a onClick={this.clickHandler} className="challenge button">
-          Issue Challenge
-        </a>*/}
-
         <ChallengeButton btnText="Issue Challenge" class="challenge" />
       </div>
     )      

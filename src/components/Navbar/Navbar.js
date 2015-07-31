@@ -45,12 +45,18 @@ class NavbarInner extends React.Component {
     }
   }
   render() {
+    var icon = "glyphicon"
+    if(this.state.isVisible) {
+      icon += " glyphicon-remove"
+    } else {
+      icon += " glyphicon-menu-hamburger"
+    }
     return (
       <div className="navigation header">
         <div className="left-panel">
  
           <a onClick={this.toggleMenu} className="menu-toggle text-center">
-            <span className="glyphicon glyphicon-menu-hamburger"></span>
+            <span className={icon}></span>
           </a>
         </div>
         <div className="main-panel clearfix">
