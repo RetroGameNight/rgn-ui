@@ -11,6 +11,7 @@
 @import '../../styles/variables.less';
 
 .side-bar {
+  @soft-black: lighten(black, 15%);
   @item-height: 50px;
   background-color: black;
   height: 100vh;
@@ -36,11 +37,22 @@
 
     li {
       line-height: @item-height;
-      padding: 7px 0px;
+
       border-bottom: 1px solid rgba(255, 255, 255, .3);
 
+      a {
+        display: block;
+        padding: 7px 0px;
+      }
+
+      a.active {
+        color: @neon-blue;
+        background-color: darken(@soft-black, 4%);
+        text-decoration: none;
+      }
+
       &:hover {
-        background-color: #33CCFF;
+        background-color: @neon-blue;
       }
     }
   }
@@ -80,10 +92,9 @@
       }
 
       .logout {
-        @bg-color: lighten(black, 15%);
-        background-color: @bg-color;
+        background-color: @soft-black;
         &:hover {
-          background-color: darken(@bg-color, 4%);
+          background-color: darken(@soft-black, 4%);
         }
       }
     }
