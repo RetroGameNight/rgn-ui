@@ -108,20 +108,8 @@
     }
 
 
-    a.challenge.button {  // Probably will extract out the button class at some point
-      padding: 7px;
-      line-height: 16px;
-      vertical-align: bottom;
-      margin: 0px 18px;
-      background-color: @neon-pink;
-      font-size: 1.2em;
-      text-align: center;
+    a.challenge.button {
       width: @side-bar-width - 100px;
-
-      &:hover {
-        cursor: pointer;
-        background-color: darken(@neon-pink, 10%);
-      }
     }
 
     .visible {
@@ -136,6 +124,5 @@
 @media(min-width: @screen-md) {
   .container { 
     padding-left: @side-bar-width + 20px; 
-    padding-top: 15px;
   }
 }

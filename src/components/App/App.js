@@ -28,7 +28,7 @@ class AppInner extends React.Component {
     return (
       <div className="App">
         <Navbar />
-        <div className="container" style={{"marginLeft" : "0px"}}>
+        <div className="container" style={{"padding-top": 15 +"px"}}>
           <RouteHandler {...this.params} />
         </div>
         <Footer />

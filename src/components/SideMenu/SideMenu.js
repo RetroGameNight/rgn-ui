@@ -13,7 +13,7 @@ import FluxComponent from 'flummox/component';
 import { Link } from 'react-router';
 import IsLoggedIn from '../IsLoggedIn'
 import IsNotLoggedIn from '../IsNotLoggedIn'
-//import Modal from '../Modal';
+import ChallengeButton from '../ChallengeButton'
 
 let api = "http://localhost:3000";
 
@@ -47,9 +47,6 @@ class Login extends React.Component {
 }
 
 class Avatar extends React.Component {
-  clickHandler() {
-    console.log("Open a model!")
-  }
   render() {
     const player = this.props.user
     const className = "user-avatar "
@@ -62,9 +59,11 @@ class Avatar extends React.Component {
           <img src={avatarUrl} width="50" height="50" alt="User Avatar" />
         </Link>
 
-        <a onClick={this.clickHandler} className="challenge button">
+        {/*<a onClick={this.clickHandler} className="challenge button">
           Issue Challenge
-        </a>
+        </a>*/}
+
+        <ChallengeButton btnText="Issue Challenge" class="challenge" />
       </div>
     )      
   }
