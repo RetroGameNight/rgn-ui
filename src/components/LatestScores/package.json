@@ -1,0 +1,6 @@
+{
+  "name": "LatestScores",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./LatestScores.js"
+}
