@@ -14,6 +14,7 @@ import { Link } from 'react-router';
 import IsLoggedIn from '../IsLoggedIn'
 import IsNotLoggedIn from '../IsNotLoggedIn'
 import ChallengeButton from '../ChallengeButton'
+import Avatar from '../Avatar'
 
 let api = "http://localhost:3000";
 
@@ -29,7 +30,7 @@ class Login extends React.Component {
   }
 }
 
-class Avatar extends React.Component {
+class AvatarBox extends React.Component {
   render() {
     const player = this.props.user
     const className = "user-avatar "
@@ -38,10 +39,9 @@ class Avatar extends React.Component {
 
     return (
       <div className={className}>
-        <Link to={playerUrl} params={{ id: player ? player.id : null}}>
-          <img src={avatarUrl} width="50" height="50" alt="User Avatar" />
-        </Link>
-
+        <Avatar url={avatarUrl} 
+                linkTo="player" 
+                linkParams={{id: player ? player.id : ""}}/>
         <ChallengeButton btnText="Issue Challenge" class="challenge" />
       </div>
     )      
@@ -78,7 +78,7 @@ export default class SideMenu extends React.Component {
           {avatar}
         </ul>
         <IsLoggedIn>
-          <Avatar user={this.props.user} />
+          <AvatarBox user={this.props.user} />
         </IsLoggedIn>
         <ul className="menu">
           <li><Link to="games">Games</Link></li>
