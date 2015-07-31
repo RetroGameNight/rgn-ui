@@ -17,23 +17,6 @@ import ChallengeButton from '../ChallengeButton'
 
 let api = "http://localhost:3000";
 
-class NavbarLink extends React.Component {
-  static contextTypes = {
-    router: React.PropTypes.func.isRequired
-  }
-  render() {
-    const currentRoutes = this.context.router.getCurrentRoutes();
-    const activeRouteName = currentRoutes[currentRoutes.length - 1].name;
-    let className = ""
-    if (this.props.to == activeRouteName) {
-      className = "active"
-    } 
-    return (
-      <Link className={className} to={this.props.to}>{this.props.children}</Link>
-    )
-  }
-}
-
 
 class Login extends React.Component {
   render() {
@@ -98,8 +81,8 @@ export default class SideMenu extends React.Component {
           <Avatar user={this.props.user} />
         </IsLoggedIn>
         <ul className="menu">
-          <li><NavbarLink to="games">Games</NavbarLink></li>
-          <li><NavbarLink to="players">Players</NavbarLink></li>
+          <li><Link to="games">Games</Link></li>
+          <li><Link to="players">Players</Link></li>
         </ul>
         <IsLoggedIn>
           <ul className="login">
