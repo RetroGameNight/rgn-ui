@@ -27,6 +27,7 @@ export default class Modal extends React.Component {
     return !this.props.isOpen
   }
   render() {
+    console.log(this.props.children)
     const handleCancelButtonClick = this.props.handleCancelButtonClick
     if (this.modalIsClosed()) {
       return null
@@ -36,6 +37,7 @@ export default class Modal extends React.Component {
           <div className="modal-dialog">
             <div className="modal-content">
               <ModalHeader 
+                  title={this.props.title}
                   handleClick={handleCancelButtonClick}/>
               <ModalContent>
                 {this.props.children}
@@ -54,7 +56,7 @@ class ModalHeader extends React.Component {
       this.props.title && <h4 className="modal-title">{this.props.title}</h4>
     return (
       <div className="modal-header">
-        <button type="button" class="close"
+        <button type="button" className="close"
                 ref="modalCloseButton"
                 onClick={this.props.handleClick}>
           <span>&times;</span>
@@ -67,9 +69,10 @@ class ModalHeader extends React.Component {
 
 class ModalContent extends React.Component {
   render() {
+    console.log(this.props.content)
     return (
       <div className="modal-body">
-        {this.props.children}
+        {this.props.content}
       </div>
     )
   }

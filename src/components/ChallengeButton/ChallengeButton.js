@@ -9,7 +9,8 @@ import './ChallengeButton.less';
 import React, { PropTypes } from 'react';
 import Router, { RouteHandler } from "react-router"
 import flux from '../../flux/flux'
-import FluxComponent from 'flummox/component';
+import FluxComponent from 'flummox/component'
+import Modal from '../Modal'
 
 export default class ChallengeButton extends React.Component {
   render() {
@@ -21,20 +22,37 @@ export default class ChallengeButton extends React.Component {
   }
 }
 
+
 class ChallengeButtonInner extends React.Component {
-  clickHandler() {
-    console.log("Challenge Him")
+  constructor(props) {
+    super(props)   
+    this.state = { isModalOpen: false }
+  }
+  toggleModal = () => {
+    this.setState({ isModalOpen: !this.state.isModalOpen })  
   }
   render() {
     var classStr = "challenge button"
-    if(this.props.class) {
-      //classStr += this.props.class
-    }
-    
     return (
-       <a className={classStr}>
+      <div>
+       <a className={classStr} onClick={this.toggleModal}>
           {this.props.btnText}
        </a>
+       <ChallengeModal visibility={this.state.isModalOpen} closeHandler={this.toggleModal} />
+      </div>
     )
   }
 }
+
+class ChallengeModal extends React.Component {
+  render() {
+    const title = "Challenge Him"
+    const challengeForm = "Challenge form!"
+    return ( <Modal isOpen={this.props.visibility}
+            handleCancelButtonClick={this.props.closeHandler}
+            title={title}
+            content={challengeForm} />
+           )
+  }
+}
+
