@@ -27,7 +27,6 @@ export default class Modal extends React.Component {
     return !this.props.isOpen
   }
   render() {
-    console.log(this.props.children)
     const handleCancelButtonClick = this.props.handleCancelButtonClick
     if (this.modalIsClosed()) {
       return null

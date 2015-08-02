@@ -11,11 +11,12 @@ import Router, { RouteHandler } from "react-router"
 import flux from '../../flux/flux'
 import FluxComponent from 'flummox/component'
 import Modal from '../Modal'
+import ChallengeForm from '../ChallengeForm'
 
 export default class ChallengeButton extends React.Component {
   render() {
     return (
-      <FluxComponent flux={flux}>
+      <FluxComponent connectToStores={['api']}>
         <ChallengeButtonInner {...this.props} />
       </FluxComponent>
     )
@@ -47,12 +48,13 @@ class ChallengeButtonInner extends React.Component {
 class ChallengeModal extends React.Component {
   render() {
     const title = "Challenge Him"
-    const challengeForm = "Challenge form!"
     return ( 
       <Modal isOpen={this.props.visibility}
             handleCancelButtonClick={this.props.closeHandler}
             title={title}>
-        {challengeForm}
+            <FluxComponent connectToStores={['api']}>
+              <ChallengeForm />
+            </FluxComponent>
       </Modal>
     )
   }

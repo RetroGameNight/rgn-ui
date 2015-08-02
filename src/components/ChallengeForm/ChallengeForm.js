@@ -35,12 +35,12 @@ export default class ChallengeForm extends React.Component {
     return (
       <form className="form-inline">
         <div className="form-group">
-          <label for="name">Name</label>
+          <label htmlFor="name">Name</label>
           <input type="text" className="form-control" id="name" 
                  value={this.state.name} onChange={this.handleChange}/>
         </div>
         <div className="form-group">
-          <label for="system">Game</label>
+          <label htmlFor="system">Game</label>
           <input type="text" className="form-control" id="game" 
                  value={this.state.game} onChange={this.handleChange}/>
         </div>
