@@ -69,10 +69,9 @@ class ModalHeader extends React.Component {
 
 class ModalContent extends React.Component {
   render() {
-    console.log(this.props.content)
     return (
       <div className="modal-body">
-        {this.props.content}
+        {this.props.children}
       </div>
     )
   }

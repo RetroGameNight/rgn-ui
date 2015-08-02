@@ -48,11 +48,13 @@ class ChallengeModal extends React.Component {
   render() {
     const title = "Challenge Him"
     const challengeForm = "Challenge form!"
-    return ( <Modal isOpen={this.props.visibility}
+    return ( 
+      <Modal isOpen={this.props.visibility}
             handleCancelButtonClick={this.props.closeHandler}
-            title={title}
-            content={challengeForm} />
-           )
+            title={title}>
+        {challengeForm}
+      </Modal>
+    )
   }
 }
 
