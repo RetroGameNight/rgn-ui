@@ -53,7 +53,7 @@ class ChallengeModal extends React.Component {
             handleCancelButtonClick={this.props.closeHandler}
             title={title}>
             <FluxComponent connectToStores={['api']}>
-              <ChallengeForm />
+              <ChallengeForm onAfterSubmit={this.props.closeHandler}/>
             </FluxComponent>
       </Modal>
     )
