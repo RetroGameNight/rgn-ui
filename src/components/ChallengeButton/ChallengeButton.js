@@ -37,7 +37,7 @@ class ChallengeButtonInner extends React.Component {
     return (
       <div>
        <a className={classStr} onClick={this.toggleModal}>
-          {this.props.btnText}
+          {this.props.btnText} 
        </a>
        <ChallengeModal visibility={this.state.isModalOpen} closeHandler={this.toggleModal} />
       </div>

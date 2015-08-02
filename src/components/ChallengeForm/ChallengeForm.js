@@ -30,6 +30,9 @@ export default class ChallengeForm extends React.Component {
     } else {    
       this.props.flux.getActions('api').newChallenge(this.state)  
     }
+    if(this.props.onAfterSubmit) {
+      this.props.onAfterSubmit()    
+    }
   }
   render() {
     return (
@@ -49,4 +52,8 @@ export default class ChallengeForm extends React.Component {
       </form>
     )
   }
+}
+
+ChallengeForm.propTypes = {
+  onAfterSubmit: PropTypes.func,
 }
