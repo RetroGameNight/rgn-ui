@@ -14,7 +14,7 @@ export default class Modal extends React.Component {
   // get displayed. The handleCancelButtonClick property is
   // what is ran when the user clicks the 'x' button in the
   // top right corner. A title may also be passed. The
-  // modal supports children.
+  //modal supports children.
   propTypes: {
     isOpen: PropTypes.bool.isRequired,
     handleCancelButtonClick: PropTypes.func.isRequired,
@@ -40,6 +40,7 @@ export default class Modal extends React.Component {
               <ModalContent>
                 {this.props.children}
               </ModalContent>
+            </div>
           </div>
         </div>
       )
@@ -47,29 +48,29 @@ export default class Modal extends React.Component {
   }
 }
 
-class ModalHeader extends React.Component {
-  render() {
-    const title = 
-      this.props.title && <h4 className="modal-title">{this.props.title}</h4>
-    return (
-      <div className="modal-header">
-        <button type="button" class="close"
-                ref="modalCloseButton"
-                onClick={this.props.handleClick}>
-          <span>&times;</span>
-        </button>
-        {title}
-      </div>
-    ) 
-  }
-}
+// class ModalHeader extends React.Component {
+//   render() {
+//     const title = 
+//       this.props.title && <h4 className="modal-title">{this.props.title}</h4>
+//     return (
+//       <div className="modal-header">
+//         <button type="button" class="close"
+//                 ref="modalCloseButton"
+//                 onClick={this.props.handleClick}>
+//           <span>&times;</span>
+//         </button>
+//         {title}
+//       </div>
+//     ) 
+//   }
+// }
 
-class ModalContent extends React.Component {
-  render() {
-    return (
-      <div className="modal-body">
-        {this.props.children}
-      </div>
-    )
-  }
-}
+// class ModalContent extends React.Component {
+//   render() {
+//     return (
+//       <div className="modal-body">
+//         {this.props.children}
+//       </div>
+//     )
+//   }
+// }
