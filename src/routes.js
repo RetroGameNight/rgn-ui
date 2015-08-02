@@ -23,6 +23,7 @@ import { Route, NotFoundRoute, DefaultRoute } from 'react-router';
 const routes = (
   <Route name='app' handler={App} path='/'>
     <DefaultRoute handler={Main} />
+    <Route name='_=_' handler={Main}/>
     <Route name='player' path='player/:id' handler={PlayerPage}/>
     <Route name='players' handler={PlayersPage} />
     <Route name='game' path='game/:id' handler={GamePage} />
