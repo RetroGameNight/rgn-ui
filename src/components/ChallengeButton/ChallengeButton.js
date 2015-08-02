@@ -35,7 +35,7 @@ class ChallengeButtonInner extends React.Component {
   render() {
     var classStr = "challenge button"
     return (
-      <div>
+      <div className="challengeBtn-container">
        <a className={classStr} onClick={this.toggleModal}>
           {this.props.btnText} 
        </a>

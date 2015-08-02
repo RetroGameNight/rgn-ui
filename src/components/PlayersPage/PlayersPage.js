@@ -61,13 +61,13 @@ class Player extends React.Component {
           <div className="col-xs-12 col-md-2">
             <img src={player.avatarUrl} height="50" width="50" />
           </div>
-          <div className="col-xs-12 col-md-7">
+          <div className="col-xs-12 col-md-5">
             <Link to="player" params={{ id: player.id }}>
               <h4 className="">{player.name}</h4>
             </Link>
             <h5>{player.email}</h5>
           </div>
-          <div className="col-xs-12 col-md-2">
+          <div className="col-xs-12 col-md-5">
             <ChallengeButton btnText="Challenge" />
           </div>
         </div>

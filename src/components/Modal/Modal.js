@@ -32,17 +32,15 @@ export default class Modal extends React.Component {
       return null
     } else {
       return (
-        <div className="full-screen modal-container">
-          <div className="Modal">
-            <div className="modal-dialog">
-              <div className="modal-content">
-                <ModalHeader 
-                    title={this.props.title}
-                    handleClick={handleCancelButtonClick}/>
-                <ModalContent>
-                  {this.props.children}
-                </ModalContent>
-              </div>
+        <div className="full-screen Modal">
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <ModalHeader 
+                  title={this.props.title}
+                  handleClick={handleCancelButtonClick}/>
+              <ModalContent>
+                {this.props.children}
+              </ModalContent>
             </div>
           </div>
         </div>
