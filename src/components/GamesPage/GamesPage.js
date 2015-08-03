@@ -5,6 +5,8 @@ import _ from 'underscore'
 import GameForm from '../GameForm'
 import Page from '../Page'
 import { Link } from 'react-router'
+import Grid from '../Grid'
+import Radium from 'radium'
 
 export default class GamesPage extends React.Component {
   componentDidMount() {
@@ -32,7 +34,7 @@ class GamesPageInner extends React.Component {
         <FluxComponent connectToStores={['api']}>
           <GameForm />
         </FluxComponent> 
-        { games }
+        <Grid>{ games }</Grid>
       </Page>
     )
   }
@@ -52,22 +54,21 @@ class DeleteButton extends React.Component {
   }
 }
 
+@Radium
 class Game extends React.Component {
+  styles = {
+    width: 100,
+    height: 200,
+  }
   render() {
     const game = this.props.game
     return (
-      <div className="media">
-        <div className="media-left">
-          <div className='thumbnail'></div>
-        </div>
-        <div className="media-body">
+      <div style={[this.styles]}>
+        <div>
           <Link to="game" params={{ id: game.id }}>
             <h4 className="media-heading">{`${game.name} on ${game.system}`}</h4>
           </Link>
           {game.id}
-        </div>
-        <div className="media-left">
-          <DeleteButton id={game.id} />
         </div>
       </div>
     )
