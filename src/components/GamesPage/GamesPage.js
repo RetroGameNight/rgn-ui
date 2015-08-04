@@ -30,10 +30,6 @@ class GamesPageInner extends React.Component {
         .map(each => <Game game={each} />)
     return (
       <Page>
-        <h1>Games</h1>
-        <FluxComponent connectToStores={['api']}>
-          <GameForm />
-        </FluxComponent> 
         <Grid>{ games }</Grid>
       </Page>
     )
@@ -56,19 +52,35 @@ class DeleteButton extends React.Component {
 
 @Radium
 class Game extends React.Component {
-  styles = {
-    width: 100,
-    height: 200,
-  }
   render() {
     const game = this.props.game
     return (
-      <div style={[this.styles]}>
-        <div>
+      <div className="panel panel-default"
+           key="container"
+           style={{
+             'margin-right':10,
+           }}
+      >
+        <div className="panel-body">
           <Link to="game" params={{ id: game.id }}>
-            <h4 className="media-heading">{`${game.name} on ${game.system}`}</h4>
+            <span style={
+              {
+                'font-size': 260,
+                'padding-left': 260, 
+                'background': 'grey',
+                '@media (min-width: 721px)': {
+                  'font-size': 240,
+                  'padding-left': 240, 
+                },
+                '@media (min-width: 921px)': {
+                  'font-size': 180,
+                  'padding-left': 180, 
+                }
+              }
+            }>&nbsp;</span>
+            <h4>{`${game.name}`}</h4>
+            <h5>{`${game.system}`}</h5>
           </Link>
-          {game.id}
         </div>
       </div>
     )
