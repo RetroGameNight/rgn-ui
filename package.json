@@ -18,6 +18,7 @@
     "flux": "2.0.1",
     "front-matter": "1.0.0",
     "lodash": "3.6.0",
+    "radium": "^0.13.5",
     "react": "^0.13.3",
     "react-router": "^0.13.3",
     "superagent": "^1.2.0",
