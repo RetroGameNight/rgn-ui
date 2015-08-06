@@ -84,6 +84,10 @@ var config = {
         loader: 'url-loader?limit=10000&mimetype=image/svg+xml'
       },
       {
+        test: /\.json/,
+        loader: 'json-loader'
+      },
+      {
         test: /\.jsx?$/,
         exclude: /node_modules/,
         loader: 'babel-loader'
@@ -111,4 +115,16 @@ var appConfig = _.merge({}, config, {
   )
 });
 
-module.exports = [appConfig];
+var serverConfig = _.merge({}, config, {
+  entry: './src/server.js',
+  target: 'node',
+  output: {
+    filename: 'server.js'
+  },
+  plugins: config.plugins.concat([
+      new webpack.DefinePlugin(_.merge(GLOBALS, {'__SERVER__': true}))
+    ]
+  )
+});
+
+module.exports = [appConfig, serverConfig];
