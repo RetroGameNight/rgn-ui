@@ -13,7 +13,7 @@
     "babel": "5.1.10",
     "bluebird": "^2.9.34",
     "bootstrap": "3.3.4",
-    "express": "4.12.3",
+    "express": "^4.12.3",
     "flummox": "^3.5.2",
     "flux": "2.0.1",
     "front-matter": "1.0.0",
