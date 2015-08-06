@@ -63,7 +63,7 @@ gulp.task('assets', function() {
   src.assets = [
     'src/assets/**'
   ];
-  var dest = DEST_BASE
+  var dest = DEST_BASE + '/assets'
   return gulp.src(src.assets)
     .pipe($.changed(dest))
     .pipe(gulp.dest(dest))
