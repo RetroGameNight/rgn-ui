@@ -6,12 +6,12 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-import './Navbar.less';
-import React from 'react'; // eslint-disable-line no-unused-vars
-import { Link } from 'react-router';
+import './Navbar.less'
+import React from 'react' // eslint-disable-line no-unused-vars
+import { Link } from 'react-router'
 import flux from '../../flux/flux'
-import FluxComponent from 'flummox/component';
-import SideMenu from '../SideMenu';
+import FluxComponent from 'flummox/component'
+import SideMenu from '../SideMenu'
 
 
 export default class Navbar {
@@ -28,11 +28,11 @@ export default class Navbar {
 
 class NavbarInner extends React.Component {
   constructor(props) {
-    super(props)   
+    super(props)
     this.state = { isVisible: false }
   }
   toggleMenu = () => {
-    this.setState({ isVisible: !this.state.isVisible })   
+    this.setState({ isVisible: !this.state.isVisible })
   }
   componentDidMount() {
     flux.getActions('api').login()
@@ -45,16 +45,16 @@ class NavbarInner extends React.Component {
     }
   }
   render() {
-    var icon = "glyphicon"
+    var icon = 'glyphicon'
     if(this.state.isVisible) {
-      icon += " glyphicon-remove"
+      icon += ' glyphicon-remove'
     } else {
-      icon += " glyphicon-menu-hamburger"
+      icon += ' glyphicon-menu-hamburger'
     }
     return (
-      <div className="navigation header">
-        <div className="left-panel">
- 
+      <div className='navigation header'>
+        <div className='left-panel'>
+
           <a onClick={this.toggleMenu} className="menu-toggle text-center">
             <span className={icon}></span>
           </a>
@@ -67,6 +67,6 @@ class NavbarInner extends React.Component {
         <hr/>
         <SideMenu visibility={this.state.isVisible} user={this.props.activeUser} />
       </div>
-    );
+    )
   }
 }

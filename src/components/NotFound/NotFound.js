@@ -1,4 +1,4 @@
-import React from 'react'; // eslint-disable-line no-unused-vars
+import React from 'react' // eslint-disable-line no-unused-vars
 
 export default class NotFound extends React.Component {
   render() {

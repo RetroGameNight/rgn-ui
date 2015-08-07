@@ -5,22 +5,20 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE.txt file in the root directory of this source tree.
  */
-import './Grid.less';
-import React, { PropTypes } from 'react';
+import './Grid.less'
+import React, { PropTypes } from 'react'
 import Radium from 'radium'
 import _ from 'underscore'
 
 @Radium
 export default class Grid extends React.Component {
-  propTypes: {
-  }
   styles = {
     width: '100%',
     display: 'inline-block',
   }
   render() {
     const items = React.Children.map(
-        this.props.children, 
+        this.props.children,
         (each) => <GridItem>{each}</GridItem>
     )
     return (

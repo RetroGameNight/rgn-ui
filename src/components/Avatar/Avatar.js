@@ -5,14 +5,14 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE.txt file in the root directory of this source tree.
  */
-import './Avatar.less';
-import React, { PropTypes } from 'react';
-import { Link } from 'react-router';
+import './Avatar.less'
+import React, { PropTypes } from 'react'
+import { Link } from 'react-router'
 
 export default class Avatar extends React.Component {
   render() {
     const { url, linkTo, linkParams, height, width, alt } = this.props
-    const className = "user-avatar "
+    const className = 'user-avatar'
     if (linkTo) {
       return (
         <Link to={linkTo} params={linkParams}>
@@ -39,5 +39,5 @@ Avatar.defaultProps = {
   linkTo: '',
   height: 50,
   width: 50,
-  alt: "User Avatar",
+  alt: 'User Avatar',
 }

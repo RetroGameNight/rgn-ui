@@ -18,7 +18,7 @@ import PlayerPage from './components/PlayerPage'
 import PlayersPage from './components/PlayersPage'
 import ActivePlayerPage from './components/ActivePlayerPage'
 import Main from './components/Main'
-import { Route, NotFoundRoute, DefaultRoute } from 'react-router';
+import { Route, NotFoundRoute, DefaultRoute } from 'react-router'
 
 const routes = (
   <Route name='app' handler={App} path='/'>
@@ -34,6 +34,6 @@ const routes = (
     <Route name='events' handler={EventsPage} />
     <NotFoundRoute handler={NotFound} />
   </Route>
-);
+)
 
 export default routes

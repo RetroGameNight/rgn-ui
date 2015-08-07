@@ -16,6 +16,9 @@
     "jsx": true
   },
   "rules": {
+    semi: [2, "never"],
+    "comma-style": [2, "last"],
+    "comma-dangle": "always-multiline",
     // Strict mode
     "strict": [2, "never"],
 

@@ -1,7 +1,7 @@
 import { Store } from 'flummox'
 import _ from 'lodash'
 
-const API_BASENAME = "http://localhost:3000"
+const API_BASENAME = 'http://localhost:3000'
 const DEFAULT_STATE = {
   activeUser: null,
   users: [],
@@ -13,35 +13,35 @@ const DEFAULT_STATE = {
 }
 
 export default class ApiStore extends Store {
-  constructor(flux) {super();
+  constructor(flux) {super()
 
-    const apiActions = flux.getActions('api');
-    this.registerAsync(apiActions.login, null, this.handleLogin, null);
-    this.registerAsync(apiActions.logout, null, this.handleLogout, null);
-    this.registerAsync(apiActions.getGame, null, this.handleGetGame, null);
-    this.registerAsync(apiActions.getGames, null, this.handleGetGames, null);
-    this.registerAsync(apiActions.newGame, null, this.handleNewGame, null);
-    this.registerAsync(apiActions.deleteGame, null, this.handleDeleteGame, null);
-    this.registerAsync(apiActions.updateGame, null, this.handleUpdateGame, null);
-    this.registerAsync(apiActions.getEvent, null, this.handleGetEvent, null);
-    this.registerAsync(apiActions.getEvents, null, this.handleGetEvents, null);
-    this.registerAsync(apiActions.newEvent, null, this.handleNewEvent, null);
-    this.registerAsync(apiActions.deleteEvent, null, this.handleDeleteEvent, null);
-    this.registerAsync(apiActions.updateEvent, null, this.handleUpdateEvent, null);
-    this.registerAsync(apiActions.getChallenge, null, this.handleGetChallenge, null);
-    this.registerAsync(apiActions.getChallenges, null, this.handleGetChallenges, null);
-    this.registerAsync(apiActions.newChallenge, null, this.handleNewChallenge, null);
-    this.registerAsync(apiActions.deleteChallenge, null, this.handleDeleteChallenge, null);
-    this.registerAsync(apiActions.updateChallenge, null, this.handleUpdateChallenge, null);
-    this.registerAsync(apiActions.getTrial, null, this.handleGetTrial, null);
-    this.registerAsync(apiActions.getTrials, null, this.handleGetTrials, null);
-    this.registerAsync(apiActions.newTrial, null, this.handleNewTrial, null);
-    this.registerAsync(apiActions.deleteTrial, null, this.handleDeleteTrial, null);
-    this.registerAsync(apiActions.updateTrial, null, this.handleUpdateTrial, null);
-    this.registerAsync(apiActions.getUser, null, this.handleGetUser, null);
-    this.registerAsync(apiActions.getUsers, null, this.handleGetUsers, null);
-    this.registerAsync(apiActions.deleteUser, null, this.handleDeleteUser, null);
-    this.registerAsync(apiActions.updateUser, null, this.handleUpdateUser, null);
+    const apiActions = flux.getActions('api')
+    this.registerAsync(apiActions.login, null, this.handleLogin, null)
+    this.registerAsync(apiActions.logout, null, this.handleLogout, null)
+    this.registerAsync(apiActions.getGame, null, this.handleGetGame, null)
+    this.registerAsync(apiActions.getGames, null, this.handleGetGames, null)
+    this.registerAsync(apiActions.newGame, null, this.handleNewGame, null)
+    this.registerAsync(apiActions.deleteGame, null, this.handleDeleteGame, null)
+    this.registerAsync(apiActions.updateGame, null, this.handleUpdateGame, null)
+    this.registerAsync(apiActions.getEvent, null, this.handleGetEvent, null)
+    this.registerAsync(apiActions.getEvents, null, this.handleGetEvents, null)
+    this.registerAsync(apiActions.newEvent, null, this.handleNewEvent, null)
+    this.registerAsync(apiActions.deleteEvent, null, this.handleDeleteEvent, null)
+    this.registerAsync(apiActions.updateEvent, null, this.handleUpdateEvent, null)
+    this.registerAsync(apiActions.getChallenge, null, this.handleGetChallenge, null)
+    this.registerAsync(apiActions.getChallenges, null, this.handleGetChallenges, null)
+    this.registerAsync(apiActions.newChallenge, null, this.handleNewChallenge, null)
+    this.registerAsync(apiActions.deleteChallenge, null, this.handleDeleteChallenge, null)
+    this.registerAsync(apiActions.updateChallenge, null, this.handleUpdateChallenge, null)
+    this.registerAsync(apiActions.getTrial, null, this.handleGetTrial, null)
+    this.registerAsync(apiActions.getTrials, null, this.handleGetTrials, null)
+    this.registerAsync(apiActions.newTrial, null, this.handleNewTrial, null)
+    this.registerAsync(apiActions.deleteTrial, null, this.handleDeleteTrial, null)
+    this.registerAsync(apiActions.updateTrial, null, this.handleUpdateTrial, null)
+    this.registerAsync(apiActions.getUser, null, this.handleGetUser, null)
+    this.registerAsync(apiActions.getUsers, null, this.handleGetUsers, null)
+    this.registerAsync(apiActions.deleteUser, null, this.handleDeleteUser, null)
+    this.registerAsync(apiActions.updateUser, null, this.handleUpdateUser, null)
 
     this.state = DEFAULT_STATE
   }
@@ -90,10 +90,10 @@ export default class ApiStore extends Store {
     this.setOne(game, 'games')
   }
   handleDeleteGame(id) {
-    this.removeOneById(id, "games")
+    this.removeOneById(id, 'games')
   }
   handleUpdateGame(game) {
-    this.replaceOne(game, "games")
+    this.replaceOne(game, 'games')
   }
   handleGetChallenge(challenge) {
     this.setOne(challenge, 'challenges')
@@ -105,10 +105,10 @@ export default class ApiStore extends Store {
     this.setOne(challenge, 'challenges')
   }
   handleDeleteChallenge(id) {
-    this.removeOneById(id, "challenges")
+    this.removeOneById(id, 'challenges')
   }
   handleUpdateChallenge(challenge) {
-    this.replaceOne(challenge, "challenges")
+    this.replaceOne(challenge, 'challenges')
   }
   handleGetTrial(challenge) {
     this.setOne(challenge, 'trials')
@@ -120,10 +120,10 @@ export default class ApiStore extends Store {
     this.setOne(challenge, 'trials')
   }
   handleDeleteTrial(id) {
-    this.removeOneById(id, "trials")
+    this.removeOneById(id, 'trials')
   }
   handleUpdateChallenge(challenge) {
-    this.replaceOne(challenge, "challenges")
+    this.replaceOne(challenge, 'challenges')
   }
   handleGetUser(user) {
     this.setOne(user, 'users')
@@ -132,10 +132,10 @@ export default class ApiStore extends Store {
     this.setMany(users, 'users')
   }
   handleDeleteUser(id) {
-    this.removeOneById(id, "users")
+    this.removeOneById(id, 'users')
   }
   handleUpdateUser(user) {
-    this.replaceOne(user, "users")
+    this.replaceOne(user, 'users')
   }
   handleGetEvent(event) {
     this.setOne(event, 'events')
@@ -147,16 +147,16 @@ export default class ApiStore extends Store {
     this.setOne(event, 'events')
   }
   handleUpdateEvent(event) {
-    this.replaceOne(event, "events")
+    this.replaceOne(event, 'events')
   }
   handleDeleteEvent(id) {
-    this.removeOneById(id, "events")
+    this.removeOneById(id, 'events')
   }
   setOne(object, into) {
     this.setState((state, currentProps) => {
       const previous = state[into]
       const newState = _.contains(previous, object) ? previous : previous.concat([object])
-      return { 
+      return {
         [into]: newState
       }
     })
@@ -176,7 +176,7 @@ export default class ApiStore extends Store {
         return each && each.id == object.id
       })
       const newState = _.without(previous, oldObject).concat([object])
-      return { 
+      return {
         [into]: newState
       }
     })
@@ -188,7 +188,7 @@ export default class ApiStore extends Store {
     this.setState((state, currentProps) => {
       const previous = state[into]
       const newState = _.without(previous, object)
-      return { 
+      return {
         [into]: newState
       }
     })

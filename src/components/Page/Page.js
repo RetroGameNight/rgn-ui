@@ -5,9 +5,9 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE.txt file in the root directory of this source tree.
  */
-import './Page.less';
-import React, { PropTypes } from 'react';
-import { Link } from 'react-router';
+import './Page.less'
+import React, { PropTypes } from 'react'
+import { Link } from 'react-router'
 
 export default class Page extends React.Component {
   render() {
@@ -15,6 +15,6 @@ export default class Page extends React.Component {
       <div>
         <div>{this.props.children}</div>
       </div>
-    );
+    )
   }
 }

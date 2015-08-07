@@ -10,7 +10,7 @@ import React, { PropTypes } from 'react'
 
 export default class Modal extends React.Component {
   // The Component that manages the component needs to pass
-  // a boolean object to isOpen to control when the modal 
+  // a boolean object to isOpen to control when the modal
   // get displayed. The handleCancelButtonClick property is
   // what is ran when the user clicks the 'x' button in the
   // top right corner. A title may also be passed. The
@@ -35,7 +35,7 @@ export default class Modal extends React.Component {
         <div className="full-screen Modal">
           <div className="modal-dialog">
             <div className="modal-content">
-              <ModalHeader 
+              <ModalHeader
                   title={this.props.title}
                   handleClick={handleCancelButtonClick}/>
               <ModalContent>
@@ -51,7 +51,7 @@ export default class Modal extends React.Component {
 
 class ModalHeader extends React.Component {
   render() {
-    const title = 
+    const title =
       this.props.title && <h4 className="modal-title">{this.props.title}</h4>
     return (
       <div className="modal-header">
@@ -62,7 +62,7 @@ class ModalHeader extends React.Component {
         </button>
         {title}
       </div>
-    ) 
+    )
   }
 }
 

@@ -5,7 +5,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE.txt file in the root directory of this source tree.
  */
-import React from 'react';
+import React from 'react'
 import FluxComponent from 'flummox/component'
 import _ from 'underscore'
 
@@ -14,7 +14,7 @@ export default class Table extends React.Component {
     return (
       <FluxComponent connectToStores={['api']}>
         <TableInner {...this.props} />
-      </FluxComponent> 
+      </FluxComponent>
     )
   }
 }

@@ -1,4 +1,4 @@
-import { Actions } from 'flummox';
+import { Actions } from 'flummox'
 import request from 'superagent-bluebird-promise'
 import config from '../../config'
 
@@ -9,7 +9,7 @@ const API_BASENAME = `${protocal}://${host}:${port}`
 async function apiGetRequest(uri) {
   const response = await request
     .get(`${API_BASENAME}${uri}`)
-    .withCredentials() 
+    .withCredentials()
     .promise()
   return response.body
 }
@@ -18,7 +18,7 @@ async function apiPostRequest(uri, payload) {
   const response = await request
     .post(`${API_BASENAME}${uri}`)
     .send(payload)
-    .withCredentials() 
+    .withCredentials()
     .promise()
   return response.body
 }
@@ -27,7 +27,7 @@ async function apiPutRequest(uri, payload) {
   const response = await request
     .put(`${API_BASENAME}${uri}`)
     .send(payload)
-    .withCredentials() 
+    .withCredentials()
     .promise()
   return response.body
 }
@@ -35,7 +35,7 @@ async function apiPutRequest(uri, payload) {
 async function apiDeleteRequest(uri) {
   let response = await request
     .del(`${API_BASENAME}${uri}`)
-    .withCredentials() 
+    .withCredentials()
     .promise()
   return response.body
 }

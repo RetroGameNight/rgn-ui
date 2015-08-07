@@ -7,7 +7,7 @@
  */
 
 import './Main.less'
-import React from 'react';
+import React from 'react'
 import FluxComponent from 'flummox/component'
 import LatestScores from '../LatestScores/LatestScores'
 import LatestChallenges from '../LatestChallenges/LatestChallenges'
@@ -18,7 +18,7 @@ export default class Main extends React.Component {
     return (
       <FluxComponent connectToStores={['api']}>
         <MainInner {...this.props} />
-      </FluxComponent> 
+      </FluxComponent>
     )
   }
 }
@@ -29,16 +29,16 @@ class MainInner extends React.Component {
   render() {
     return (
       <div>
-      <div className="col-xs-12 col-md-8">
-        <h3>Latest Scores</h3>
-        <LatestScores />
-      </div>
-      <div className="hidden-xs col-md-4">
-        <h3>Top Players</h3>
-        <TopPlayers />
-        <h3>Latest Challenges</h3>
-        <LatestChallenges />
-      </div>
+        <div className="col-xs-12 col-md-8">
+          <h3>Latest Scores</h3>
+          <LatestScores />
+        </div>
+        <div className="hidden-xs col-md-4">
+          <h3>Top Players</h3>
+          <TopPlayers />
+          <h3>Latest Challenges</h3>
+          <LatestChallenges />
+        </div>
       </div>
     )
   }

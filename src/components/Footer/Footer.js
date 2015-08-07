@@ -5,8 +5,8 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE.txt file in the root directory of this source tree.
  */
-import './Footer.less';
-import React, { PropTypes } from 'react';
+import './Footer.less'
+import React, { PropTypes } from 'react'
 
 export default class Footer extends React.Component {
   render() {
@@ -17,6 +17,6 @@ export default class Footer extends React.Component {
           </p>
         </div>
       </div>
-    );
+    )
   }
 }

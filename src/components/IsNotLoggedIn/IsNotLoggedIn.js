@@ -5,7 +5,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE.txt file in the root directory of this source tree.
  */
-import React from 'react';
+import React from 'react'
 import FluxComponent from 'flummox/component'
 
 export default class IsNotLoggedIn extends React.Component {
@@ -15,9 +15,9 @@ export default class IsNotLoggedIn extends React.Component {
         api: store => ({
           isLoggedIn: store.isLoggedIn(),
         }),
-      }}> 
+      }}>
         <IsNotLoggedInInner {...this.props} />
-      </FluxComponent> 
+      </FluxComponent>
     )
   }
 }
