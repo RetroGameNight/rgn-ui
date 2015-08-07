@@ -65,23 +65,23 @@ class Game extends React.Component {
       <div className="panel panel-default"
            key="container"
            style={{
-             'margin-right': 10,
+             'marginRight': 10,
            }}
       >
         <div className="panel-body">
           <Link to="game" params={{ id: game.id }}>
             <span style={
               {
-                'font-size': 260,
-                'padding-left': 260,
+                'fontSize': 260,
+                'paddingLeft': 260,
                 'background': 'grey',
                 '@media (min-width: 721px)': {
-                  'font-size': 240,
-                  'padding-left': 240,
+                  'fontSize': 240,
+                  'paddingLeft': 240,
                 },
                 '@media (min-width: 921px)': {
-                  'font-size': 180,
-                  'padding-left': 180,
+                  'fontSize': 180,
+                  'paddingLeft': 180,
                 }
               }
             }>&nbsp;</span>
