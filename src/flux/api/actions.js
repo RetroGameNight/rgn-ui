@@ -10,9 +10,9 @@ import { Actions } from 'flummox'
 import request from 'superagent-bluebird-promise'
 import config from '../../config'
 
-const { protocal, host, port } = config.api.location
+const { scheme, host, port } = config.api.location
 
-const API_BASENAME = `${protocal}://${host}:${port}`
+const API_BASENAME = `${scheme}://${host}:${port}`
 
 async function apiGetRequest(uri) {
   const response = await request
