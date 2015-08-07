@@ -71,7 +71,7 @@ export default class SideMenu extends React.Component {
   render() {
     let avatar = ''
     return (
-      <div className={(this.props.visibility ? 'visible ' : '' + 'side-bar fixed')}>
+      <div className={(this.props.visibility ? 'visible ' : '') + 'side-bar fixed'}>
         <ul className='user'>
           {avatar}
         </ul>
