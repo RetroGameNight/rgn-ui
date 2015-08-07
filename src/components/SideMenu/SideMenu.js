@@ -9,7 +9,6 @@
 import './SideMenu.less'
 import React from 'react' // eslint-disable-line no-unused-vars
 import flux from '../../flux/flux'
-import FluxComponent from 'flummox/component'
 import { Link } from 'react-router'
 import IsLoggedIn from '../IsLoggedIn'
 import IsNotLoggedIn from '../IsNotLoggedIn'
@@ -35,7 +34,6 @@ class AvatarBox extends React.Component {
     const player = this.props.user
     const className = 'user-avatar '
     const avatarUrl = player ? player.avatarUrl : ''
-    const playerUrl = 'player'
 
     return (
       <div className={className}>

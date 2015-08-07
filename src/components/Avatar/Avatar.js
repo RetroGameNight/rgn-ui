@@ -12,7 +12,6 @@ import { Link } from 'react-router'
 export default class Avatar extends React.Component {
   render() {
     const { url, linkTo, linkParams, height, width, alt } = this.props
-    const className = 'user-avatar'
     if (linkTo) {
       return (
         <Link to={linkTo} params={linkParams}>

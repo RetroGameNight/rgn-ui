@@ -6,9 +6,7 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 import './ChallengeButton.less'
-import React, { PropTypes } from 'react'
-import Router, { RouteHandler } from 'react-router'
-import flux from '../../flux/flux'
+import React from 'react'
 import FluxComponent from 'flummox/component'
 import Modal from '../Modal'
 import ChallengeForm from '../ChallengeForm'

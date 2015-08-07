@@ -1,7 +1,6 @@
 import { Store } from 'flummox'
 import _ from 'lodash'
 
-const API_BASENAME = 'http://localhost:3000'
 const DEFAULT_STATE = {
   activeUser: null,
   users: [],
@@ -153,7 +152,7 @@ export default class ApiStore extends Store {
     this.removeOneById(id, 'events')
   }
   setOne(object, into) {
-    this.setState((state, currentProps) => {
+    this.setState(state => {
       const previous = state[into]
       const newState = _.contains(previous, object) ? previous : previous.concat([object])
       return {
@@ -170,10 +169,10 @@ export default class ApiStore extends Store {
     })
   }
   replaceOne(object, into) {
-    this.setState((state, currentProps) => {
+    this.setState(state => {
       const previous = state[into]
       const oldObject = this.state[into].find((each) => {
-        return each && each.id == object.id
+        return each && each.id === object.id
       })
       const newState = _.without(previous, oldObject).concat([object])
       return {
@@ -183,9 +182,9 @@ export default class ApiStore extends Store {
   }
   removeOneById(id, into) {
     const object = this.state[into].find((each) => {
-      return each && each.id == id
+      return each && each.id === id
     })
-    this.setState((state, currentProps) => {
+    this.setState(state => {
       const previous = state[into]
       const newState = _.without(previous, object)
       return {

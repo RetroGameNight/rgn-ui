@@ -4,7 +4,6 @@ import FluxComponent from 'flummox/component'
 import _ from 'underscore'
 import ObjectTable from '../ObjectTable'
 import Page from '../Page'
-import GameForm from '../GameForm'
 
 export default class GamePage extends React.Component {
   render() {
@@ -17,12 +16,12 @@ export default class GamePage extends React.Component {
           const trials = game ? api.getTrialsForGame(game.name) : []
           return {
             game,
-            trials, 
+            trials,
           }
         }}
       >
         <GamePageInner {...this.props} />
-      </FluxComponent> 
+      </FluxComponent>
     )
   }
 }
@@ -33,7 +32,7 @@ class GamePageInner extends React.Component {
     flux.getActions('api').getTrials()
   }
   render() {
-    const { game, trials } = this.props 
+    const { trials } = this.props
     const trialGrids = _.chain(trials)
       .map(each => <ObjectTable object={each} />)
       .value()

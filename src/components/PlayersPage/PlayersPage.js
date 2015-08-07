@@ -23,20 +23,20 @@ export default class PlayersPage extends React.Component {
     return (
       <FluxComponent connectToStores={['api']}>
         <PlayersPageInner {...this.props} />
-      </FluxComponent> 
+      </FluxComponent>
     )
   }
 }
 
 class PlayersPageInner extends React.Component {
-  // Seperates the players into two halves and displays them 
+  // Seperates the players into two halves and displays them
   // in their according columns
   // TODO:  Test with more player data!
   render() {
     const players = _.chain(this.props.users)
       .map(each => <Player player={each} />)
     var sets = _.chain(players)
-              .groupBy(players, (each, index) => {return Math.floor(index/2)})
+              .groupBy(players, (each, index) => {return Math.floor(index / 2)})
               .toArray()
               .value()
     return (

@@ -6,9 +6,8 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 import './Grid.less'
-import React, { PropTypes } from 'react'
+import React from 'react'
 import Radium from 'radium'
-import _ from 'underscore'
 
 @Radium
 export default class Grid extends React.Component {

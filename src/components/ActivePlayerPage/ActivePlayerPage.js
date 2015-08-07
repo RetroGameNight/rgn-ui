@@ -6,8 +6,7 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 import './ActivePlayerPage.less'
-import React, { PropTypes } from 'react'
-import flux from '../../flux/flux'
+import React from 'react'
 import FluxComponent from 'flummox/component'
 import _ from 'underscore'
 

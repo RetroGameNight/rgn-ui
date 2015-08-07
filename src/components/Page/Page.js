@@ -6,8 +6,7 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 import './Page.less'
-import React, { PropTypes } from 'react'
-import { Link } from 'react-router'
+import React from 'react'
 
 export default class Page extends React.Component {
   render() {

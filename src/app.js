@@ -15,4 +15,4 @@ const mountNode = document.getElementById('app')
 Router.run(routes, (Handler, state) => {
   const params = state.params
   React.render(<Handler params={params}/>, mountNode)
-});
+})

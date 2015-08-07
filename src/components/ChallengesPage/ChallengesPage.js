@@ -14,7 +14,7 @@ export default class ChallengesPage extends React.Component {
     return (
       <FluxComponent connectToStores={['api']}>
         <ChallengesPageInner {...this.props} />
-      </FluxComponent> 
+      </FluxComponent>
     )
   }
 }
@@ -31,7 +31,7 @@ class ChallengesPageInner extends React.Component {
         <h1>Challenges</h1>
         <FluxComponent connectToStores={['api']}>
           <ChallengeForm />
-        </FluxComponent> 
+        </FluxComponent>
         { Challenges }
       </Page>
     )
@@ -61,7 +61,7 @@ class Challenge extends React.Component {
 }
 
 class DeleteButton extends React.Component {
-  handleClick = (event) => {
+  handleClick = () => {
     flux.getActions('api').deleteChallenge(this.props.id)
   }
   render() {

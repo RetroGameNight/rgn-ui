@@ -1,8 +1,7 @@
-import React from 'react'; // eslint-disable-line no-unused-vars
+import React from 'react' // eslint-disable-line no-unused-vars
 import flux from '../../flux/flux'
 import FluxComponent from 'flummox/component'
 import _ from 'underscore'
-import GameForm from '../GameForm'
 import Page from '../Page'
 import { Link } from 'react-router'
 import Grid from '../Grid'
@@ -16,7 +15,7 @@ export default class GamesPage extends React.Component {
     return (
       <FluxComponent connectToStores={['api']}>
         <GamesPageInner {...this.props} />
-      </FluxComponent> 
+      </FluxComponent>
     )
   }
 }
@@ -37,7 +36,7 @@ class GamesPageInner extends React.Component {
 }
 
 class DeleteButton extends React.Component {
-  handleClick = (event) => {
+  handleClick = () => {
     flux.getActions('api').deleteGame(this.props.id)
   }
   render() {
@@ -58,7 +57,7 @@ class Game extends React.Component {
       <div className="panel panel-default"
            key="container"
            style={{
-             'margin-right':10,
+             'margin-right': 10,
            }}
       >
         <div className="panel-body">
@@ -66,15 +65,15 @@ class Game extends React.Component {
             <span style={
               {
                 'font-size': 260,
-                'padding-left': 260, 
+                'padding-left': 260,
                 'background': 'grey',
                 '@media (min-width: 721px)': {
                   'font-size': 240,
-                  'padding-left': 240, 
+                  'padding-left': 240,
                 },
                 '@media (min-width: 921px)': {
                   'font-size': 180,
-                  'padding-left': 180, 
+                  'padding-left': 180,
                 }
               }
             }>&nbsp;</span>

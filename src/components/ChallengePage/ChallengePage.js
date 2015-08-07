@@ -11,9 +11,9 @@ export default class ChallengePage extends React.Component {
         api: store => ({
           challenge: store.getChallenge(this.props.params.id),
         }),
-      }}> 
+      }}>
         <ChallengePageInner {...this.props} />
-      </FluxComponent> 
+      </FluxComponent>
     )
   }
 }

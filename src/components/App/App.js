@@ -6,10 +6,10 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 import './App.less'
-import React, { PropTypes } from 'react'
+import React from 'react'
 import Navbar from '../Navbar'
 import Footer from '../Footer'
-import Router, { RouteHandler } from "react-router"
+import { RouteHandler } from 'react-router'
 import flux from '../../flux/flux'
 import FluxComponent from 'flummox/component'
 
@@ -28,7 +28,7 @@ class AppInner extends React.Component {
     return (
       <div className="App">
         <Navbar />
-        <div className="container" style={{"paddingTop": 15 +"px"}}>
+        <div className='container' style={{'paddingTop': 15 + 'px'}}>
           <RouteHandler {...this.params} />
         </div>
         <Footer />

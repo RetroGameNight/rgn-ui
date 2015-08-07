@@ -11,9 +11,9 @@ export default class EventPage extends React.Component {
         api: store => ({
           event: store.getEvent(this.props.params.id),
         }),
-      }}> 
+      }}>
         <EventPageInner {...this.props} />
-      </FluxComponent> 
+      </FluxComponent>
     )
   }
 }

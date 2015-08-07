@@ -1,4 +1,4 @@
-import React from 'react'; // eslint-disable-line no-unused-vars
+import React from 'react' // eslint-disable-line no-unused-vars
 import flux from '../../flux/flux'
 import FluxComponent from 'flummox/component'
 import ObjectTable from '../ObjectTable'
@@ -11,9 +11,9 @@ export default class PlayerPage extends React.Component {
         api: store => ({
           player: store.getUser(this.props.params.id),
         }),
-      }}> 
+      }}>
         <PlayerPageInner {...this.props} />
-      </FluxComponent> 
+      </FluxComponent>
     )
   }
 }

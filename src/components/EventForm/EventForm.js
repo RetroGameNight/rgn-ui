@@ -6,7 +6,7 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 import './EventForm.less'
-import React, { PropTypes } from 'react'
+import React from 'react'
 
 export default class EventForm extends React.Component {
   static contextTypes = {

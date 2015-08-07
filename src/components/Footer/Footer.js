@@ -6,7 +6,7 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 import './Footer.less'
-import React, { PropTypes } from 'react'
+import React from 'react'
 
 export default class Footer extends React.Component {
   render() {

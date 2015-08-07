@@ -14,7 +14,7 @@ export default class EventsPage extends React.Component {
     return (
       <FluxComponent connectToStores={['api']}>
         <EventsPageInner {...this.props} />
-      </FluxComponent> 
+      </FluxComponent>
     )
   }
 }
@@ -30,11 +30,11 @@ class EventsPageInner extends React.Component {
     flux.getActions('api').newEvent()
   }
   handleClick = (event) => {
-    if (event.target.id == "openCreateEvent") {
+    if (event.target.id === 'openCreateEvent') {
       this.setState({
         isCreateFormModalOpen: true
       })
-    } else if (event.target.id == "closeCreateEvent") {
+    } else if (event.target.id === 'closeCreateEvent') {
       this.setState({
         isCreateFormModalOpen: false
       })
@@ -57,7 +57,7 @@ class EventsPageInner extends React.Component {
           <div className="modal-body">
             <FluxComponent connectToStores={['api']}>
               <EventForm />
-            </FluxComponent> 
+            </FluxComponent>
           </div>
         </Modal>
         <h1>Events</h1>
@@ -95,7 +95,7 @@ class Event extends React.Component {
 }
 
 class DeleteButton extends React.Component {
-  handleClick = (event) => {
+  handleClick = () => {
     flux.getActions('api').deleteEvent(this.props.id)
   }
   render() {

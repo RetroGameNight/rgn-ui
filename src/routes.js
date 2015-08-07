@@ -5,8 +5,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE.txt file in the root directory of this source tree.
  */
-import React from 'react'
-import App from './components/App';
+import App from './components/App'
 import NotFound from './components/NotFound'
 import ChallengePage from './components/ChallengePage'
 import ChallengesPage from './components/ChallengesPage'
@@ -16,7 +15,6 @@ import GamePage from './components/GamePage'
 import GamesPage from './components/GamesPage'
 import PlayerPage from './components/PlayerPage'
 import PlayersPage from './components/PlayersPage'
-import ActivePlayerPage from './components/ActivePlayerPage'
 import Main from './components/Main'
 import { Route, NotFoundRoute, DefaultRoute } from 'react-router'
 
