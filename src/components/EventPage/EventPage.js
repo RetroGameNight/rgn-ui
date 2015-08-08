@@ -1,14 +1,27 @@
-import React from 'react'; // eslint-disable-line no-unused-vars
-import flux from '../../flux'
+/*
+ * Retro Game Night
+ * Copyright (c) 2015 Sasha Fahrenkopf, Cameron White
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE.txt file in the root directory of this source tree.
+ */
+
+import React from 'react' // eslint-disable-line no-unused-vars
+import flux from '../../flux/flux'
 import FluxComponent from 'flummox/component'
-import Grid from '../Grid'
+import Page from '../Page'
+import EventForm from '../EventForm'
 
 export default class EventPage extends React.Component {
   render() {
     return (
-      <FluxComponent connectToStores={['api']}>
+      <FluxComponent connectToStores={{
+        api: store => ({
+          event: store.getEvent(this.props.params.id),
+        }),
+      }}>
         <EventPageInner {...this.props} />
-      </FluxComponent> 
+      </FluxComponent>
     )
   }
 }
@@ -18,14 +31,14 @@ class EventPageInner extends React.Component {
     flux.getActions('api').getEvent(this.props.params.id)
   }
   render() {
-    const event = this.props.events.find((event) => {
-      return event && event.id == this.props.params.id 
-    })
+    const { event } = this.props
     return (
-      <div>
+      <Page>
         <h1>Event Page</h1>
-        <Grid object={event} />
-      </div>
+        <FluxComponent connectToStores={['api']}>
+          <EventForm event={event} />
+        </FluxComponent>
+      </Page>
     )
   }
 }

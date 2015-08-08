@@ -1,0 +1,6 @@
+{
+  "name": "ObjectTable",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./ObjectTable.js"
+}

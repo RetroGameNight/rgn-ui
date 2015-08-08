@@ -1,0 +1,81 @@
+// =============================================================================
+//
+// Retro Game Night
+// Copyright (c) 2015 Sasha Fahrenkopf, Cameron White
+//
+// This source code is licensed under the MIT license found in the
+// LICENSE.txt file in the root directory of this source tree.
+//
+// =============================================================================
+
+@import '../../styles/variables.less';
+
+.navigation {
+  background-color: black;
+  width: 100%;
+  position: fixed;
+  min-height: @navbar-height;
+  margin-top: -(@navbar-height);
+  z-index: 100;
+
+  .left-panel {
+    float: left;
+    min-height: inherit;
+
+    // For big screens
+    @media(min-width: @screen-md) {
+      min-width: @side-bar-width;
+    }
+
+    a.menu-toggle {
+      border-right: 1px solid rgba(255, 255, 255, .3);
+      color: @gray-light;
+      display: block;
+      font-size: 1.5em;
+      min-height: @navbar-height;
+      width: 50px;
+
+      @media(min-width: @screen-md) {
+        display: none;
+      }
+
+      span {
+        margin-top: (@navbar-height / 2) - 12px;
+      }
+    }
+  }
+
+  .main-panel {
+    margin-left: 50px;  /* width of a.menu-toggle */
+
+    @media(min-width: @screen-md) {
+      margin-left: @side-bar-width;
+      padding-left: 25%;
+    }
+  }
+
+  hr {
+    margin: 0;
+    border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  }
+}
+
+.navigation {
+  .currentUser {
+    color: white;
+    padding-left: 5px;
+
+    span {
+      padding-left: 5px;
+    }
+
+    .visible {
+        display: inline-block;      
+    }
+  }
+
+
+}

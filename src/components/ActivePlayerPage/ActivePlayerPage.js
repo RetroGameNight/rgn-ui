@@ -1,14 +1,13 @@
 /*
  * Retro Game Night
- * Copyright (c) 2015 Sasha Fahrenkopf, ... add your name
+ * Copyright (c) 2015 Sasha Fahrenkopf, Cameron White
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE.txt file in the root directory of this source tree.
  */
-import './ActivePlayerPage.less';
-import React, { PropTypes } from 'react';
-import flux from '../../flux'
-import FluxComponent from 'flummox/component';
+import './ActivePlayerPage.less'
+import React from 'react'
+import FluxComponent from 'flummox/component'
 import _ from 'underscore'
 
 export default class ActivePlayerPage extends React.Component {
@@ -48,7 +47,7 @@ class ActivePlayerPageInner extends React.Component {
             <th>Value</th>
           </tr>
           {rows}
-        </table> 
+        </table>
       )
     } else {
       content = [
@@ -60,6 +59,6 @@ class ActivePlayerPageInner extends React.Component {
         <h1>Active Player Page</h1>
         {content}
       </div>
-    );
+    )
   }
 }

@@ -1,14 +1,27 @@
-import React from 'react'; // eslint-disable-line no-unused-vars
-import flux from '../../flux'
+/*
+ * Retro Game Night
+ * Copyright (c) 2015 Sasha Fahrenkopf, Cameron White
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE.txt file in the root directory of this source tree.
+ */
+
+import React from 'react' // eslint-disable-line no-unused-vars
+import flux from '../../flux/flux'
 import FluxComponent from 'flummox/component'
-import Grid from '../Grid'
+import Page from '../Page'
+import ChallengeForm from '../ChallengeForm'
 
 export default class ChallengePage extends React.Component {
   render() {
     return (
-      <FluxComponent connectToStores={['api']}>
+      <FluxComponent connectToStores={{
+        api: store => ({
+          challenge: store.getChallenge(this.props.params.id),
+        }),
+      }}>
         <ChallengePageInner {...this.props} />
-      </FluxComponent> 
+      </FluxComponent>
     )
   }
 }
@@ -18,14 +31,14 @@ class ChallengePageInner extends React.Component {
     flux.getActions('api').getChallenge(this.props.params.id)
   }
   render() {
-    const challenge = this.props.challenges.find((challenge) => {
-      return challenge && challenge.id == this.props.params.id 
-    })
+    const { challenge } = this.props
     return (
-      <div>
+      <Page>
         <h1>Challenge Page</h1>
-        <Grid object={challenge} />
-      </div>
+        <FluxComponent connectToStores={['api']}>
+          <ChallengeForm challenge={challenge} />
+        </FluxComponent>
+      </Page>
     )
   }
 }

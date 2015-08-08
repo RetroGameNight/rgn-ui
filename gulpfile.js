@@ -1,11 +1,11 @@
 /*
- * React.js Starter Kit
- * Copyright (c) 2014 Konstantin Tarkus (@koistya), KriaSoft LLC.
+ * Retro Game Night
+ * Copyright (c) 2015 Sasha Fahrenkopf, Cameron White
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE.txt file in the root directory of this source tree.
  */
-
+ 
 'use strict';
 
 // Include Gulp and other build automation tools and utilities
@@ -63,7 +63,7 @@ gulp.task('assets', function() {
   src.assets = [
     'src/assets/**'
   ];
-  var dest = DEST_BASE
+  var dest = DEST_BASE + '/assets'
   return gulp.src(src.assets)
     .pipe($.changed(dest))
     .pipe(gulp.dest(dest))
@@ -82,7 +82,10 @@ gulp.task('fonts', function() {
 
 // CSS style sheets
 gulp.task('styles', function() {
-  src.styles = 'src/styles/**/*.{css,less}';
+  src.styles = [
+    'src/styles/**/*.{css,less}',
+    'src/components/**/*.{css,less}',
+  ];
   var dest = DEST_BASE + 'css/'
   return gulp.src('src/styles/bootstrap.less')
     .pipe($.plumber())
