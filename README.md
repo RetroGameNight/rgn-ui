@@ -33,6 +33,7 @@ Webpack, Gulp, Lodash, SuperAgent, Express, Less, Radium and a variety of other 
 3. Follow terminal output for URL
 
 # Developer Docs
+Master is considerd the stable branch. Other branches may or may not build successfully.
 
 ## Build Environment
 There are two important directories, `src` and `build`. The `src` directory contains the source code which is copied using Gulp and Webpack to the `build` directory. 
