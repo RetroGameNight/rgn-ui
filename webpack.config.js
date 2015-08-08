@@ -1,6 +1,9 @@
 /*
- * Facebook React Starter Kit | https://github.com/kriasoft/react-starter-kit
- * Copyright (c) KriaSoft, LLC. All rights reserved. See LICENSE.txt
+ * Retro Game Night
+ * Copyright (c) 2015 Sasha Fahrenkopf, Cameron White
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE.txt file in the root directory of this source tree.
  */
 'use strict';
 
