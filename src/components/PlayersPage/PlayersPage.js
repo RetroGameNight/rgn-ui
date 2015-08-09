@@ -14,6 +14,7 @@ import _ from 'underscore'
 import { Link } from 'react-router'
 import Page from '../Page'
 import ChallengeButton from '../ChallengeButton'
+import Avatar from '../Avatar'
 
 export default class PlayersPage extends React.Component {
   componentDidMount() {
@@ -29,23 +30,13 @@ export default class PlayersPage extends React.Component {
 }
 
 class PlayersPageInner extends React.Component {
-  // Seperates the players into two halves and displays them
-  // in their according columns
-  // TODO:  Test with more player data!
   render() {
     const players = _.chain(this.props.users)
       .map(each => <Player player={each} />)
-    var sets = _.chain(players)
-              .groupBy(players, (each, index) => {return Math.floor(index / 2)})
-              .toArray()
-              .value()
     return (
       <Page>
         <div className="row">
-          <div className="col-xs-6">{ sets[0] }</div>
-        </div>
-        <div className="row">
-          <div className="col-xs-6">{ sets[1] }</div>
+          <div className="col-xs-6">{ players }</div>
         </div>
       </Page>
     )
@@ -55,23 +46,30 @@ class PlayersPageInner extends React.Component {
 class Player extends React.Component {
   render() {
     const player = this.props.player
+    const avatarUrl = player ? player.avatarUrl : ''
     return (
-      <div className="row">
-        <div className="player media">
-          <div className="col-xs-12 col-md-2">
-            <img src={player.avatarUrl} height="50" width="50" />
-          </div>
-          <div className="col-xs-12 col-md-5">
-            <Link to="player" params={{ id: player.id }}>
-              <h4 className="">{player.name}</h4>
-            </Link>
-            <h5>{player.email}</h5>
-          </div>
-          <div className="col-xs-12 col-md-5">
-            <ChallengeButton btnText="Challenge" />
+        <div className="panel panel-default">
+          <div className="panel-body">
+            <div className="col-xs-12 col-md-8">
+              <div className="avatar">
+              <Avatar url={avatarUrl}
+                      linkTo='player'
+                      linkParams={{id: player ? player.id : ''}}/>
+              </div>
+              <div className="player-info">
+              <Link to="player" params={{ id: player.id }}>
+                <h4>{player.name}</h4>
+              </Link>
+              <h5>{player.email}</h5>
+              </div>
+            </div>
+            <div className="col-xs-12 col-md-4">
+              <div style={{'height': 40 + 'px', 'paddingTop': 10 + 'px'}}>
+              <ChallengeButton btnText="Challenge"/>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
     )
   }
 }

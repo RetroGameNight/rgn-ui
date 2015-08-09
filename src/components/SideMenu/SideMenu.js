@@ -37,7 +37,7 @@ class AvatarBox extends React.Component {
 
     return (
       <div className={className}>
-        <div style={{'float': 'left'}}>
+        <div style={{'float': 'left', 'marginRight': 18 + 'px'}}>
         <Avatar url={avatarUrl}
                 linkTo='player'
                 linkParams={{id: player ? player.id : ''}}/>

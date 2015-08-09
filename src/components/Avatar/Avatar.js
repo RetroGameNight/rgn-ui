@@ -11,10 +11,10 @@ import { Link } from 'react-router'
 
 export default class Avatar extends React.Component {
   render() {
-    const { url, linkTo, linkParams, height, width, alt } = this.props
+    const { url, linkTo, linkParams, height, width, alt} = this.props
     if (linkTo) {
       return (
-        <Link to={linkTo} params={linkParams}>
+        <Link to={linkTo} params={linkParams} style={{'display': 'block'}}>
           <img src={url} width={width} height={height} alt={alt} />
         </Link>
       )
@@ -32,6 +32,7 @@ Avatar.propTypes = {
   height: PropTypes.number,
   width: PropTypes.number,
   alt: PropTypes.string,
+  float: PropTypes.string,
 }
 Avatar.defaultProps = {
   linkParams: {},
