@@ -15,8 +15,9 @@ export default class ChallengeForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      name: props.challenge ? props.challenge.name : '',
-      game: props.challenge ? props.challenge.game : '',
+      player: props.challenge ? props.challenge.player : "",
+      game: props.challenge ? props.challenge.game : "",
+      trial: props.challenge ? props.challenge.trial : "",
     }
   }
   handleChange = (event) => {
@@ -36,19 +37,25 @@ export default class ChallengeForm extends React.Component {
   }
   render() {
     return (
-      <form className="form-inline">
+      <form className="form">
         <div className="form-group">
-          <label htmlFor="name">Name</label>
-          <input type="text" className="form-control" id="name"
-                 value={this.state.name} onChange={this.handleChange}/>
+          <label htmlFor="name">Opponent</label>
+          <input type="text" className="form-control" id="player" 
+                 value={this.state.player} onChange={this.handleChange}/>
         </div>
+        {/* Game isn't a valid key for the challenge end point*/}
         <div className="form-group">
           <label htmlFor="system">Game</label>
           <input type="text" className="form-control" id="game"
                  value={this.state.game} onChange={this.handleChange}/>
         </div>
+        <div className="form-group">
+          <label htmlFor="system">Trial</label>
+          <input type="text" className="form-control" id="trial" 
+                 value={this.state.trial} onChange={this.handleChange}/>
+        </div>
         <button type="submit" className="btn btn-default"
-                onClick={this.handleSubmit}>Submit</button>
+                onClick={this.handleSubmit}>Issue Challenge</button>
       </form>
     )
   }
