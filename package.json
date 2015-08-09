@@ -63,7 +63,7 @@
     "superagent-bluebird-promise": "^2.0.2",
     "underscore": "^1.8.3",
     "url-loader": "^0.5.5",
-    "webpack": "^1.8.4",
+    "webpack": "^1.8.4"
   },
   "jest": {
     "rootDir": "./src",
