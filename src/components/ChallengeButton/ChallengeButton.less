@@ -9,16 +9,21 @@
 @import '../../styles/variables.less';
 
 a.button {
-  display: inline-block; 
   padding: 7px;
   line-height: 16px;
 }
 
+// ugh.. quick hack
+.challengeBtn-container {
+  display: inline-block;
+}
+
 a.challenge.button {
+  display: inline-block; 
   background-color: @neon-pink;
   color: white;
   vertical-align: bottom;
-  margin: 0px 18px;
+  margin: 0px 18px;  
   font-size: 1.2em;
   text-align: center;
 

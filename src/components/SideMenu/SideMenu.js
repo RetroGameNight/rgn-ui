@@ -32,15 +32,19 @@ class Login extends React.Component {
 class AvatarBox extends React.Component {
   render() {
     const player = this.props.user
-    const className = 'user-avatar '
+    const className = 'user-avatar clearfix'
     const avatarUrl = player ? player.avatarUrl : ''
 
     return (
       <div className={className}>
+        <div style={{'float': 'left'}}>
         <Avatar url={avatarUrl}
                 linkTo='player'
                 linkParams={{id: player ? player.id : ''}}/>
+        </div>
+        <div style={{'height': 40 + 'px', 'float': 'left', 'marginTop': 10 + 'px'}}>
         <ChallengeButton btnText='Issue Challenge' class='challenge' />
+        </div>
       </div>
     )
   }
