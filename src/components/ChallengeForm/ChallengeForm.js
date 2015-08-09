@@ -15,9 +15,9 @@ export default class ChallengeForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      player: props.challenge ? props.challenge.player : "",
-      game: props.challenge ? props.challenge.game : "",
-      trial: props.challenge ? props.challenge.trial : "",
+      player: props.challenge ? props.challenge.player : '',
+      game: props.challenge ? props.challenge.game : '',
+      trial: props.challenge ? props.challenge.trial : '',
     }
   }
   handleChange = (event) => {
@@ -40,7 +40,7 @@ export default class ChallengeForm extends React.Component {
       <form className="form">
         <div className="form-group">
           <label htmlFor="name">Opponent</label>
-          <input type="text" className="form-control" id="player" 
+          <input type="text" className="form-control" id="player"
                  value={this.state.player} onChange={this.handleChange}/>
         </div>
         {/* Game isn't a valid key for the challenge end point*/}
@@ -51,7 +51,7 @@ export default class ChallengeForm extends React.Component {
         </div>
         <div className="form-group">
           <label htmlFor="system">Trial</label>
-          <input type="text" className="form-control" id="trial" 
+          <input type="text" className="form-control" id="trial"
                  value={this.state.trial} onChange={this.handleChange}/>
         </div>
         <button type="submit" className="btn btn-default"
