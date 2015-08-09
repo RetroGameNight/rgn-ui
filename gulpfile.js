@@ -18,6 +18,7 @@ var webpack = require('webpack');
 var WebpackDevServer = require("webpack-dev-server");
 var argv = require('minimist')(process.argv.slice(2));
 var webpackConfig = require('./webpack.config.js');
+var spawn = require('child_process').spawn;
 
 // Settings
 var RELEASE = !!argv.release;                 // Minimize and optimize during a build?
@@ -156,13 +157,36 @@ gulp.task('build', function(done) {
   runSequence('clean', 'build:static', 'bundle')
 })
 
+gulp.task('watch', function() {
+  // Store current process if any
+  var gulpProcess;
+  
+  gulp.watch('gulpfile.js', spawnChildren);
+  gulp.watch('webpack.config.js', spawnChildren);
+  gulp.watch('package.json', spawnChildren);
+  gulp.watch('babelrc', spawnChildren);
+  gulp.watch('.eslintrc', spawnChildren);
+  gulp.watch('preprocessor.js', spawnChildren);
+
+  // Comment the line below if you start your server by yourslef anywhere else
+  spawnChildren();
+
+  function spawnChildren(e) {
+    if(gulpProcess) {
+        gulpProcess.kill(); 
+    }
+
+    gulpProcess = spawn('gulp', ['watch:server'], {stdio: 'inherit'});
+  }
+});
+
 // Build and start watching for modifications
-gulp.task('watch', function(done) {
+gulp.task('watch:server', function(done) {
   runSequence('build:static', 'webpack-dev-server', function() {
     gulp.watch(src.fonts, ['fonts']);
     gulp.watch(src.assets, ['assets']);
     gulp.watch(src.styles, ['styles']);
     gulp.watch(src.html, ['html']);
+    done();
   });
-  done();
 });
