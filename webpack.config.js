@@ -13,10 +13,6 @@ var argv = require('minimist')(process.argv.slice(2));
 
 var DEBUG = !argv.release;
 
-var AUTOPREFIXER_LOADER = 'autoprefixer-loader?{browsers:[' +
-  '"Android 2.3", "Android >= 4", "Chrome >= 20", "Firefox >= 24", ' +
-  '"Explorer >= 8", "iOS >= 6", "Opera >= 12", "Safari >= 6"]}';
-
 var GLOBALS = {
   'process.env.NODE_ENV': DEBUG ? '"development"' : '"production"',
   '__DEV__': DEBUG
@@ -63,12 +59,11 @@ var config = {
     loaders: [
       {
         test: /\.css$/,
-        loader: 'style-loader!css-loader!' + AUTOPREFIXER_LOADER
+        loader: 'style-loader!css-loader!postcss-loader'
       },
       {
         test: /\.less$/,
-        loader: 'style-loader!css-loader!' + AUTOPREFIXER_LOADER +
-                '!less-loader'
+        loader: 'style-loader!css-loader!postcss-loader!less-loader'
       },
       {
         test: /\.gif/,
@@ -104,11 +99,33 @@ var config = {
 // -----------------------------------------------------------------------------
 
 var appConfig = _.merge({}, config, {
-  entry: './src/app.js',
+  entry: [
+    './src/app.js'
+  ],
   output: {
     filename: 'app.js'
   },
   plugins: config.plugins.concat([
+      new webpack.DefinePlugin(_.merge(GLOBALS, {'__SERVER__': false}))
+    ].concat(DEBUG ? [] : [
+      new webpack.optimize.DedupePlugin(),
+      new webpack.optimize.UglifyJsPlugin(),
+      new webpack.optimize.AggressiveMergingPlugin()
+    ])
+  )
+});
+
+var appDevConfig = _.merge({}, config, {
+  entry: [
+    'webpack/hot/dev-server', 
+    './src/app.js'
+  ],
+  output: {
+    path: '/build/',
+    filename: 'app.js'
+  },
+  plugins: config.plugins.concat([
+      new webpack.HotModuleReplacementPlugin(),
       new webpack.DefinePlugin(_.merge(GLOBALS, {'__SERVER__': false}))
     ].concat(DEBUG ? [] : [
       new webpack.optimize.DedupePlugin(),
@@ -130,4 +147,8 @@ var serverConfig = _.merge({}, config, {
   )
 });
 
-module.exports = [appConfig, serverConfig];
+module.exports = {
+  appConfig: appConfig, 
+  appDevConfig: appDevConfig,
+  serverConfig: serverConfig
+};

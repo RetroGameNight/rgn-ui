@@ -15,9 +15,9 @@ var $ = require('gulp-load-plugins')();
 var del = require('del');
 var runSequence = require('run-sequence');
 var webpack = require('webpack');
+var WebpackDevServer = require("webpack-dev-server");
 var argv = require('minimist')(process.argv.slice(2));
-browserSync = require('browser-sync');
-var reload = browserSync.reload;
+var webpackConfig = require('./webpack.config.js');
 
 // Settings
 var RELEASE = !!argv.release;                 // Minimize and optimize during a build?
@@ -77,7 +77,8 @@ gulp.task('fonts', function() {
   ]
   var dest = DEST_BASE + 'fonts/'
   return gulp.src(src.fonts)
-    .pipe(gulp.dest(dest));
+    .pipe(gulp.dest(dest))
+    .pipe($.size({title: 'fonts'}));
 });
 
 // CSS style sheets
@@ -104,8 +105,10 @@ gulp.task('styles', function() {
 // Bundle
 gulp.task('bundle', function(done) {
   var started = false;
-  var config = require('./webpack.config.js');
-  var bundler = webpack(config);
+  var bundler = webpack([
+    webpackConfig.appConfig,
+    webpackConfig.serverConfig
+  ]);
   function bundle(err, stats) {
     if (err) {
       throw new $.util.PluginError('webpack', err);
@@ -125,36 +128,41 @@ gulp.task('bundle', function(done) {
   }
 });
 
-// Build the app from source code
-gulp.task('build', ['clean'], function(done) {
-  runSequence(['fonts', 'assets', 'styles', 'html', 'bundle'], done);
+gulp.task("webpack-dev-server", function(done) {
+    // Start a webpack-dev-server
+    var compiler = webpack(webpackConfig.appDevConfig);
+    var server = new WebpackDevServer(compiler, {
+      contentBase: './build',
+      hot: true,
+      historyApiFallback: true,
+      stats: { colors: true }
+    })
+    server.listen(8081, "localhost", function(err) {
+        if(err) throw new $.util.PluginError("webpack-dev-server", err);
+        // Server listening
+        $.util.log("[webpack-dev-server]", "http://localhost:8081/webpack-dev-server/index.html");
+        done()
+    });
 });
+
+
+// Build the app from source code
+gulp.task('build:static', function(done) {
+  runSequence(['fonts', 'assets', 'styles', 'html'], done);
+});
+
+// Build the app from source code
+gulp.task('build', function(done) {
+  runSequence('clean', 'build:static', 'bundle')
+})
 
 // Build and start watching for modifications
-gulp.task('build:watch', function(done) {
-  watch = true;
-  runSequence('build', function() {
-    gulp.watch(src.fonts, ['fonts', reload]);
-    gulp.watch(src.assets, ['assets', reload]);
-    gulp.watch(src.styles, ['styles', reload]);
-    gulp.watch(src.html, ['html', reload]);
-    gulp.watch([
-      'src/**/*.js',
-    ], ['bundle', reload])
-    done();
+gulp.task('watch', function(done) {
+  runSequence('build:static', 'webpack-dev-server', function() {
+    gulp.watch(src.fonts, ['fonts']);
+    gulp.watch(src.assets, ['assets']);
+    gulp.watch(src.styles, ['styles']);
+    gulp.watch(src.html, ['html']);
   });
-});
-
-gulp.task("watch", ["build:watch"], function() {
-    browserSync({
-        port: 8081,
-        notify: false,
-        logPrefix: "BS",
-        index: "index.html",
-        // Run as an https by uncommenting "https: true"
-        // Note: this uses an unsigned certificate which on first access
-        //       will present a certificate warning in the browser.
-        // https: true,
-        server: ["build"]
-    });
+  done();
 });

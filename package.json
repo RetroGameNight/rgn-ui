@@ -52,6 +52,7 @@
     "less-loader": "^2.2.0",
     "lodash": "3.6.0",
     "minimist": "^1.1.2",
+    "postcss-loader": "^0.5.1",
     "protractor": "^2.0.0",
     "radium": "^0.13.5",
     "react": "^0.13.3",
@@ -63,7 +64,6 @@
     "underscore": "^1.8.3",
     "url-loader": "^0.5.5",
     "webpack": "^1.8.4",
-    "webpack-dev-server": "^1.8.0"
   },
   "jest": {
     "rootDir": "./src",
@@ -79,5 +79,9 @@
     "test": "eslint src gulpfile.js webpack.config.js && jest",
     "preupdate-webdriver": "npm install",
     "update-webdriver": "webdriver-manager update"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^1.8.0",
+    "react-hot-loader": "^1.2.8"
   }
 }
