@@ -12,10 +12,11 @@ import { Link } from 'react-router'
 export default class Avatar extends React.Component {
   render() {
     const { url, linkTo, linkParams, height, width, alt} = this.props
+    const kittenUrl = 'http://placekitten.com/g/50/50'
     if (linkTo) {
       return (
         <Link to={linkTo} params={linkParams} style={{'display': 'block'}}>
-          <img src={url} width={width} height={height} alt={alt} />
+          <img src={url || kittenUrl} width={width} height={height} alt={alt} />
         </Link>
       )
     } else {
