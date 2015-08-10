@@ -36,7 +36,7 @@ class PlayersPageInner extends React.Component {
     return (
       <Page>
         <div className="row">
-          <div className="col-xs-6">{ players }</div>
+          <div className="col-xs-12">{ players }</div>
         </div>
       </Page>
     )
@@ -50,22 +50,22 @@ class Player extends React.Component {
     return (
         <div className="panel panel-default">
           <div className="panel-body">
-            <div className="col-xs-12 col-md-8">
+            <div className="col-xs-10">
               <div className="avatar">
-              <Avatar url={avatarUrl}
-                      linkTo='player'
-                      linkParams={{id: player ? player.id : ''}}/>
+                <Avatar url={avatarUrl}
+                        linkTo='player'
+                        linkParams={{id: player ? player.id : ''}}/>
               </div>
               <div className="player-info">
-              <Link to="player" params={{ id: player.id }}>
-                <h4>{player.name}</h4>
-              </Link>
-              <h5>{player.email}</h5>
+                <Link to="player" params={{ id: player.id }}>
+                  <h4>{player.name}</h4>
+                </Link>
+                <h5>{player.email}</h5>
               </div>
             </div>
-            <div className="col-xs-12 col-md-4">
-              <div style={{'height': 40 + 'px', 'paddingTop': 10 + 'px'}}>
-              <ChallengeButton btnText="Challenge"/>
+            <div className="col-xs-2">
+              <div style={{'height': 40 + 'px', 'paddingTop': 10 + 'px', float: 'right'}}>
+                <ChallengeButton btnText="Challenge"/>
               </div>
             </div>
           </div>
