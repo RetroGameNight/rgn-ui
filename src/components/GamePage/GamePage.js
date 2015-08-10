@@ -10,7 +10,6 @@ import React from 'react' // eslint-disable-line no-unused-vars
 import flux from '../../flux/flux'
 import FluxComponent from 'flummox/component'
 import _ from 'underscore'
-import ObjectTable from '../ObjectTable'
 import Page from '../Page'
 
 export default class GamePage extends React.Component {
@@ -40,15 +39,23 @@ class GamePageInner extends React.Component {
     flux.getActions('api').getTrials()
   }
   render() {
-    const { trials } = this.props
-    const trialGrids = _.chain(trials)
-      .map(each => <ObjectTable object={each} />)
-      .value()
+    const { game } = this.props
     return (
       <Page>
-        <h1>Game Page</h1>
-        <h2>Trials</h2>
-        { trialGrids }
+        <div className="panel panel-default" 
+             style={{ width: 360 }}>
+          <div className="panel-body">
+            <span style={
+              {
+                'fontSize': 260,
+                'paddingLeft': 260,
+                'background': 'url(http://placekitten.com/g/200/300)',
+              }
+            }>&nbsp;</span>
+            <h4 className="media-heading">{game ? game.name : ''}</h4>
+            {game ? game.system : ''}
+          </div>
+        </div>
       </Page>
     )
   }

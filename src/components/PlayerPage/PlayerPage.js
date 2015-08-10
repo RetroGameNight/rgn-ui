@@ -9,8 +9,8 @@
 import React from 'react' // eslint-disable-line no-unused-vars
 import flux from '../../flux/flux'
 import FluxComponent from 'flummox/component'
-import ObjectTable from '../ObjectTable'
 import Page from '../Page'
+import Avatar from '../Avatar'
 
 export default class PlayerPage extends React.Component {
   render() {
@@ -34,8 +34,15 @@ class PlayerPageInner extends React.Component {
     const { player } = this.props
     return (
       <Page>
-        <h1>Player Page</h1>
-        <ObjectTable object={player} />
+        <div className="panel panel-default" 
+             style={{ width: 230 }}>
+          <div className="panel-body">
+            <Avatar url={player ? player.avatarUrl : undefined }
+                    height={300} width={200} />
+            <h4 className="media-heading">{player ? player.name : ''}</h4>
+            {player ? player.email : ''}
+          </div>
+        </div>
       </Page>
     )
   }
