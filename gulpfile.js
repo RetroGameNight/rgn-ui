@@ -15,7 +15,6 @@ var $ = require('gulp-load-plugins')();
 var del = require('del');
 var runSequence = require('run-sequence');
 var webpack = require('webpack');
-var WebpackDevServer = require("webpack-dev-server");
 var argv = require('minimist')(process.argv.slice(2));
 var webpackConfig = require('./webpack.config.js');
 var spawn = require('child_process').spawn;
@@ -132,6 +131,7 @@ gulp.task('bundle', function(done) {
 gulp.task("webpack-dev-server", function(done) {
     // Start a webpack-dev-server
     var compiler = webpack(webpackConfig.appDevConfig);
+    var WebpackDevServer = require("webpack-dev-server");
     var server = new WebpackDevServer(compiler, {
       contentBase: './build',
       hot: true,
