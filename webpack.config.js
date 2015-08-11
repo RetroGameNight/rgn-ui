@@ -15,6 +15,7 @@ var DEBUG = !argv.release;
 
 var GLOBALS = {
   'process.env.NODE_ENV': DEBUG ? '"development"' : '"production"',
+  'process.env.API_LOCATION_HOST': "'" + process.env.API_LOCATION_HOST + "'",
   '__DEV__': DEBUG
 };
 
