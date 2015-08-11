@@ -23,7 +23,7 @@ const API_BASENAME = `${scheme}://${host}:${port}`
 class Login extends React.Component {
   render() {
     const path = this.props.type
-    const URL = `${SERVER_BASENAME}/auth/${path}`
+    const URL = `${API_BASENAME}/auth/${path}`
 
     return (
       <a className={this.props.type} href={URL}>{this.props.text}</a>
