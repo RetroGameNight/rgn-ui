@@ -19,8 +19,8 @@ var GLOBALS = {
   'process.env.API_LOCATION_SCHEME': "'" + process.env.API_LOCATION_HOST + "'",
   'process.env.API_LOCATION_PORT': "'" + process.env.API_LOCATION_HOST + "'",
   'process.env.SERVER_LOCATION_HOST': "'" + process.env.SERVER_LOCATION_HOST + "'",
-  'process.env.SERVER_LOCATION_SCHEME': "'" + process.env.SERVER_LOCATION_HOST + "'",
-  'process.env.SERVER_LOCATION_PORT': "'" + process.env.SERVER_LOCATION_HOST + "'",
+  'process.env.SERVER_LOCATION_SCHEME': "'" + process.env.SERVER_LOCATION_SCHEME + "'",
+  'process.env.SERVER_LOCATION_PORT': "'" + process.env.SERVER_LOCATION_PORT + "'",
   '__DEV__': DEBUG
 };
 
