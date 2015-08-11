@@ -11,7 +11,7 @@ import flux from '../../flux/flux'
 import FluxComponent from 'flummox/component'
 import Page from '../Page'
 import _ from 'lodash'
-import Radium from 'Radium'
+import Radium from 'radium'
 
 const styles = {
   gameImage: {
