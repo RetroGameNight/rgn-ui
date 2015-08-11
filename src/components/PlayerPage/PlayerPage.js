@@ -34,7 +34,7 @@ class PlayerPageInner extends React.Component {
     const { player } = this.props
     return (
       <Page>
-        <div className="panel panel-default" 
+        <div className="panel panel-default"
              style={{ width: 230 }}>
           <div className="panel-body">
             <Avatar url={player ? player.avatarUrl : undefined }

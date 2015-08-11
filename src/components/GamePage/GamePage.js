@@ -17,7 +17,7 @@ const styles = {
   gameImage: {
     height: 300,
     width: 300,
-    background: 'url(http://placekitten.com/g/200/300)',
+    background: 'url(http://placekitten.com/g/330/300)',
     display: 'inline-block',
   },
   gameHeader: {
