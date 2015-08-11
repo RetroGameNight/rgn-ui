@@ -9,7 +9,6 @@
 import React from 'react' // eslint-disable-line no-unused-vars
 import flux from '../../flux/flux'
 import FluxComponent from 'flummox/component'
-import _ from 'underscore'
 import Page from '../Page'
 
 export default class GamePage extends React.Component {
@@ -42,14 +41,14 @@ class GamePageInner extends React.Component {
     const { game } = this.props
     return (
       <Page>
-        <div className="panel panel-default" 
+        <div className="panel panel-default"
              style={{ width: 360 }}>
           <div className="panel-body">
             <span style={
               {
                 'fontSize': 260,
                 'paddingLeft': 260,
-                'background': 'url(http://placekitten.com/g/200/300)',
+                'background': 'url(http://placekitten.com/g/325/300)',
               }
             }>&nbsp;</span>
             <h4 className="media-heading">{game ? game.name : ''}</h4>
