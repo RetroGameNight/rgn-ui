@@ -14,14 +14,16 @@ import IsLoggedIn from '../IsLoggedIn'
 import IsNotLoggedIn from '../IsNotLoggedIn'
 import ChallengeButton from '../ChallengeButton'
 import Avatar from '../Avatar'
+import config from '../../config'
 
-let api = 'http://localhost:3000'
+const { scheme, host, port } = config.api.location
 
+const API_BASENAME = `${scheme}://${host}:${port}`
 
 class Login extends React.Component {
   render() {
-    let path = this.props.type
-    let URL = api + '/auth/' + path
+    const path = this.props.type
+    const URL = `${SERVER_BASENAME}/auth/${path}`
 
     return (
       <a className={this.props.type} href={URL}>{this.props.text}</a>

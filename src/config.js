@@ -8,7 +8,9 @@
 export default {
   server: {
     location: {
-      port: (process.env.PORT || 5000),
+      scheme: (process.env.SERVER_LOCATION_SCHEME || 'http')
+      host: (process.env.SERVER_LOCATION_HOST || 'localhost')
+      port: (process.env.SERVER_LOCATION_PORT || 5000),
     },
   },
   api: {
