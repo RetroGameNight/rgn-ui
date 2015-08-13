@@ -19,7 +19,7 @@ import minimist from 'minimist'
 import webpackConfig from './webpack.config.js'
 import { spawn } from 'child_process'
 
-const $ = gulpLoadPlugins()
+const plugins = gulpLoadPlugins()
 const argv = minimist(process.argv.slice(2))
 
 // Settings
@@ -55,9 +55,9 @@ gulp.task("html", () => {
     ]
     var dest = DEST_BASE
     return gulp.src(src.html)
-      .pipe($.changed(dest))
+      .pipe(plugins.changed(dest))
       .pipe(gulp.dest(dest))
-      .pipe($.size({title: 'html'}))
+      .pipe(plugins.size({title: 'html'}))
 })
 
 // Static files
@@ -67,9 +67,9 @@ gulp.task('assets', () => {
   ]
   const dest = `${DEST_BASE}assets`
   return gulp.src(src.assets)
-    .pipe($.changed(dest))
+    .pipe(plugins.changed(dest))
     .pipe(gulp.dest(dest))
-    .pipe($.size({title: 'assets'}))
+    .pipe(plugins.size({title: 'assets'}))
 })
 
 // Fonts
@@ -80,7 +80,7 @@ gulp.task('fonts', () => {
   const dest = `${DEST_BASE}fonts`
   return gulp.src(src.fonts)
     .pipe(gulp.dest(dest))
-    .pipe($.size({title: 'fonts'}))
+    .pipe(plugins.size({title: 'fonts'}))
 })
 // 
 // CSS style sheets
@@ -91,17 +91,17 @@ gulp.task('styles', () => {
   ]
   const dest = `${DEST_BASE}css/`
   return gulp.src('src/styles/bootstrap.less')
-    .pipe($.plumber())
-    .pipe($.less({
+    .pipe(plugins.plumber())
+    .pipe(plugins.less({
       sourceMap: !RELEASE,
       sourceMapBasepath: __dirname
     }))
     .on('error', console.error.bind(console))
-    .pipe($.autoprefixer({browsers: AUTOPREFIXER_BROWSERS}))
-    .pipe($.csscomb())
-    .pipe($.if(RELEASE, $.minifyCss()))
+    .pipe(plugins.autoprefixer({browsers: AUTOPREFIXER_BROWSERS}))
+    .pipe(plugins.csscomb())
+    .pipe(plugins.if(RELEASE, plugins.minifyCss()))
     .pipe(gulp.dest(dest))
-    .pipe($.size({title: 'styles'}))
+    .pipe(plugins.size({title: 'styles'}))
 })
 
 // Bundle
@@ -113,10 +113,10 @@ gulp.task('bundle', done => {
   ])
   function bundle(err, stats) {
     if (err) {
-      throw new $.util.PluginError('webpack', err)
+      throw new plugins.util.PluginError('webpack', err)
     }
     if (argv.verbose) {
-      $.util.log('[webpack]', stats.toString({colors: true}))
+      plugins.util.log('[webpack]', stats.toString({colors: true}))
     }
     if (!started) {
       started = true
@@ -141,9 +141,9 @@ gulp.task("webpack-dev-server", done => {
       stats: { colors: true },
     })
     server.listen(8081, "localhost", err => {
-        if(err) throw new $.util.PluginError("webpack-dev-server", err)
+        if(err) throw new plugins.util.PluginError("webpack-dev-server", err)
         // Server listening
-        $.util.log("[webpack-dev-server]", "http://localhost:8081/webpack-dev-server/index.html")
+        plugins.util.log("[webpack-dev-server]", "http://localhost:8081/webpack-dev-server/index.html")
         done()
     })
 })
