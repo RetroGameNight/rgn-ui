@@ -70,4 +70,4 @@ build
 ```
 ## License
 
-The hardware design and source code for this project is available under the MIT License. See the file LICENSE in this distribution for license terms.
+The software design and source code for this project is available under the MIT License. See the file LICENSE in this distribution for license terms.
