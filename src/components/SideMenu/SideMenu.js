@@ -90,6 +90,7 @@ export default class SideMenu extends React.Component {
         </ul>
         <IsLoggedIn>
           <ul className='login'>
+              <li><Link to="user-settings" className="settings">Settings</Link></li>
               <li><Logout /></li>
           </ul>
         </IsLoggedIn>
