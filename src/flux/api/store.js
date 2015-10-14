@@ -73,6 +73,9 @@ export default class ApiStore extends Store {
   getUser(id) {
     return _.find(this.state.users, { id })
   }
+  getActiveUser() {
+    return this.state.activeUser
+  }
   isLoggedIn() {
     return !!this.state.activeUser
   }

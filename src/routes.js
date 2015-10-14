@@ -16,6 +16,7 @@ import GamePage from './components/GamePage'
 import GamesPage from './components/GamesPage'
 import PlayerPage from './components/PlayerPage'
 import PlayersPage from './components/PlayersPage'
+import UserSettingsPage from './components/UserSettingsPage'
 import Main from './components/Main'
 import { Route, NotFoundRoute, DefaultRoute } from 'react-router'
 
@@ -31,6 +32,7 @@ const routes = (
     <Route name='challenges' handler={ChallengesPage} />
     <Route name='event' path='event/:id' handler={EventPage} />
     <Route name='events' handler={EventsPage} />
+    <Route name='user-settings' handler={UserSettingsPage} />
     <NotFoundRoute handler={NotFound} />
   </Route>
 )

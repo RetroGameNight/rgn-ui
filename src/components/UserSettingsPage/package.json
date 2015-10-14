@@ -1,0 +1,6 @@
+{
+  "name": "UserSettingsPage",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./UserSettingsPage.js"
+}
