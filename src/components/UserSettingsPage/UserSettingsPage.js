@@ -10,7 +10,6 @@ import React, { PropTypes } from 'react' // eslint-disable-line no-unused-vars
 import flux from '../../flux/flux'
 import FluxComponent from 'flummox/component'
 import Page from '../Page'
-import ObjectTable from '../ObjectTable'
 
 export default class UserSettingsPage extends React.Component {
   componentDidMount() {
@@ -37,12 +36,37 @@ class UserSettingsPageInner extends React.Component {
     super(props)
   }
   render() {
+    const { activeUser } = this.props
+    const id = activeUser ? activeUser.id : ''
     return (
       <Page>
-        <h1>UserSettingsPage</h1>
-        <ObjectTable object={this.props.activeUser} />
+        <DeleteAccountPanel id={id}/>
       </Page>
     )
   }
+}
+
+class DeleteAccountPanel extends React.Component {
+  handleClick = () => {
+    flux.getActions('api').deleteActiveUser()
+    this.context.router.transitionTo('app')
+  }
+  render() {
+    return (
+      <div className="panel panel-danger">
+        <div className="panel-heading">Delete Account</div>
+          <div className="panel-body">
+            <p>Danger! This cannot be undone!</p>
+            <button className="btn btn-danger" onClick={this.handleClick}>Delete</button>
+          </div>
+      </div>
+    )
+  }
+}
+DeleteAccountPanel.propTypes = {
+  id: PropTypes.string.isRequired
+}
+DeleteAccountPanel.contextTypes = {
+  router: PropTypes.func.isRequired
 }
 

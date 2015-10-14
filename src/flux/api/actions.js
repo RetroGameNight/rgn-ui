@@ -9,6 +9,7 @@
 import { Actions } from 'flummox'
 import request from 'superagent-bluebird-promise'
 import config from '../../config'
+import flux from '../flux'
 
 const { scheme, host, port } = config.api.location
 
@@ -54,6 +55,11 @@ export default class ApiActions extends Actions {
   }
   async logout() {
     return apiGetRequest('/logout')
+  }
+  async deleteActiveUser() {
+    const store = flux.getStore('api')
+    await apiDeleteRequest(`/users/${store.state.activeUser.id}`)
+    return null
   }
   async getGame(id) {
     return apiGetRequest(`/games/${id}`)

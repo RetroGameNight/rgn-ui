@@ -25,6 +25,7 @@ export default class ApiStore extends Store {
     const apiActions = flux.getActions('api')
     this.registerAsync(apiActions.login, null, this.handleLogin, null)
     this.registerAsync(apiActions.logout, null, this.handleLogout, null)
+    this.registerAsync(apiActions.deleteActiveUser, null, this.handleDeleteActiveUser, null)
     this.registerAsync(apiActions.getGame, null, this.handleGetGame, null)
     this.registerAsync(apiActions.getGames, null, this.handleGetGames, null)
     this.registerAsync(apiActions.newGame, null, this.handleNewGame, null)
@@ -101,6 +102,9 @@ export default class ApiStore extends Store {
   }
   handleDeleteGame(id) {
     this.removeOneById(id, 'games')
+  }
+  handleDeleteActiveUser() {
+    this.replaceState(DEFAULT_STATE)
   }
   handleUpdateGame(game) {
     this.replaceOne(game, 'games')
