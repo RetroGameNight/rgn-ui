@@ -1,4 +1,4 @@
-/*
+ /*
  * Retro Game Night
  * Copyright (c) 2015 Sasha Fahrenkopf, Cameron White
  *
@@ -11,8 +11,6 @@ import React from 'react' // eslint-disable-line no-unused-vars
 import { Link } from 'react-router'
 import flux from '../../flux/flux'
 import FluxComponent from 'flummox/component'
-import SideMenu from '../SideMenu'
-
 
 export default class Navbar {
   render() {
@@ -23,8 +21,6 @@ export default class Navbar {
     )
   }
 }
-
-
 
 class NavbarInner extends React.Component {
   constructor(props) {
@@ -53,19 +49,12 @@ class NavbarInner extends React.Component {
     }
     return (
       <div className='navigation header'>
-        <div className='left-panel'>
-
-          <a onClick={this.toggleMenu} className="menu-toggle text-center">
-            <span className={icon}></span>
-          </a>
-        </div>
         <div className="main-panel clearfix">
           <Link to="app" className="navbar-brand">
             <img src={require('./logo-small.png')} width="300" height="35" alt="Retro Game Night" />
           </Link>
         </div>
         <hr/>
-        <SideMenu visibility={this.state.isVisible} user={this.props.activeUser} />
       </div>
     )
   }
