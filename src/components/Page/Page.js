@@ -11,7 +11,7 @@ import React from 'react'
 export default class Page extends React.Component {
   render() {
     return (
-      <div>
+      <div className="page">
         <div>{this.props.children}</div>
       </div>
     )

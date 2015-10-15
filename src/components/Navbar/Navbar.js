@@ -14,6 +14,11 @@ import FluxComponent from 'flummox/component'
 import IsLoggedIn from '../IsLoggedIn'
 import IsNotLoggedIn from '../IsNotLoggedIn'
 import config from '../../config'
+import Avatar from '../Avatar'
+
+// This is gross
+window.jQuery = require('jquery')
+require('bootstrap')
 
 const { scheme, host, port } = config.api.location
 
@@ -55,16 +60,26 @@ class NavbarInner extends React.Component {
       icon += ' glyphicon-menu-hamburger'
     }
     return (
-      <div className='navigation header'>
+      <nav className='navigation navbar header'>
         <div class="navbar-header">
           <Link to="app" className="navbar-brand">
             <img src={require('./logo-small.png')} width="300" height="35" alt="Retro Game Night" />
           </Link>
         </div>
         <IsLoggedIn>
-          <ul className='nav navbar-nav pull-right login'>
-            <li><Link to="user-settings" className="settings">Settings</Link></li>
-            <li><Logout /></li>
+          <ul className='nav navbar-nav navbar-right'>
+            <li className="dropdown">
+              <a href="#" className="dropdown-toggle" data-toggle="dropdown"
+                  role="button" aria-haspopup="true" aria-expanded="false">
+                  <Avatar url={this.state.avatarUrl}
+                      height={20} width={20} />
+                  <span className="caret"></span>
+              </a>
+              <ul className="dropdown-menu">
+                <li><Link to="user-settings">Settings</Link></li>
+                <li><Logout /></li>
+              </ul>
+            </li>
           </ul>
         </IsLoggedIn>
         <IsNotLoggedIn>
@@ -73,7 +88,7 @@ class NavbarInner extends React.Component {
               <li><Login text='Sign In with Facebook' type='facebook' /></li>
           </ul>
         </IsNotLoggedIn>
-      </div>
+      </nav>
     )
   }
 }
@@ -95,7 +110,7 @@ class Logout extends React.Component {
   }
   render() {
     return (
-      <a onClick={this.clickHandler} className='logout'>Logout</a>
+      <a onClick={this.clickHandler}>Logout</a>
     )
   }
 }
