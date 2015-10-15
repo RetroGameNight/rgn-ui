@@ -76,6 +76,20 @@ class NavbarInner extends React.Component {
               <li className="dropdown">
                 <a href="#" className="dropdown-toggle" data-toggle="dropdown"
                     role="button" aria-haspopup="true" aria-expanded="false">
+                  <span className="glyphicon glyphicon-plus"></span>
+                  <span className="caret"></span>
+                </a>
+                <ul className="dropdown-menu">
+                  <li><a>New Score</a></li>
+                  <li role="separator" className="divider"></li>
+                  <li><a>New Game</a></li>
+                  <li><a>New Trial</a></li>
+                  <li><a>New Challange</a></li>
+                </ul>
+              </li>
+              <li className="dropdown">
+                <a href="#" className="dropdown-toggle" data-toggle="dropdown"
+                    role="button" aria-haspopup="true" aria-expanded="false">
                     <Avatar url={this.state.avatarUrl}
                         height={20} width={20} />
                     <span className="caret"></span>
