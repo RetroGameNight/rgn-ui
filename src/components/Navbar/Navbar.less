@@ -18,6 +18,56 @@
   margin-top: -(@navbar-height);
   z-index: 100;
 
+  ul.login {
+    @item-height: 10px;
+    @soft-black: lighten(black, 15%);
+    font-size: 1.0em;
+
+    li {
+      line-height: @item-height;
+      margin: 7px 2px;
+      color: white;
+
+      a {
+        display: block;
+        text-align: center;
+        color: white;
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      .google {
+        background-color: rgb(221, 75, 57);
+        &:hover {
+          background-color: darken(rgb(221, 75, 57), 15%);
+        }
+      }
+
+      .facebook{
+        background-color: #3b5998;
+        &:hover {
+          background-color: darken(#3b5998, 15%);
+        }
+      }
+
+      .logout {
+        background-color: @soft-black;
+        &:hover {
+          background-color: darken(@soft-black, 4%);
+        }
+      }
+
+      .settings {
+        background-color: @soft-black;
+        &:hover {
+          background-color: darken(@soft-black, 4%);
+        }
+      }
+    }
+  }
+
   .left-panel {
     float: left;
     min-height: inherit;
@@ -72,6 +122,4 @@
         display: inline-block;      
     }
   }
-
-
 }

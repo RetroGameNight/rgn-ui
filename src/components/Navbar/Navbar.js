@@ -11,6 +11,13 @@ import React from 'react' // eslint-disable-line no-unused-vars
 import { Link } from 'react-router'
 import flux from '../../flux/flux'
 import FluxComponent from 'flummox/component'
+import IsLoggedIn from '../IsLoggedIn'
+import IsNotLoggedIn from '../IsNotLoggedIn'
+import config from '../../config'
+
+const { scheme, host, port } = config.api.location
+
+const API_BASENAME = `${scheme}://${host}:${port}`
 
 export default class Navbar {
   render() {
@@ -49,13 +56,46 @@ class NavbarInner extends React.Component {
     }
     return (
       <div className='navigation header'>
-        <div className="main-panel clearfix">
+        <div class="navbar-header">
           <Link to="app" className="navbar-brand">
             <img src={require('./logo-small.png')} width="300" height="35" alt="Retro Game Night" />
           </Link>
         </div>
-        <hr/>
+        <IsLoggedIn>
+          <ul className='nav navbar-nav pull-right login'>
+            <li><Link to="user-settings" className="settings">Settings</Link></li>
+            <li><Logout /></li>
+          </ul>
+        </IsLoggedIn>
+        <IsNotLoggedIn>
+          <ul className='nav navbar-nav pull-right login'>
+              <li><Login text='Sign In with Google' type='google' /></li>
+              <li><Login text='Sign In with Facebook' type='facebook' /></li>
+          </ul>
+        </IsNotLoggedIn>
       </div>
+    )
+  }
+}
+
+class Login extends React.Component {
+  render() {
+    const path = this.props.type
+    const URL = `${API_BASENAME}/auth/${path}`
+
+    return (
+      <a className={this.props.type} href={URL}>{this.props.text}</a>
+    )
+  }
+}
+
+class Logout extends React.Component {
+  clickHandler() {
+    flux.getActions('api').logout('')
+  }
+  render() {
+    return (
+      <a onClick={this.clickHandler} className='logout'>Logout</a>
     )
   }
 }
