@@ -61,33 +61,39 @@ class NavbarInner extends React.Component {
     }
     return (
       <nav className='navigation navbar header'>
-        <div class="navbar-header">
-          <Link to="app" className="navbar-brand">
-            <img src={require('./logo-small.png')} width="300" height="35" alt="Retro Game Night" />
-          </Link>
+        <div className="container-fluid">
+          <div className="nav navbar-header">
+            <Link to="app" className="navbar-brand">
+              <img src={require('./logo-small.png')} width="300" height="35" alt="Retro Game Night" />
+            </Link>
+          </div>
+          <ul className='nav navbar-nav'>
+            <li><Link to='games'>Games</Link></li>
+            <li><Link to='players'>Players</Link></li>
+          </ul>
+          <IsLoggedIn>
+            <ul className='nav navbar-nav navbar-right'>
+              <li className="dropdown">
+                <a href="#" className="dropdown-toggle" data-toggle="dropdown"
+                    role="button" aria-haspopup="true" aria-expanded="false">
+                    <Avatar url={this.state.avatarUrl}
+                        height={20} width={20} />
+                    <span className="caret"></span>
+                </a>
+                <ul className="dropdown-menu">
+                  <li><Link to="user-settings">Settings</Link></li>
+                  <li><Logout /></li>
+                </ul>
+              </li>
+            </ul>
+          </IsLoggedIn>
+          <IsNotLoggedIn>
+            <ul className='nav navbar-nav pull-right login'>
+                <li><Login text='Sign In with Google' type='google' /></li>
+                <li><Login text='Sign In with Facebook' type='facebook' /></li>
+            </ul>
+          </IsNotLoggedIn>
         </div>
-        <IsLoggedIn>
-          <ul className='nav navbar-nav navbar-right'>
-            <li className="dropdown">
-              <a href="#" className="dropdown-toggle" data-toggle="dropdown"
-                  role="button" aria-haspopup="true" aria-expanded="false">
-                  <Avatar url={this.state.avatarUrl}
-                      height={20} width={20} />
-                  <span className="caret"></span>
-              </a>
-              <ul className="dropdown-menu">
-                <li><Link to="user-settings">Settings</Link></li>
-                <li><Logout /></li>
-              </ul>
-            </li>
-          </ul>
-        </IsLoggedIn>
-        <IsNotLoggedIn>
-          <ul className='nav navbar-nav pull-right login'>
-              <li><Login text='Sign In with Google' type='google' /></li>
-              <li><Login text='Sign In with Facebook' type='facebook' /></li>
-          </ul>
-        </IsNotLoggedIn>
       </nav>
     )
   }
