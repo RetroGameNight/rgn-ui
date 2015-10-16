@@ -82,7 +82,7 @@ class NavbarInner extends React.Component {
                 <ul className="dropdown-menu">
                   <li><a>New Score</a></li>
                   <li role="separator" className="divider"></li>
-                  <li><a>New Game</a></li>
+                  <li><Link to="game-new">New Game</Link></li>
                   <li><a>New Trial</a></li>
                   <li><a>New Challange</a></li>
                 </ul>

@@ -17,6 +17,7 @@ import GamesPage from './components/GamesPage'
 import PlayerPage from './components/PlayerPage'
 import PlayersPage from './components/PlayersPage'
 import UserSettingsPage from './components/UserSettingsPage'
+import GameCreationPage from './components/GameCreationPage'
 import Main from './components/Main'
 import { Route, NotFoundRoute, DefaultRoute } from 'react-router'
 
@@ -28,6 +29,7 @@ const routes = (
     <Route name='players' handler={PlayersPage} />
     <Route name='game' path='game/:id' handler={GamePage} />
     <Route name='games' handler={GamesPage} />
+    <Route name='game-new' path='new/game' handler={GameCreationPage} />
     <Route name='challenge' path='challenge/:id' handler={ChallengePage}/>
     <Route name='challenges' handler={ChallengesPage} />
     <Route name='event' path='event/:id' handler={EventPage} />
