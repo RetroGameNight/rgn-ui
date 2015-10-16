@@ -74,7 +74,7 @@ class Game extends React.Component {
               {
                 'fontSize': 260,
                 'paddingLeft': 260,
-                'background': 'url(http://placekitten.com/g/200/300)',
+                'background': 'url(http://placekitten.com/g/400/278)',
                 '@media (min-width: 721px)': {
                   'fontSize': 240,
                   'paddingLeft': 240,
