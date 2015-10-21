@@ -1,6 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './Main';
+import Router from 'react-router'
+import routes from './routes'
 
-// Render the main component into the dom
-ReactDOM.render(<App />, document.getElementById('app'));
+const mountNode = document.getElementById('app')
+
+Router.run(routes, (Handler, state) => {
+  const params = state.params
+  ReactDOM.render(<Handler params={params}/>, mountNode)
+})
