@@ -12,6 +12,7 @@ import ActiveUserSettings from './activeuser/ActiveUserSettingsComponent'
 import NewGamePage from './game/NewGamePageComponent'
 import GamePage from './game/GamePageComponent'
 import GameSettings from './game/GameSettingsComponent'
+import GameTrials from './game/GameTrialsComponent'
 import GamesPage from './game/GamesPageComponent'
 import PlayerPage from './player/PlayerPageComponent'
 import PlayersPage from './player/PlayersPageComponent'
@@ -24,6 +25,7 @@ const routes = (
     <Route path='players' component={PlayersPage} />
     <Route path='game/:id' component={GamePage}>
         <IndexRoute component={GameSettings} />
+        <Route path='trials' component={GameTrials} />
         <Route path='settings' component={GameSettings} />
     </Route>
     <Route path='games' component={GamesPage} />
