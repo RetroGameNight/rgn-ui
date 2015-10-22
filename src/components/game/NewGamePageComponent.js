@@ -1,15 +1,18 @@
 'use strict';
 
 import React from 'react';
+import Page from '../PageComponent'
 
 require('styles/game/NewGamePage.sass');
 
 class NewGamePageComponent extends React.Component {
   render() {
     return (
-      <div className="newgamepage-component">
-        Please edit src/components/game//NewGamePageComponent.js to update this component!
-      </div>
+      <Page>
+        <div className="newgamepage-component">
+          Please edit src/components/game//NewGamePageComponent.js to update this component!
+        </div>
+      </Page>
     );
   }
 }
