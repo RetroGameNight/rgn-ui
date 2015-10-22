@@ -10,8 +10,8 @@
 import React from 'react';
 import Navbar from './navbar/NavbarComponent'
 import { RouteHandler } from 'react-router'
-//import flux from '../../flux/flux'
-//import FluxComponent from 'flummox/component'
+import flux from './flux'
+import FluxComponent from 'flummox/component'
 
 require('styles//App.sass');
 
@@ -19,12 +19,14 @@ require('styles//App.sass');
 export default class AppComponent extends React.Component {
   render() {
     return (
-      <div className="App">
-        <Navbar />
-        <div className='container' style={{'paddingTop': 15 + 'px'}}>
-          <RouteHandler {...this.params} />
+      <FluxComponent flux={flux}>
+        <div className="App">
+          <Navbar />
+          <div className='container' style={{'paddingTop': 15 + 'px'}}>
+            {this.props.children}
+          </div>
         </div>
-      </div>
+      </FluxComponent>
     )
   }
 }

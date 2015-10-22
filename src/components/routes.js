@@ -15,21 +15,20 @@ import GameSettings from './game/GameSettingsComponent'
 import GamesPage from './game/GamesPageComponent'
 import PlayerPage from './player/PlayerPageComponent'
 import PlayersPage from './player/PlayersPageComponent'
-import { Route, NotFoundRoute, DefaultRoute } from 'react-router'
+import { Route, IndexRoute } from 'react-router'
 
 const routes = (
-  <Route name='app' handler={App} path='/'>
-    <DefaultRoute handler={ScoreBoard} />
-    <Route name='_=_' handler={ScoreBoard}/>
-    <Route name='player' path='player/:id' handler={PlayerPage}/>
-    <Route name='players' handler={PlayersPage} />
-    <Route name='game' path='game/:id' handler={GamePage}>
-        <DefaultRoute handler={GameSettings} />
-        <Route path='settings' handler={GameSettings} />
+  <Route component={App} path='/'>
+    <IndexRoute component={ScoreBoard}/>
+    <Route path='player/:id' component={PlayerPage}/>
+    <Route path='players' component={PlayersPage} />
+    <Route path='game/:id' component={GamePage}>
+        <IndexRoute component={GameSettings} />
+        <Route path='settings' component={GameSettings} />
     </Route>
-    <Route name='games' handler={GamesPage} />
-    <Route name='game-new' path='new/game' handler={NewGamePage} />
-    <Route name='user-settings' handler={ActiveUserSettings} />
+    <Route path='games' component={GamesPage} />
+    <Route path='new/game' component={NewGamePage} />
+    <Route path='settings' component={ActiveUserSettings} />
   </Route>
 )
 

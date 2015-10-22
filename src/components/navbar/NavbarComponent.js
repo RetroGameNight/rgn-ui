@@ -9,14 +9,13 @@
 
 import React from 'react';
 import { Link } from 'react-router'
+import FluxComponent from 'flummox/component'
 import config from '../../config'
+import Avatar from '../AvatarComponent'
 import Login from './LoginButtonComponent'
 import Logout from './LogoutButtonComponent'
 import DropDown from './DropDownComponent'
-/*
-import flux from '../../flux/flux'
-import FluxComponent from 'flummox/component'
-*/
+
 /*
 import IsLoggedIn from '../IsLoggedIn'
 import IsNotLoggedIn from '../IsNotLoggedIn'
@@ -37,14 +36,14 @@ class NavbarComponent extends React.Component {
       <nav className='navigation navbar header'>
         <div className="container-fluid">
           <div className="nav navbar-header">
-            <Link to="app" className="navbar-brand">
+            <Link to="/" className="navbar-brand">
               <img src={require('../../images/logo-small.png')} 
                   width="300" height="35" alt="Retro Game Night" />
             </Link>
           </div>
             <ul className='nav navbar-nav'>
-              <Link to='games'>Games</Link>
-              <Link to='players'>Players</Link>
+              <Link to='/games'>Games</Link>
+              <Link to='/players'>Players</Link>
             </ul>
             <ul className='nav navbar-nav navbar-right'>
               <DropDown icons={[
@@ -52,19 +51,25 @@ class NavbarComponent extends React.Component {
                   <span className="caret"></span>
                 ]}>
                 <button>New Score</button>
-                <Link to="game-new">New Game</Link>
+                <Link to="/new/game">New Game</Link>
                 <button>New Trial</button>
                 <button>New Challange</button>
               </DropDown>
               <DropDown icons={[
-                  <span className="caret"></span>
-                  /*
-                  <Avatar url={this.state.avatarUrl}
-                      height={20} width={20} />
-                  */
+                  <span className="caret"></span>,
+                  <FluxComponent connectToStores={{
+                      api: store => {
+                        const activeUser = store.getActiveUser()
+                        return {
+                          url: activeUser && activeUser.avatarURL,
+                        }
+                      }
+                  }}>
+                    <Avatar height={20} width={20} />
+                  </FluxComponent>
                 ]}>
-                  <Link to="user-settings">Settings</Link>
-                  <Logout />
+                <Link to="/settings">Settings</Link>
+                <Logout />
               </DropDown>
             </ul>
             <ul className='nav navbar-nav pull-right login'>
@@ -81,7 +86,7 @@ NavbarComponent.displayName = 'NavbarNavbarComponent';
 
 // Uncomment properties you need
 // NavbarComponent.propTypes = {};
-// NavbarComponent.contextTypes = {};
+// NavbarComponent.contextTypes = {}
 // NavbarComponent.defaultProps = {};
 
 export default NavbarComponent;
