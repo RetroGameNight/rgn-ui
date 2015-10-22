@@ -1,6 +1,0 @@
-{
-  "name": "IsLoggedIn",
-  "version": "0.0.0",
-  "private": true,
-  "main": "./IsLoggedIn.js"
-}
