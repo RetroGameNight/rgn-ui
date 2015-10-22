@@ -8,7 +8,6 @@ class DropDownComponent extends React.Component {
   render() {
     const { children, icons } = this.props
     const items = React.Children.map(children, each => <li>{each}</li>)
-    console.log(items)
     return (
       <li className="dropdown">
         <a href="#" className="dropdown-toggle" data-toggle="dropdown"

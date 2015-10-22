@@ -43,10 +43,8 @@ class NavbarComponent extends React.Component {
             </Link>
           </div>
             <ul className='nav navbar-nav'>
-              {/*
               <Link to='games'>Games</Link>
               <Link to='players'>Players</Link>
-              */}
             </ul>
             <ul className='nav navbar-nav navbar-right'>
               <DropDown icons={[
@@ -54,9 +52,7 @@ class NavbarComponent extends React.Component {
                   <span className="caret"></span>
                 ]}>
                 <button>New Score</button>
-                {/*
                 <Link to="game-new">New Game</Link>
-                */}
                 <button>New Trial</button>
                 <button>New Challange</button>
               </DropDown>
@@ -67,9 +63,7 @@ class NavbarComponent extends React.Component {
                       height={20} width={20} />
                   */
                 ]}>
-                  {/*
                   <Link to="user-settings">Settings</Link>
-                  */}
                   <Logout />
               </DropDown>
             </ul>

@@ -8,24 +8,24 @@
 import React from 'react' // eslint-disable-line no-unused-vars
 import App from './AppComponent'
 import ScoreBoard from './scoreboard/ScoreBoardComponent'
-/*
-import NotFound from './components/NotFound'
-import ChallengePage from './components/ChallengePage'
-import ChallengesPage from './components/ChallengesPage'
-import EventPage from './components/EventPage'
-import EventsPage from './components/EventsPage'
-import GamePage from './components/GamePage'
-import GamesPage from './components/GamesPage'
-import PlayerPage from './components/PlayerPage'
-import PlayersPage from './components/PlayersPage'
-import UserSettingsPage from './components/UserSettingsPage'
-import GameCreationPage from './components/GameCreationPage'
-*/
+import ActiveUserSettings from './activeuser/ActiveUserSettingsComponent'
+import NewGamePage from './game/NewGamePageComponent'
+import GamePage from './game/GamePageComponent'
+import GamesPage from './game/GamesPageComponent'
+import PlayerPage from './player/PlayerPageComponent'
+import PlayersPage from './player/PlayersPageComponent'
 import { Route, NotFoundRoute, DefaultRoute } from 'react-router'
 
 const routes = (
   <Route name='app' handler={App} path='/'>
     <DefaultRoute handler={ScoreBoard} />
+    <Route name='_=_' handler={ScoreBoard}/>
+    <Route name='player' path='player/:id' handler={PlayerPage}/>
+    <Route name='players' handler={PlayersPage} />
+    <Route name='game' path='game/:id' handler={GamePage} />
+    <Route name='games' handler={GamesPage} />
+    <Route name='game-new' path='new/game' handler={NewGamePage} />
+    <Route name='user-settings' handler={ActiveUserSettings} />
   </Route>
 )
 
