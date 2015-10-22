@@ -8,8 +8,7 @@
 'use strict';
 
 import React from 'react';
-//import Navbar from '../Navbar'
-//import Footer from '../Footer'
+import Navbar from './navbar/NavbarComponent'
 import { RouteHandler } from 'react-router'
 //import flux from '../../flux/flux'
 //import FluxComponent from 'flummox/component'
@@ -21,11 +20,10 @@ export default class AppComponent extends React.Component {
   render() {
     return (
       <div className="App">
-        {/* <Navbar /> */}
+        <Navbar />
         <div className='container' style={{'paddingTop': 15 + 'px'}}>
           <RouteHandler {...this.params} />
         </div>
-        {/* <Footer /> */}
       </div>
     )
   }
