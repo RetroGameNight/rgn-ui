@@ -34,7 +34,7 @@ AvatarComponent.displayName = 'AvatarComponent';
 
 // Uncomment properties you need
 AvatarComponent.propTypes = {
-  url: React.PropTypes.string.isRequired,
+  url: React.PropTypes.string,
   linkTo: React.PropTypes.string,
   linkParams: React.PropTypes.object,
   height: React.PropTypes.number,
