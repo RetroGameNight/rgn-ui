@@ -7,16 +7,16 @@
 // import TestUtils from 'react-addons-test-utils';
 import createComponent from 'helpers/shallowRenderHelper';
 
-import ScoreBoardComponent from 'components//ScoreBoardComponent.js';
+import TopPlayersComponent from 'components/scoreboard/TopPlayersComponent.js';
 
-describe('ScoreBoardComponent', () => {
+describe('TopPlayersComponent', () => {
     let component;
 
     beforeEach(() => {
-      component = createComponent(ScoreBoardComponent);
+      component = createComponent(TopPlayersComponent);
     });
 
     it('should have its component name as default className', () => {
-      expect(component.props.className).to.equal('scoreboard-component');
+      expect(component.props.className).to.equal('topplayers-component');
     });
 });

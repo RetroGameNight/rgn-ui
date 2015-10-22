@@ -7,7 +7,7 @@
  */
 import React from 'react' // eslint-disable-line no-unused-vars
 import App from './AppComponent'
-import ScoreBoard from './ScoreBoardComponent'
+import ScoreBoard from './scoreboard/ScoreBoardComponent'
 /*
 import NotFound from './components/NotFound'
 import ChallengePage from './components/ChallengePage'
