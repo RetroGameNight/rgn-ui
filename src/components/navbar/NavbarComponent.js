@@ -42,21 +42,20 @@ class NavbarComponent extends React.Component {
             </Link>
           </div>
             <ul className='nav navbar-nav'>
-              <Link to='/games'>Games</Link>
-              <Link to='/players'>Players</Link>
+              <li><Link to='/games'>Games</Link></li>
+              <li><Link to='/players'>Players</Link></li>
             </ul>
             <ul className='nav navbar-nav navbar-right'>
               <DropDown icons={[
                   <span className="glyphicon glyphicon-plus"></span>,
                   <span className="caret"></span>
                 ]}>
-                <button>New Score</button>
+                <a>New Score</a>
                 <Link to="/new/game">New Game</Link>
-                <button>New Trial</button>
-                <button>New Challange</button>
+                <a>New Trial</a>
+                <a>New Challange</a>
               </DropDown>
               <DropDown icons={[
-                  <span className="caret"></span>,
                   <FluxComponent connectToStores={{
                       api: store => {
                         const activeUser = store.getActiveUser()
@@ -66,7 +65,8 @@ class NavbarComponent extends React.Component {
                       }
                   }}>
                     <Avatar height={20} width={20} />
-                  </FluxComponent>
+                  </FluxComponent>,
+                  <span className="caret"></span>
                 ]}>
                 <Link to="/settings">Settings</Link>
                 <Logout />

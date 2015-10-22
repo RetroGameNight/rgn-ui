@@ -13,6 +13,8 @@ import { RouteHandler } from 'react-router'
 import flux from './flux'
 import FluxComponent from 'flummox/component'
 
+window.jQuery = require('jquery')
+require("bootstrap-webpack");
 require('styles//App.sass');
 
 

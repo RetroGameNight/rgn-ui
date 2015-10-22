@@ -5,12 +5,16 @@ import React from 'react';
 require('styles/navbar/LogoutButton.sass');
 
 class LogoutButtonComponent extends React.Component {
+  constructor(props) {
+    super(props)
+    this.clickHandler = this.clickHandler.bind(this)
+  }
   clickHandler() {
-    this.context.flux.getActions('api').logout('')
+    this.context.flux.getActions('api').logout()
   }
   render() {
     return (
-      <button onClick={this.clickHandler}>Logout</button>
+      <a onClick={this.clickHandler}>Logout</a>
     );
   }
 }
@@ -21,7 +25,7 @@ LogoutButtonComponent.displayName = 'NavbarLogoutButtonComponent';
 // LogoutButtonComponent.propTypes = {};
 // LogoutButtonComponent.defaultProps = {};
 LogoutButtonComponent.contextTypes = {
-  flux: React.PropTypes.object.isRequired
+  flux: React.PropTypes.object.isRequired,
 }
 
 

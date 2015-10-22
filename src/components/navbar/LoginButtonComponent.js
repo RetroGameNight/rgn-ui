@@ -14,9 +14,9 @@ class LoginButtonComponent extends React.Component {
     const URL = `${API_BASENAME}/auth/${path}`
 
     return (
-      <button className={this.props.type} href={URL}>
+      <a className={this.props.type} href={URL}>
         {this.props.text}
-      </button>
+      </a>
     )
   }
 }
