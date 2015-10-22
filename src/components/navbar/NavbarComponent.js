@@ -16,15 +16,6 @@ import Login from './LoginButtonComponent'
 import Logout from './LogoutButtonComponent'
 import DropDown from './DropDownComponent'
 
-/*
-import IsLoggedIn from '../IsLoggedIn'
-import IsNotLoggedIn from '../IsNotLoggedIn'
-import Avatar from '../Avatar'
-*/
-
-//window.jQuery = require('jquery')
-//require('bootstrap')
-
 require('styles/navbar/Navbar.sass');
 
 const { scheme, host, port } = config.api.location
@@ -32,6 +23,7 @@ const API_BASENAME = `${scheme}://${host}:${port}`
 
 class NavbarComponent extends React.Component {
   render() {
+    const { isLoggedIn } = this.props
     return (
       <nav className='navigation navbar header'>
         <div className="container-fluid">
@@ -45,6 +37,7 @@ class NavbarComponent extends React.Component {
               <li><Link to='/games'>Games</Link></li>
               <li><Link to='/players'>Players</Link></li>
             </ul>
+            {isLoggedIn &&
             <ul className='nav navbar-nav navbar-right'>
               <DropDown icons={[
                   <span className="glyphicon glyphicon-plus"></span>,
@@ -71,11 +64,12 @@ class NavbarComponent extends React.Component {
                 <Link to="/settings">Settings</Link>
                 <Logout />
               </DropDown>
-            </ul>
+            </ul>}
+            {(!isLoggedIn) &&
             <ul className='nav navbar-nav pull-right login'>
                 <li><Login text='Sign In with Google' type='google' /></li>
                 <li><Login text='Sign In with Facebook' type='facebook' /></li>
-            </ul>
+            </ul>}
         </div>
       </nav>
     );
@@ -86,7 +80,9 @@ NavbarComponent.displayName = 'NavbarNavbarComponent';
 
 // Uncomment properties you need
 // NavbarComponent.propTypes = {};
-// NavbarComponent.contextTypes = {}
+NavbarComponent.contextTypes = {
+  flux: React.PropTypes.object.isRequired,
+}
 // NavbarComponent.defaultProps = {};
 
 export default NavbarComponent;

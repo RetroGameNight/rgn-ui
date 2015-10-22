@@ -17,13 +17,26 @@ window.jQuery = require('jquery')
 require("bootstrap-webpack");
 require('styles//App.sass');
 
+require('babel/polyfill')
 
 export default class AppComponent extends React.Component {
+  componentDidMount() {
+    flux.getActions('api').login('')
+  }
+  componentWillUpdate() {
+    flux.getActions('api').login('')
+  }
   render() {
     return (
       <FluxComponent flux={flux}>
         <div className="App">
-          <Navbar />
+          <FluxComponent connectToStores={{
+              api: store => ({
+                  isLoggedIn: store.isLoggedIn(),
+              })
+          }}>
+            <Navbar />
+          </FluxComponent>
           <div className='container' style={{'paddingTop': 15 + 'px'}}>
             {this.props.children}
           </div>
