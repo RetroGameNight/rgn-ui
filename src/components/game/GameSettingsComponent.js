@@ -1,15 +1,14 @@
 'use strict';
 
 import React from 'react';
+import DeletePanel from './settings/DeletePanelComponent'
 
 require('styles/game/GameSettings.sass');
 
 class GameSettingsComponent extends React.Component {
   render() {
     return (
-      <div className="gamesettings-component">
-        Please edit src/components/game//GameSettingsComponent.js to update this component!
-      </div>
+      <DeletePanel game={this.props.game} />
     );
   }
 }

@@ -59,6 +59,9 @@ export default class ApiStore extends Store {
   getGame(id) {
     return _.find(this.state.games, { id })
   }
+  getGames() {
+    return this.state.games
+  }
   getEvent(id) {
     return _.find(this.state.events, { id })
   }
@@ -76,6 +79,9 @@ export default class ApiStore extends Store {
   }
   getActiveUser() {
     return this.state.activeUser
+  }
+  getUsers() {
+    return this.state.users
   }
   isLoggedIn() {
     return !!this.state.activeUser

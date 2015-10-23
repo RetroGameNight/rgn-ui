@@ -43,33 +43,3 @@ class PlayersPageInner extends React.Component {
   }
 }
 
-class Player extends React.Component {
-  render() {
-    const player = this.props.player
-    const avatarUrl = player ? player.avatarUrl : ''
-    return (
-        <div className="panel panel-default">
-          <div className="panel-body">
-            <div className="col-xs-10">
-              <div className="avatar">
-                <Avatar url={avatarUrl}
-                        linkTo='player'
-                        linkParams={{id: player ? player.id : ''}}/>
-              </div>
-              <div className="player-info">
-                <Link to="player" params={{ id: player.id }}>
-                  <h4>{player.name}</h4>
-                </Link>
-                <h5>{player.email}</h5>
-              </div>
-            </div>
-            <div className="col-xs-2">
-              <div style={{'height': 40 + 'px', 'paddingTop': 10 + 'px', float: 'right'}}>
-                <ChallengeButton btnText="Challenge"/>
-              </div>
-            </div>
-          </div>
-        </div>
-    )
-  }
-}
