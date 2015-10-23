@@ -1,6 +1,6 @@
 var path = require('path');
 
-var port = 8000;
+var port = 8081;
 var srcPath = path.join(__dirname, '/../src');
 var publicPath = '/assets/';
 
@@ -62,6 +62,10 @@ module.exports = {
       {
         test: /\.(png|jpg|gif|woff|woff2)$/,
         loader: 'url-loader?limit=8192'
+      },
+      { 
+        test: /\.(ttf|eot|svg)$/,    
+        loader: "file-loader" 
       }
     ]
   }
